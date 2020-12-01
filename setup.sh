@@ -88,3 +88,5 @@ read -e -p "Input your github username : " username
 read -e -p "Input your github password : " password
 git clone https://"$username":"$Password"@github.com/"$username"/accounts $HOME/easyclone
 cecho b "Service accounts were added Successfully"
+
+# Creating the rclone.conf with appropriate info
