@@ -38,7 +38,7 @@ elif [ "$arch" == "x86_64" ] ; then
   arch=amd64
 fi
 
-dl=https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip
+wget https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip
 
 mkdir $HOME/easyclone
 mkdir $HOME/.easyclone
