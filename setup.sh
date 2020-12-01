@@ -40,6 +40,7 @@ fi
 
 # Removing Old Files and pulling new ones
 rm -rf $HOME/easyclone
+rm -rf $HOME/.easyclone/clone
 mkdir $HOME/easyclone
 mkdir $HOME/.easyclone
 wget https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip
