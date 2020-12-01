@@ -7,6 +7,7 @@
 # System Supported: Arch , Ubuntu/Debian , Fedora & Termux
 #=============================================================
 
+#Variables 
 version=v0.4.1
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
@@ -14,21 +15,23 @@ epac="$(which pacman)"
 eapt="$(which apt)"
 ednf="$(which dnf)"
 
+# Detecting the OS and installing required dependencies
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     echo "Termux detected" && \
-    pkg install -y unzip git
+    pkg install -y unzip git wget
 elif [ "$epac" == "/usr/bin/pacman" ]; then
     echo "Arch based OS detected" && \
-    sudo pacman --noconfirm -S unzip git
+    sudo pacman --noconfirm -S unzip git wget
 elif [ "$eapt" == "/usr/bin/apt" ]; then 
     echo "Ubuntu based OS detected" && \
-    sudo apt install -y unzip git
+    sudo apt install -y unzip git wget
 elif [ "$ednf" == "/usr/bin/dnf" ]; then
     echo "Fedora based OS detected"
-    sudo dnf install -y unzip git
+    sudo dnf install -y unzip git wget
 fi
 }
 
+# Detecting the linux kernel architecture
 if [ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ] ; then
   arch=arm64
 elif [ "$arch" == "x86_64" ] ; then
