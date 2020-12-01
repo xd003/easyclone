@@ -46,6 +46,7 @@ git clone https://github.com/xd003/easyclone $HOME/easyclone
 mv $HOME/easyclone/clone $HOME/.easyclone
 chmod u+x $HOME/.easyclone/clone
 
+# Adding the clone script to path
 if [ -f "$HOME/.bashrc" ]; then
     echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
     source ~/.bashrc
