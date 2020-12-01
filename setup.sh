@@ -91,3 +91,7 @@ git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/
 cecho b "Service accounts were added Successfully"
 
 # Creating the rclone.conf with appropriate info
+if [ -f "$HOME/.config/rclone.conf" ]; then
+  cat  
+else
+  touch $HOME/.config/rclone.conf
