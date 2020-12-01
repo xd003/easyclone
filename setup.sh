@@ -91,12 +91,21 @@ git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/
 cecho b "Service accounts were added Successfully"
 
 # Creating the rclone.conf with appropriate info
+read -e -p "Input your client_id : " client
+read -e -p "Input your client_secret : " secret
+
 if [ -f "$HOME/.config/rclone.conf" ]; then
     echo >> $HOME/.config/rclone.conf
     echo "[gd]" >> $HOME/.config/rclone.conf
     echo "type = drive" >> $HOME/.config/rclone.conf
+    eval echo "client_id = $client" >> $HOME/.config/rclone.conf
+    eval echo "client_secret = $secret" >> $HOME/.config/rclone.conf
+    echo "scope = drive" >> $HOME/.config/rclone.conf
 else
     touch $HOME/.config/rclone.conf
     echo "[gd]" >> $HOME/.config/rclone.conf
     echo "type = drive" >> $HOME/.config/rclone.conf
-    
+    eval echo "client_id = $client" >> $HOME/.config/rclone.conf
+    eval echo "client_secret = $secret" >> $HOME/.config/rclone.conf
+    echo "scope = drive" >> $HOME/.config/rclone.conf
+fi 
