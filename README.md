@@ -7,3 +7,4 @@ The script utilises the rclone modded binary also known as [fclone](https://gith
 * Secondly , you need to make a new repository named accounts in your github account and upload all the service accounts in that repo.
 
 # How to install
+* ## WIP ## 
