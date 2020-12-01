@@ -92,6 +92,11 @@ cecho b "Service accounts were added Successfully"
 
 # Creating the rclone.conf with appropriate info
 if [ -f "$HOME/.config/rclone.conf" ]; then
-  cat  
+    echo >> $HOME/.config/rclone.conf
+    echo "[gd]" >> $HOME/.config/rclone.conf
+    echo "type = drive" >> $HOME/.config/rclone.conf
 else
-  touch $HOME/.config/rclone.conf
+    touch $HOME/.config/rclone.conf
+    echo "[gd]" >> $HOME/.config/rclone.conf
+    echo "type = drive" >> $HOME/.config/rclone.conf
+    
