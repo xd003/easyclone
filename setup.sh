@@ -57,17 +57,18 @@ fi
 # Removing Old Files and pulling new ones
 rm -rf $HOME/easyclone
 rm -rf $HOME/.easyclone
+mkdir $HOME/tmp
 mkdir $HOME/easyclone
+mkdir $HOME/easyclone/accounts
 mkdir $HOME/.easyclone
-mkdir $HOME/.easyclone/accounts
-git clone https://github.com/xd003/easyclone $HOME/easyclone
-wget https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip -O $HOME/easyclone/fclone.zip
-unzip -q $HOME/easyclone/fclone.zip -d $HOME/easyclone
-mv $HOME/easyclone/clone $HOME/.easyclone
-mv $HOME/easyclone/fclone-$version-linux-$arch/fclone $HOME/.easyclone
+git clone https://github.com/xd003/easyclone $HOME/.tmp
+wget https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip -O $HOME/tmp/fclone.zip
+unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
+mv $HOME/tmp/clone $HOME/.easyclone
+mv $HOME/tmp/fclone-$version-linux-$arch/fclone $HOME/.easyclone
 chmod u+x $HOME/.easyclone/clone
 chmod u+x $HOME/.easyclone/fclone
-rm -rf $HOME/easyclone
+rm -rf $HOME/tmp
 
 # Adding the clone script & fclone executable to path
 if [ -f "$HOME/.bashrc" ]; then
@@ -86,7 +87,7 @@ fi
 echo && cecho r "Downloading the service accounts from your private repo"
 read -e -p "Input your github username : " username
 read -e -p "Input your github password : " password
-git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/.easyclone/accounts
+git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts
 cecho b "Service accounts were added Successfully"
 
 # Creating the rclone.conf with appropriate info
