@@ -31,6 +31,7 @@ ehome="$(echo $HOME)"
 epac="$(which pacman)"
 eapt="$(which apt)"
 ednf="$(which dnf)"
+eclone="$(which clone)"
 conf="$HOME/.config/rclone/rclone.conf"
 
 # Detecting the OS and installing required dependencies
@@ -55,13 +56,10 @@ elif [ "$arch" == "x86_64" ] ; then
   arch=amd64
 fi
 
-# Removing Old Files and pulling new ones
-rm -rf $HOME/easyclone
+# Removing old Files and pulling new ones
 rm -rf $HOME/.easyclone
-mkdir $HOME/tmp
-mkdir $HOME/easyclone
-mkdir $HOME/easyclone/accounts
 mkdir $HOME/.easyclone
+mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
 wget https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip -O $HOME/tmp/fclone.zip
 unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
@@ -85,11 +83,17 @@ else
 fi
 
 # Pulling the accounts folder containing service accounts from github 
-echo && cecho r "Downloading the service accounts from your private repo"
-read -e -p "Input your github username : " username
-read -e -p "Input your github password : " password
-git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts
-cecho b "Service accounts were added Successfully"
+if [ -d "$HOME/easyclone" ] && [ -d "$HOME/easyclone/accounts" ]; then
+    cecho b "accounts folder already existing , skipping"
+else
+    rm -rf $HOME/easyclone
+    mkdir -p $HOME/easyclone/accounts
+    echo && cecho r "Downloading the service accounts from your private repo"
+    read -e -p "Input your github username : " username
+    read -e -p "Input your github password : " password
+    git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts
+    cecho b "Service accounts were added Successfully"
+fi
 
 # Creating the rclone.conf with appropriate info
 read -e -p "Input your client_id : " client
