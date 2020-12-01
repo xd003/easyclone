@@ -16,16 +16,16 @@ ednf="$(which dnf)"
 
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     echo "Termux detected" && \
-    pkg install -y openssh sshpass git
+    pkg install -y unzip git
 elif [ "$epac" == "/usr/bin/pacman" ]; then
     echo "Arch based OS detected" && \
-    sudo pacman --noconfirm -S openssh sshpass git
+    sudo pacman --noconfirm -S unzip git
 elif [ "$eapt" == "/usr/bin/apt" ]; then 
     echo "Ubuntu based OS detected" && \
-    sudo apt install -y openssh-server sshpass git
+    sudo apt install -y unzip git
 elif [ "$ednf" == "/usr/bin/dnf" ]; then
     echo "Fedora based OS detected"
-    sudo dnf install -y openssh sshpass git
+    sudo dnf install -y unzip git
 fi
 }
 
