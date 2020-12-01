@@ -101,20 +101,13 @@ read -e -p "Input your client_secret : " secret
 
 if [ -f "$conf" ]; then
     echo >> $conf
-    echo "[gd]" >> $conf
-    echo "type = drive" >> $conf
-    eval echo "client_id = $client" >> $conf
-    eval echo "client_secret = $secret" >> $conf
-    echo "scope = drive" >> $conf
-    eval echo "service_account_file = $HOME/easyclone/accounts/1.json" >> $conf
-    eval echo "service_account_file_path = $HOME/easyclone/accounts/" >> $conf
 else
     touch $conf
-    echo "[gd]" >> $conf
-    echo "type = drive" >> $conf
-    eval echo "client_id = $client" >> $conf
-    eval echo "client_secret = $secret" >> $conf
-    echo "scope = drive" >> $conf
-    eval echo "service_account_file = $HOME/easyclone/accounts/1.json" >> $conf
-    eval echo "service_account_file_path = $HOME/easyclone/accounts/" >> $conf
-fi 
+fi
+echo "[gd]" >> $conf
+echo "type = drive" >> $conf
+eval echo "client_id = $client" >> $conf
+eval echo "client_secret = $secret" >> $conf
+echo "scope = drive" >> $conf
+eval echo "service_account_file = $HOME/easyclone/accounts/1.json" >> $conf
+eval echo "service_account_file_path = $HOME/easyclone/accounts/" >> $conf
