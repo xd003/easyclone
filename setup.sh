@@ -95,22 +95,22 @@ cecho b "Service accounts were added Successfully"
 read -e -p "Input your client_id : " client
 read -e -p "Input your client_secret : " secret
 
-if [ -f "$HOME/.config/rclone/rclone.conf" ]; then
-    echo >> $HOME/.config/rclone/rclone.conf
-    echo "[gd]" >> $HOME/.config/rclone/rclone.conf
-    echo "type = drive" >> $HOME/.config/rclone/rclone.conf
-    eval echo "client_id = $client" >> $HOME/.config/rclone/rclone.conf
-    eval echo "client_secret = $secret" >> $HOME/.config/rclone/rclone.conf
-    echo "scope = drive" >> $HOME/.config/rclone/rclone.conf
-    eval echo "service_account_file = $HOME/easyclone/accounts/1.json" >> $HOME/.config/rclone/rclone.conf
-    eval echo "service_account_file_path = $HOME/easyclone/accounts/" >> $HOME/.config/rclone/rclone.conf
+if [ -f "$conf" ]; then
+    echo >> $conf
+    echo "[gd]" >> $conf
+    echo "type = drive" >> $conf
+    eval echo "client_id = $client" >> $conf
+    eval echo "client_secret = $secret" >> $conf
+    echo "scope = drive" >> $conf
+    eval echo "service_account_file = $HOME/easyclone/accounts/1.json" >> $conf
+    eval echo "service_account_file_path = $HOME/easyclone/accounts/" >> $conf
 else
-    touch $HOME/.config/rclone/rclone.conf
-    echo "[gd]" >> $HOME/.config/rclone/rclone.conf
-    echo "type = drive" >> $HOME/.config/rclone/rclone.conf
-    eval echo "client_id = $client" >> $HOME/.config/rclone/rclone.conf
-    eval echo "client_secret = $secret" >> $HOME/.config/rclone/rclone.conf
-    echo "scope = drive" >> $HOME/.config/rclone/rclone.conf
-    eval echo "service_account_file = $HOME/easyclone/accounts/1.json" >> $HOME/.config/rclone/rclone.conf
-    eval echo "service_account_file_path = $HOME/easyclone/accounts/" >> $HOME/.config/rclone/rclone.conf
+    touch $conf
+    echo "[gd]" >> $conf
+    echo "type = drive" >> $conf
+    eval echo "client_id = $client" >> $conf
+    eval echo "client_secret = $secret" >> $conf
+    echo "scope = drive" >> $conf
+    eval echo "service_account_file = $HOME/easyclone/accounts/1.json" >> $conf
+    eval echo "service_account_file_path = $HOME/easyclone/accounts/" >> $conf
 fi 
