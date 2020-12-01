@@ -6,3 +6,6 @@
 # Description: Installing prerequisites for clone script
 # System Required: Any Linux based distribution
 #=============================================================
+
+version=v0.4.1
+arch="$(uname -m)"
