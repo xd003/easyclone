@@ -70,13 +70,13 @@ chmod u+x $HOME/.easyclone/fclone
 rm -rf $HOME/tmp
 
 # Adding the clone script & fclone executable to path
-if [ -f "$HOME/.bashrc" ] && [[ $(grep "easyclone" $conf) ]]; then
+if [ -f "$HOME/.bashrc" ] && [[ $eclone ]]; then
     echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
     source ~/.bashrc
-elif [ -f "$HOME/.zshrc" ] && [[ $(grep "easyclone" $conf) ]]; then
+elif [ -f "$HOME/.zshrc" ] && [[ $eclone ]]; then
     echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.zshrc && \
     source ~/.zshrc
-elif [[ $(grep "easyclone" $conf) ]]; then
+elif [[ $eclone ]]; then
     touch $HOME/.bashrc && \
     echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
     source ~/.bashrc
