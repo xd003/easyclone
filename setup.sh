@@ -59,6 +59,7 @@ rm -rf $HOME/easyclone
 rm -rf $HOME/.easyclone
 mkdir $HOME/easyclone
 mkdir $HOME/.easyclone
+mkdir $HOME/.easyclone/accounts
 git clone https://github.com/xd003/easyclone $HOME/easyclone
 wget https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip -O $HOME/easyclone/fclone.zip
 unzip -q $HOME/easyclone/fclone.zip -d $HOME/easyclone
@@ -85,7 +86,7 @@ fi
 echo && cecho r "Downloading the service accounts from your private repo"
 read -e -p "Input your github username : " username
 read -e -p "Input your github password : " password
-git clone https://"$username":"$Password"@github.com/"$username"/accounts $HOME/.easyclone
+git clone https://"$username":"$Password"@github.com/"$username"/accounts $HOME/.easyclone/accounts
 cecho b "Service accounts were added Successfully"
 
 # Creating the rclone.conf with appropriate info
