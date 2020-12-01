@@ -46,7 +46,6 @@ elif [ "$ednf" == "/usr/bin/dnf" ]; then
     echo "Fedora based OS detected"
     sudo dnf install -y unzip git wget
 fi
-}
 
 # Detecting the linux kernel architecture
 if [ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ] ; then
