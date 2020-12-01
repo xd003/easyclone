@@ -17,3 +17,10 @@ elif [ "$arch" == "x86_64" ] ; then
 fi
 
 dl=https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip
+
+mkdir $HOME/easyclone
+mkdir $HOME/.easyclone
+git clone https://github.com/xd003/easyclone $HOME/easyclone
+mv $HOME/easyclone/clone $HOME/.easyclone
+chmod u+x $HOME/.easyclone/clone
+
