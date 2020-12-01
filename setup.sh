@@ -56,7 +56,7 @@ fi
 
 # Removing Old Files and pulling new ones
 rm -rf $HOME/easyclone
-rm -rf $HOME/.easyclone/clone
+rm -rf $HOME/.easyclone
 mkdir $HOME/easyclone
 mkdir $HOME/.easyclone
 git clone https://github.com/xd003/easyclone $HOME/easyclone
