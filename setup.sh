@@ -31,6 +31,7 @@ ehome="$(echo $HOME)"
 epac="$(which pacman)"
 eapt="$(which apt)"
 ednf="$(which dnf)"
+conf="$HOME/.config/rclone/rclone.conf"
 
 # Detecting the OS and installing required dependencies
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
@@ -94,22 +95,22 @@ cecho b "Service accounts were added Successfully"
 read -e -p "Input your client_id : " client
 read -e -p "Input your client_secret : " secret
 
-if [ -f "$HOME/.config/rclone.conf" ]; then
-    echo >> $HOME/.config/rclone.conf
-    echo "[gd]" >> $HOME/.config/rclone.conf
-    echo "type = drive" >> $HOME/.config/rclone.conf
-    eval echo "client_id = $client" >> $HOME/.config/rclone.conf
-    eval echo "client_secret = $secret" >> $HOME/.config/rclone.conf
-    echo "scope = drive" >> $HOME/.config/rclone.conf
-    eval echo "service_account_file = $HOME/easyclone/accounts/1.json"
-    eval echo "service_account_file_path = $HOME/easyclone/accounts/"
+if [ -f "$HOME/.config/rclone/rclone.conf" ]; then
+    echo >> $HOME/.config/rclone/rclone.conf
+    echo "[gd]" >> $HOME/.config/rclone/rclone.conf
+    echo "type = drive" >> $HOME/.config/rclone/rclone.conf
+    eval echo "client_id = $client" >> $HOME/.config/rclone/rclone.conf
+    eval echo "client_secret = $secret" >> $HOME/.config/rclone/rclone.conf
+    echo "scope = drive" >> $HOME/.config/rclone/rclone.conf
+    eval echo "service_account_file = $HOME/easyclone/accounts/1.json" >> $HOME/.config/rclone/rclone.conf
+    eval echo "service_account_file_path = $HOME/easyclone/accounts/" >> $HOME/.config/rclone/rclone.conf
 else
-    touch $HOME/.config/rclone.conf
-    echo "[gd]" >> $HOME/.config/rclone.conf
-    echo "type = drive" >> $HOME/.config/rclone.conf
-    eval echo "client_id = $client" >> $HOME/.config/rclone.conf
-    eval echo "client_secret = $secret" >> $HOME/.config/rclone.conf
-    echo "scope = drive" >> $HOME/.config/rclone.conf
-    eval echo "service_account_file = $HOME/easyclone/accounts/1.json"
-    eval echo "service_account_file_path = $HOME/easyclone/accounts/"
+    touch $HOME/.config/rclone/rclone.conf
+    echo "[gd]" >> $HOME/.config/rclone/rclone.conf
+    echo "type = drive" >> $HOME/.config/rclone/rclone.conf
+    eval echo "client_id = $client" >> $HOME/.config/rclone/rclone.conf
+    eval echo "client_secret = $secret" >> $HOME/.config/rclone/rclone.conf
+    echo "scope = drive" >> $HOME/.config/rclone/rclone.conf
+    eval echo "service_account_file = $HOME/easyclone/accounts/1.json" >> $HOME/.config/rclone/rclone.conf
+    eval echo "service_account_file_path = $HOME/easyclone/accounts/" >> $HOME/.config/rclone/rclone.conf
 fi 
