@@ -24,3 +24,14 @@ git clone https://github.com/xd003/easyclone $HOME/easyclone
 mv $HOME/easyclone/clone $HOME/.easyclone
 chmod u+x $HOME/.easyclone/clone
 
+if [ -f "$HOME/.bashrc" ]; then
+    echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
+    source ~/.bashrc
+elif [ -f "$HOME/.zshrc" ]; then
+    echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.zshrc && \
+    source ~/.zshrc
+else
+    touch $HOME/.bashrc && \
+    echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
+    source ~/.bashrc
+fi
