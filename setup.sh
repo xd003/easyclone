@@ -63,7 +63,7 @@ git clone https://github.com/xd003/easyclone $HOME/easyclone
 wget https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip -O $HOME/easyclone/fclone.zip
 unzip -q $HOME/easyclone/fclone.zip -d $HOME/easyclone
 mv $HOME/easyclone/clone $HOME/.easyclone
-mv $HOME/easyclone/fclone $HOME/.easyclone
+mv $HOME/easyclone/fclone-$version-linux-$arch/fclone $HOME/.easyclone
 chmod u+x $HOME/.easyclone/clone
 chmod u+x $HOME/.easyclone/fclone
 rm -rf $HOME/easyclone
