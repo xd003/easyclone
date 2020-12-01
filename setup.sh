@@ -101,6 +101,8 @@ if [ -f "$HOME/.config/rclone.conf" ]; then
     eval echo "client_id = $client" >> $HOME/.config/rclone.conf
     eval echo "client_secret = $secret" >> $HOME/.config/rclone.conf
     echo "scope = drive" >> $HOME/.config/rclone.conf
+    eval echo "service_account_file = $HOME/easyclone/accounts/1.json"
+    eval echo "service_account_file_path = $HOME/easyclone/accounts/"
 else
     touch $HOME/.config/rclone.conf
     echo "[gd]" >> $HOME/.config/rclone.conf
@@ -108,4 +110,6 @@ else
     eval echo "client_id = $client" >> $HOME/.config/rclone.conf
     eval echo "client_secret = $secret" >> $HOME/.config/rclone.conf
     echo "scope = drive" >> $HOME/.config/rclone.conf
+    eval echo "service_account_file = $HOME/easyclone/accounts/1.json"
+    eval echo "service_account_file_path = $HOME/easyclone/accounts/"
 fi 
