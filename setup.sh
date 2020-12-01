@@ -43,14 +43,16 @@ rm -rf $HOME/easyclone
 rm -rf $HOME/.easyclone/clone
 mkdir $HOME/easyclone
 mkdir $HOME/.easyclone
-wget https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip
-
-
 git clone https://github.com/xd003/easyclone $HOME/easyclone
+wget https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip -O $HOME/easyclone/fclone.zip
+unzip -q $HOME/easyclone/fclone.zip
 mv $HOME/easyclone/clone $HOME/.easyclone
+mv $HOME/easyclone/fclone $HOME/.easyclone
 chmod u+x $HOME/.easyclone/clone
+chmod u+x $HOME/.easyclone/fclone
+rm -rf $HOME/easyclone
 
-# Adding the clone script to path
+# Adding the clone script & fclone executable to path
 if [ -f "$HOME/.bashrc" ]; then
     echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
     source ~/.bashrc
