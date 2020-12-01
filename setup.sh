@@ -4,11 +4,16 @@
 # File Name: setup.sh
 # Author: xd003
 # Description: Installing prerequisites for clone script
-# System Required: Any Linux based distribution
+# System Supported: Arch , Ubuntu/Debian , Fedora & Termux
 #=============================================================
 
 version=v0.4.1
 arch="$(uname -m)"
+ehome="$(echo $HOME)"
+epac="$(which pacman)"
+eapt="$(which apt)"
+ednf="$(which dnf)"
+
 
 if [ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ] ; then
   arch=arm64
