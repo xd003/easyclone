@@ -70,16 +70,20 @@ chmod u+x $HOME/.easyclone/fclone
 rm -rf $HOME/tmp
 
 # Adding the clone script & fclone executable to path
-if [ -f "$HOME/.bashrc" ] && [[ $eclone ]]; then
-    echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
-    source ~/.bashrc
-elif [ -f "$HOME/.zshrc" ] && [[ $eclone ]]; then
-    echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.zshrc && \
-    source ~/.zshrc
-elif [[ $eclone ]]; then
-    touch $HOME/.bashrc && \
-    echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
-    source ~/.bashrc
+if [ "$eclone" == "$HOME/.easyclone/clone" ]; then
+    echo "Easyclone Script pre exists in path, Skipping"
+else
+    if [ -f "$HOME/.bashrc" ]; then
+        echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
+        source ~/.bashrc
+    elif [ -f "$HOME/.zshrc" ]; then
+        echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.zshrc && \
+        source ~/.zshrc
+    else
+        touch $HOME/.bashrc && \
+        echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
+        source ~/.bashrc
+    fi
 fi
 
 # Pulling the accounts folder containing service accounts from github 
@@ -96,6 +100,8 @@ else
 fi
 
 # Creating the rclone.conf with appropriate info
+if [[ $(grep "easyclone" $conf) ]]; then
+    ec
 read -e -p "Input your client_id : " client
 read -e -p "Input your client_secret : " secret
 
