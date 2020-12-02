@@ -23,3 +23,12 @@ cecho() {
         [ -z "$text" ] && local text="$color$2${code}0m"
         echo -e "$text"
 }
+
+cat << EOF 
+1. Copy
+2. Move
+3. Sync
+4. Dedupe
+5. Size
+6. Directory Listing
+EOF
