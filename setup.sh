@@ -81,21 +81,23 @@ cecho b "Easyclone files successfully updated"
 echo
 cecho r "Adding the clone script & fclone executable to path"
 if [ "$eclone" == "$HOME/.easyclone/clone" ]; then
-    echo "Easyclone Script pre exists in path, Skipping"
+    cecho b "Easyclone Script pre exists in path, Skipping"
 else
     if [ -f "$HOME/.bashrc" ]; then
         echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
+        cecho b "Successfully added the necessary files to path"
         source ~/.bashrc
     elif [ -f "$HOME/.zshrc" ]; then
         echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.zshrc && \
+        cecho b "Successfully added the necessary files to path"
         source ~/.zshrc
     else
         touch $HOME/.bashrc && \
         echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
+        cecho b "Successfully added the necessary files to path"
         source ~/.bashrc
     fi
 fi
-cecho b "Successfully added the necessary files to path"
 
 # Pulling the accounts folder containing service accounts from github 
 echo
@@ -133,7 +135,8 @@ else
     echo "scope = drive" >> $conf
     eval echo "service_account_file = $HOME/easyclone/accounts/1.json" >> $conf
     eval echo "service_account_file_path = $HOME/easyclone/accounts/" >> $conf
+    cecho b "Successfully Generated the config with appropriate info"
 fi
-cecho b "Successfully Generated the config with appropriate info"
+
 echo
-cecho b "Entering clone will always start the script henceforth"
+cecho g "Entering clone will always start the script henceforth"
