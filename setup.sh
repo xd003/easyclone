@@ -75,7 +75,7 @@ mv $HOME/tmp/fclone-$version-linux-$arch/fclone $HOME/.easyclone
 chmod u+x $HOME/.easyclone/clone
 chmod u+x $HOME/.easyclone/fclone
 rm -rf $HOME/tmp
-cecho b "Easyclone files successfully updated"
+cecho b "Easyclone script & fclone successfully updated"
 
 # Adding the clone script & fclone executable to path
 echo
