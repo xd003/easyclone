@@ -68,7 +68,7 @@ rm -rf $HOME/.easyclone
 mkdir $HOME/.easyclone
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
-wget https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip -O $HOME/tmp/fclone.zip
+wget --tries=0 https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip -O $HOME/tmp/fclone.zip
 unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
 mv $HOME/tmp/clone $HOME/.easyclone
 mv $HOME/tmp/fclone-$version-linux-$arch/fclone $HOME/.easyclone
