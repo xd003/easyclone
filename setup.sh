@@ -64,6 +64,7 @@ fi
 # Removing old Files and pulling new ones
 echo
 cecho r "Deleting old files & pulling new ones from github"
+sudo rm -rf $(which fclone)
 rm -rf $HOME/.easyclone
 mkdir $HOME/.easyclone
 mkdir $HOME/tmp
