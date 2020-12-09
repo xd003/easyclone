@@ -43,16 +43,21 @@ case $opt in
   fclone copy gd:{$src} gd:{$dst} $flags
   ;;
   2 )
-   
+  read -e -p "Enter the source folder id or url : " src
+  read -e -p "Enter the destination folder id or url : " dst
+  fclone move gd:{$src} gd:{$dst} $flags
   ;;
   3 )
-  
+  read -e -p "Enter the source folder id or url : " src
+  read -e -p "Enter the destination folder id or url : " dst
+  fclone sync gd:{$src} gd:{$dst} $flags
   ;; 
   4 )
   
   ;;
   5 )
-  
+  read -e -p "Enter the folder id or url : " src
+  fclone size gd:{$src}
   6 )
   
   ;;
