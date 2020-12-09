@@ -24,6 +24,8 @@ cecho() {
         echo -e "$text"
 }
 
+flags="--drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone"
+
 cat << EOF 
 1. Copy
 2. Move
@@ -32,3 +34,26 @@ cat << EOF
 5. Size
 6. Directory Listing
 EOF
+
+read -e -p "Enter your input : " opt
+case $opt in
+  1 )
+  read -e -p "Enter the source folder id or url : " src
+  read -e -p "Enter the destination folder id or url : " dst
+  fclone copy gd:{$src} gd:{$dst} $flags
+  ;;
+  2 )
+   
+  ;;
+  3 )
+  
+  ;; 
+  4 )
+  
+  ;;
+  5 )
+  
+  6 )
+  
+  ;;
+esac
