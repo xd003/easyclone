@@ -33,6 +33,7 @@ cat << EOF
 4. Dedupe
 5. Size
 6. Directory Listing
+7. Clean Trash
 EOF
 
 read -e -p "Enter your input : " opt
@@ -59,7 +60,34 @@ case $opt in
   fclone sync gd:{$src} gd:{$dst} $flags
   ;; 
   4 )
-  
+  echo "Dedupe is selected ( It will delete any duplicate files present in given Folder ID/URL on the basis of MD5 & Filename )"
+cat << EOF
+1 = Interactive
+2 = Newest
+3 = Oldest
+4 = Largest
+5 = Smallest
+EOF
+  read -e -p "Enter the Dedupe Operation Mode (1-5) : " dm
+  read -e -p "Enter the folder id or url : " src
+  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+  case $dm in
+    1 )
+
+    ;;
+    2 )
+   
+    ;;
+    3 )
+
+    ;;
+    4 )
+
+    ;;
+    5 )
+
+    ;;
+  esac
   ;;
   5 )
   read -e -p "Enter the folder id or url : " src
@@ -67,5 +95,8 @@ case $opt in
   fclone size gd:{$src}
   6 )
   
+  ;;
+  7 )
+
   ;;
 esac
