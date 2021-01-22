@@ -76,28 +76,28 @@ EOF
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   case $dm in
     1 )
-
+    fclone dedupe --dedupe-mode interactive gd:{$src} --verbose=2
     ;;
     2 )
-   
+    fclone dedupe --dedupe-mode skip gd:{$src} --verbose=2
     ;;
     3 )
-
+    fclone dedupe --dedupe-mode first gd:{$src} --verbose=2
     ;;
     4 )
-
+    fclone dedupe --dedupe-mode newest gd:{$src} --verbose=2
     ;;
     5 )
-
+    fclone dedupe --dedupe-mode oldest gd:{$src} --verbose=2
     ;;
     6 )
-
+    fclone dedupe --dedupe-mode largest gd:{$src} --verbose=2
     ;;
     7 )
-
+    fclone dedupe --dedupe-mode smallest gd:{$src} --verbose=2
     ;;
     8 )
- 
+    fclone dedupe --dedupe-mode rename gd:{$src} --verbose=2
     ;;
   esac
   ;;
