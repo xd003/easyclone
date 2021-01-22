@@ -63,10 +63,13 @@ case $opt in
   echo "Dedupe is selected ( It will delete any duplicate files present in given Folder ID/URL on the basis of MD5 & Filename )"
 cat << EOF
 1 = Interactive
-2 = Newest
-3 = Oldest
-4 = Largest
-5 = Smallest
+2 = skip - removes identical files then skips anything left
+3 = first - removes identical files then keeps the first one
+4 = newest - removes identical files then keeps the newest one
+5 = oldest - removes identical files then keeps the oldest one
+6 = largest - removes identical files then keeps the largest one
+7 = smallest - removes identical files then keeps the smallest one
+8 = rename - removes identical files then renames the rest to be different
 EOF
   read -e -p "Enter the Dedupe Operation Mode (1-5) : " dm
   read -e -p "Enter the folder id or url : " src
@@ -86,6 +89,15 @@ EOF
     ;;
     5 )
 
+    ;;
+    6 )
+
+    ;;
+    7 )
+
+    ;;
+    8 )
+ 
     ;;
   esac
   ;;
