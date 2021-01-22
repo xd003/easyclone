@@ -5,6 +5,7 @@ The script utilises the rclone modded binary also known as [fclone](https://gith
 # Pre Requisites
 * Firstly , you should have generated the service accounts and have them downloaded in a folder named accounts. Follow steps from [here](https://github.com/smartass08/Service-Accounts-to-Google-groups/blob/master/README.md) if you don't have service accounts yet.
 * Secondly , you need to make a new repository named accounts in your github account and upload all the service accounts in that repo.
+* Lastly , you need to generate your own client id & secret from [here](https://developers.google.com/drive/api/v3/quickstart/python). It will have to be entered during config creation
 
 # How to install / update
 * bash <(curl https://raw.githubusercontent.com/xd003/easyclone/main/setup.sh)
