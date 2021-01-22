@@ -39,17 +39,23 @@ read -e -p "Enter your input : " opt
 case $opt in
   1 )
   read -e -p "Enter the source folder id or url : " src
+  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   read -e -p "Enter the destination folder id or url : " dst
+  dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   fclone copy gd:{$src} gd:{$dst} $flags
   ;;
   2 )
   read -e -p "Enter the source folder id or url : " src
+  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   read -e -p "Enter the destination folder id or url : " dst
+  dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   fclone move gd:{$src} gd:{$dst} $flags
   ;;
   3 )
   read -e -p "Enter the source folder id or url : " src
+  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   read -e -p "Enter the destination folder id or url : " dst
+  dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   fclone sync gd:{$src} gd:{$dst} $flags
   ;; 
   4 )
@@ -57,6 +63,7 @@ case $opt in
   ;;
   5 )
   read -e -p "Enter the folder id or url : " src
+  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   fclone size gd:{$src}
   6 )
   
