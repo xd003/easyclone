@@ -106,7 +106,9 @@ EOF
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   fclone size gd:{$src}
   6 )
-  
+  read -e -p "Enter the folder id or url : " src
+  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+  fclone ls gd:{$src}
   ;;
   7 )
 
