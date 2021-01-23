@@ -33,7 +33,7 @@ cat << EOF
 4. Dedupe
 5. Size
 6. Directory Listing
-7. Clean ( Empty trash + Delete Empty folders )
+7. Empty trash + Delete Empty folders
 EOF
 
 read -e -p "Enter your input : " opt
