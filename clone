@@ -25,18 +25,18 @@ cecho() {
 }
 
 cat << EOF 
-1. Copy
-2. Move
-3. Sync
-4. Dedupe
-5. Size
-6. Listing
-7. NCDU
+1. Copy    Copy files from source to dest, skipping already copied
+2. Move    Move files from source to dest, skipping already moved
+3. Sync    Make source and dest identical, modifying destination only
+4. Dedupe  Find duplicate files and delete/rename them
+5. Size    Return the total size and number of objects in specified location
+6. Listing Return all the files and folders present in specified location
+7. NCDU    Explore the specified location with a text based user interface   
 8. Empty trash
 9. Delete Empty folders
-10. Check
-11. Delete
-12. Quit
+10. Check  Check if the files in the source and destination match
+11. Delete Delete a file or a folder along with its content
+12. Quit   Exit the script
 EOF
 
 read -e -p "Enter your input : " opt
@@ -66,14 +66,13 @@ case $opt in
   echo "Dedupe is selected ( It will delete any duplicate files present in given Folder ID/URL on the basis of MD5 & Filename )"
 cat << EOF
 1 = Interactive
-2 = skip - removes identical files then skips anything left
-3 = first - removes identical files then keeps the first one
-4 = newest - removes identical files then keeps the newest one
-5 = oldest - removes identical files then keeps the oldest one
-6 = largest - removes identical files then keeps the largest one
-7 = smallest - removes identical files then keeps the smallest one
-8 = rename - removes identical files then renames the rest to be different
-9 = Return to Main Menu
+2 = skip      removes identical files then skips anything left
+3 = first     removes identical files then keeps the first one
+4 = newest    removes identical files then keeps the newest one
+5 = oldest    removes identical files then keeps the oldest one
+6 = largest   removes identical files then keeps the largest one
+7 = smallest  removes identical files then keeps the smallest one
+8 = rename    removes identical files then renames the rest to be different
 EOF
   read -e -p "Enter the Dedupe Operation Mode (1-5) : " dm
   read -e -p "Enter the folder id or url : " src
@@ -103,9 +102,6 @@ EOF
     8 )
     fclone dedupe --dedupe-mode rename gd:{$src} --verbose=2
     ;;
-    9 )
-  
-    ;;
   esac
   ;;
   5 )
@@ -117,35 +113,32 @@ EOF
   read -e -p "Enter the folder id or url : " src
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
 cat << EOF
-1. ls
-2. lsd
-3. lsf
-4. lsjson
-5. lsl
-6. tree
-7. Return to Main Menu
+1. ls      List the objects in the path with size and path
+2. lsd     List all directories/containers/buckets in the path
+3. lsf     List directories and objects in remote:path formatted for parsing
+4. lsjson  List directories and objects in the path in JSON format
+5. lsl     List the objects in path with modification time, size and path
+6. tree    List the contents of the remote in a tree like fashion
 EOF
   read -e -p "Choose the listing type : " lt
   case $lt in
     1 )
-
+    fclone ls gd:{$src}
     ;;
     2 )
-
+    fclone lsd gd:{$src}
     ;;
     3 )
-  
+    fclone lsf gd:{$src}
     ;;
     4 )
-
+    fclone lsjson gd:{$src}
     ;;
     5 )
-  
+    fclone lsl gd:{$src}
     ;;
     6 )
-
-    ;;
-    7 )
+    fclone tree gd:{$src}
     ;;
   esac
   ;;
