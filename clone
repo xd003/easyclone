@@ -31,7 +31,11 @@ cat << EOF
 4. Dedupe
 5. Size
 6. Directory Listing
-7. Empty trash + Delete Empty folders
+7. Empty trash
+8. Delete Empty folders
+9. Check
+10. Delete
+11. Quit
 EOF
 
 read -e -p "Enter your input : " opt
@@ -112,7 +116,21 @@ EOF
   7 )
   read -e -p "Enter the folder id or url : " src
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --tpslimit=4 --tpslimit-burst=32 --transfers=16 --verbose=2 && \
+  fclone delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --tpslimit=4 --tpslimit-burst=32 --transfers=16 --verbose=2
+  
+  ;;
+  8 )
+  read -e -p "Enter the folder id or url : " src
+  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   fclone rmdirs gd:{$src} --leave-root
+  ;;
+  9 )
+
+  ;;
+  10 )
+
+  ;;
+  11 )
+
   ;;
 esac
