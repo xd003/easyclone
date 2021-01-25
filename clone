@@ -24,8 +24,6 @@ cecho() {
         echo -e "$text"
 }
 
-flags="--drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone"
-
 cat << EOF 
 1. Copy
 2. Move
@@ -43,21 +41,21 @@ case $opt in
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   read -e -p "Enter the destination folder id or url : " dst
   dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone copy gd:{$src} gd:{$dst} $flags
+  fclone copy gd:{$src} gd:{$dst} --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone
   ;;
   2 )
   read -e -p "Enter the source folder id or url : " src
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   read -e -p "Enter the destination folder id or url : " dst
   dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone move gd:{$src} gd:{$dst} $flags
+  fclone move gd:{$src} gd:{$dst} --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone
   ;;
   3 )
   read -e -p "Enter the source folder id or url : " src
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   read -e -p "Enter the destination folder id or url : " dst
   dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone sync gd:{$src} gd:{$dst} $flags
+  fclone sync gd:{$src} gd:{$dst} --drive-server-side-across-configs --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone
   ;; 
   4 )
   echo "Dedupe is selected ( It will delete any duplicate files present in given Folder ID/URL on the basis of MD5 & Filename )"
