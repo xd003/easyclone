@@ -30,12 +30,13 @@ cat << EOF
 3. Sync
 4. Dedupe
 5. Size
-6. Directory Listing
-7. Empty trash
-8. Delete Empty folders
-9. Check
-10. Delete
-11. Quit
+6. Listing
+7. NCDU
+8. Empty trash
+9. Delete Empty folders
+10. Check
+11. Delete
+12. Quit
 EOF
 
 read -e -p "Enter your input : " opt
@@ -72,6 +73,7 @@ cat << EOF
 6 = largest - removes identical files then keeps the largest one
 7 = smallest - removes identical files then keeps the smallest one
 8 = rename - removes identical files then renames the rest to be different
+9 = Return to Main Menu
 EOF
   read -e -p "Enter the Dedupe Operation Mode (1-5) : " dm
   read -e -p "Enter the folder id or url : " src
@@ -101,36 +103,75 @@ EOF
     8 )
     fclone dedupe --dedupe-mode rename gd:{$src} --verbose=2
     ;;
+    9 )
+  
+    ;;
   esac
   ;;
   5 )
   read -e -p "Enter the folder id or url : " src
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone size gd:{$src}
+  fclone size gd:{$src} --fast-list
   ;;
   6 )
   read -e -p "Enter the folder id or url : " src
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone ls gd:{$src}
+cat << EOF
+1. ls
+2. lsd
+3. lsf
+4. lsjson
+5. lsl
+6. tree
+7. Return to Main Menu
+EOF
+  read -e -p "Choose the listing type : " lt
+  case $lt in
+    1 )
+
+    ;;
+    2 )
+
+    ;;
+    3 )
+  
+    ;;
+    4 )
+
+    ;;
+    5 )
+  
+    ;;
+    6 )
+
+    ;;
+    7 )
+    ;;
+  esac
   ;;
   7 )
+  read -e -p "Enter the folder id or url : " src
+  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+  fclone ncdu gd:{$src} --fast-list
+  ;;
+  8 )
   read -e -p "Enter the folder id or url : " src
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   fclone delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --tpslimit=4 --tpslimit-burst=32 --transfers=16 --verbose=2
   
   ;;
-  8 )
+  9 )
   read -e -p "Enter the folder id or url : " src
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   fclone rmdirs gd:{$src} --leave-root
-  ;;
-  9 )
-
   ;;
   10 )
 
   ;;
   11 )
+
+  ;;
+  12 )
 
   ;;
 esac
