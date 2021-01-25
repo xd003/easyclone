@@ -25,20 +25,46 @@ cecho() {
 }
 
 cat << EOF 
-1. Copy    Copy files from source to dest, skipping already copied
-2. Move    Move files from source to dest, skipping already moved
-3. Sync    Make source and dest identical, modifying destination only
-4. Dedupe  Find duplicate files and delete/rename them
-5. Size    Return the total size and number of objects in specified location
-6. Listing Return all the files and folders present in specified location
-7. NCDU    Explore the specified location with a text based user interface   
-8. Empty trash
-9. Delete Empty folders
-10. Check  Check if the files in the source and destination match
-11. Delete Delete a file or a folder along with its content
-12. Quit   Exit the script
+┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋1) Copy
+┋    (Copy files from source to dest, skipping already copied)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋2) Move
+┋    (Move files from source to dest, skipping already moved)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋3) Sync
+┋    (Make source and dest identical, modifying destination only)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋4) Dedupe
+┋    (Find duplicate files and delete/rename them)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋5) Size
+┋    (Return the total size and number of objects)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋6) Listing
+┋    (List all the files and folders)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋7) NCDU
+┋    (Explore directory with text based UI)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋8) Empty Trash
+┋    (You need to have Manager Permission in TD)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋9) Delete Empty Folders
+┋    (Delete all Empty Folders recursively)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋10) Check
+┋    (Check if the files in the source and destination match)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋11) Delete
+┋    (Delete a file or a folder along with its content)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋12) Quit
+┋    (Exit the Script)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 EOF
 
+echo
 read -e -p "Enter your input : " opt
 case $opt in
   1 )
@@ -66,11 +92,11 @@ case $opt in
   echo "Dedupe is selected ( It will delete any duplicate files present in given Folder ID/URL on the basis of MD5 & Filename )"
 cat << EOF
 1 = Interactive
-2 = skip      removes identical files then skips anything left
-3 = first     removes identical files then keeps the first one
+2 = skip          removes identical files then skips anything left
+3 = first          removes identical files then keeps the first one
 4 = newest    removes identical files then keeps the newest one
-5 = oldest    removes identical files then keeps the oldest one
-6 = largest   removes identical files then keeps the largest one
+5 = oldest      removes identical files then keeps the oldest one
+6 = largest     removes identical files then keeps the largest one
 7 = smallest  removes identical files then keeps the smallest one
 8 = rename    removes identical files then renames the rest to be different
 EOF
@@ -151,7 +177,6 @@ EOF
   read -e -p "Enter the folder id or url : " src
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   fclone delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --tpslimit=4 --tpslimit-burst=32 --transfers=16 --verbose=2
-  
   ;;
   9 )
   read -e -p "Enter the folder id or url : " src
@@ -159,12 +184,50 @@ EOF
   fclone rmdirs gd:{$src} --leave-root
   ;;
   10 )
-
+cat << EOF 
+1) Compare only Size ( Quick ) 
+2) Compare Size + MD5 / SHA1 Hash ( Slow )
+3) Compare after Downloading data locally ( Very Slow )
+EOF
+  read -e -p "Choose the Comparison Mode : " opt
+  read -e -p "Enter the source folder id or url : " src
+  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+  read -e -p "Enter the destination folder id or url : " dst
+  dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+  case $opt in
+    1 )
+    fclone check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --size-only
+    ;;
+    2 )
+    fclone check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list
+    ;;
+    3 )
+    fclone check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --download
+    ;;
+  esac
   ;;
   11 )
-
+cat << EOF 
+1. Delete      ( Delete the contents of path )
+2. Deletefile ( Delete a single file from path )
+3. Purge       ( Delete the path and its content )
+EOF 
+  read -e -p "Enter your input : " opt
+  read -e -p "Enter the source folder id or url : " src
+  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+  case $opt in
+    1 )
+    fclone delete gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+    ;;
+    2 )
+    fclone deletefile gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+    ;;
+    3 )
+    fclone purge gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+    ;;
+  esac
   ;;
   12 )
-
+  exit
   ;;
 esac
