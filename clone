@@ -99,6 +99,7 @@ cat << EOF
 6 = largest     removes identical files then keeps the largest one
 7 = smallest  removes identical files then keeps the smallest one
 8 = rename    removes identical files then renames the rest to be different
+9 = Return to Main Menu
 EOF
   read -e -p "Enter the Dedupe Operation Mode (1-5) : " dm
   read -e -p "Enter the folder id or url : " src
@@ -128,6 +129,9 @@ EOF
     8 )
     fclone dedupe --dedupe-mode rename gd:{$src} --verbose=2
     ;;
+    9 )
+
+    ;;
   esac
   ;;
   5 )
@@ -145,6 +149,7 @@ cat << EOF
 4. lsjson  List directories and objects in the path in JSON format
 5. lsl     List the objects in path with modification time, size and path
 6. tree    List the contents of the remote in a tree like fashion
+7. Return to Main Menu
 EOF
   read -e -p "Choose the listing type : " lt
   case $lt in
@@ -165,6 +170,9 @@ EOF
     ;;
     6 )
     fclone tree gd:{$src}
+    ;;
+    7 )
+  
     ;;
   esac
   ;;
@@ -188,6 +196,7 @@ cat << EOF
 1) Compare only Size ( Quick ) 
 2) Compare Size + MD5 / SHA1 Hash ( Slow )
 3) Compare after Downloading data locally ( Very Slow )
+4) Return to Main Menu
 EOF
   read -e -p "Choose the Comparison Mode : " opt
   read -e -p "Enter the source folder id or url : " src
@@ -204,6 +213,9 @@ EOF
     3 )
     fclone check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --download
     ;;
+    4 )
+
+    ;;
   esac
   ;;
   11 )
@@ -211,6 +223,7 @@ cat << EOF
 1. Delete      ( Delete the contents of path )
 2. Deletefile ( Delete a single file from path )
 3. Purge       ( Delete the path and its content )
+4. Return to Main Menu
 EOF
   read -e -p "Enter your input : " opt
   read -e -p "Enter the source folder id or url : " src
@@ -224,6 +237,9 @@ EOF
     ;;
     3 )
     fclone purge gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+    ;;
+    4 )
+
     ;;
   esac
   ;;
