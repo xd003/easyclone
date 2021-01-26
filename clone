@@ -207,11 +207,11 @@ EOF
   esac
   ;;
   11 )
-cat << EOF 
+cat << EOF
 1. Delete      ( Delete the contents of path )
 2. Deletefile ( Delete a single file from path )
 3. Purge       ( Delete the path and its content )
-EOF 
+EOF
   read -e -p "Enter your input : " opt
   read -e -p "Enter the source folder id or url : " src
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
