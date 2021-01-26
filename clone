@@ -234,7 +234,7 @@ EOF
     cecho b "Empty Trash option has been selected"
     read -e -p "Enter the folder id or url : " src
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    fclone delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --tpslimit=4 --tpslimit-burst=32 --transfers=16 --verbose=2
+    fclone delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --fast-list --verbose=2
     ;;
   9)
     cecho b "Delete Empty folders option has been selected"
