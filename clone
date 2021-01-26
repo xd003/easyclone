@@ -25,7 +25,7 @@ cecho() {
 }
 
 while true; do
-  cat <<EOF
+  cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋1) Copy
 ┋    (Copy files from source to dest, skipping already copied)
@@ -67,8 +67,10 @@ EOF
 
   echo
   read -e -p "Enter your input : " opt
+  echo
   case $opt in
   1)
+    cecho b "Copy option has been selected"
     read -e -p "Enter the source folder id or url : " src
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
     read -e -p "Enter the destination folder id or url : " dst
@@ -76,6 +78,7 @@ EOF
     fclone copy gd:{$src} gd:{$dst} --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone
     ;;
   2)
+    cecho b "Move option has been selected"
     read -e -p "Enter the source folder id or url : " src
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
     read -e -p "Enter the destination folder id or url : " dst
@@ -83,6 +86,7 @@ EOF
     fclone move gd:{$src} gd:{$dst} --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone
     ;;
   3)
+    cecho b "Sync option has been selected"
     read -e -p "Enter the source folder id or url : " src
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
     read -e -p "Enter the destination folder id or url : " dst
@@ -90,19 +94,39 @@ EOF
     fclone sync gd:{$src} gd:{$dst} --drive-server-side-across-configs --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone
     ;;
   4)
-    echo "Dedupe is selected ( It will delete any duplicate files present in given Folder ID/URL on the basis of MD5 & Filename )"
-    cat <<EOF
-1 = Interactive
-2 = skip          removes identical files then skips anything left
-3 = first          removes identical files then keeps the first one
-4 = newest    removes identical files then keeps the newest one
-5 = oldest      removes identical files then keeps the oldest one
-6 = largest     removes identical files then keeps the largest one
-7 = smallest  removes identical files then keeps the smallest one
-8 = rename    removes identical files then renames the rest to be different
-9 = Return to Main Menu
+    cecho b "Dedupe option has been selected"
+    cat << EOF
+┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋1) Interactive
+┋    (Use Dedupe Interactively)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋2) Skip
+┋    (Removes identical files then skips anything left)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋3) First
+┋    (Removes identical files then keeps the first one)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋4) Newest
+┋    (Removes identical files then keeps the newest one)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋5) Oldest
+┋    (removes identical files then keeps the oldest one)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋6) Largest
+┋    (removes identical files then keeps the largest one)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋7) Smallest
+┋    (removes identical files then keeps the smallest one)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋8) Rename
+┋    (removes identical files then renames the rest to be different)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋9) Return to Main Menu
+┋    (Restart the script from Main Menu)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 EOF
-    read -e -p "Enter the Dedupe Operation Mode (1-5) : " dm
+    echo
+    read -e -p "Enter the Dedupe Operation Mode (1-9) : " dm
     if [[ $dm -ne 9 ]]; then
       read -e -p "Enter the folder id or url : " src
       src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
@@ -139,23 +163,43 @@ EOF
 
     ;;
   5)
+    cecho b "Size option has been selected"
     read -e -p "Enter the folder id or url : " src
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
     fclone size gd:{$src} --fast-list
     ;;
   6)
-    read -e -p "Enter the folder id or url : " src
-    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    cat <<EOF
-1. ls      List the objects in the path with size and path
-2. lsd     List all directories/containers/buckets in the path
-3. lsf     List directories and objects in remote:path formatted for parsing
-4. lsjson  List directories and objects in the path in JSON format
-5. lsl     List the objects in path with modification time, size and path
-6. tree    List the contents of the remote in a tree like fashion
-7. Return to Main Menu
+    cecho b "Listing option has been selected"
+    cat << EOF
+┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋1) ls
+┋    (List the objects in the path with size and path)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋2) lsd
+┋    (List all directories/containers/buckets in the path)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋3) lsf
+┋    (List directories and objects in remote:path formatted for parsing)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋4) lsjson
+┋    (List directories and objects in the path in JSON format)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋5) lsl
+┋    (List the objects in path with modification time, size and path)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋6) tree
+┋    (List the contents of the remote in a tree like fashion)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋7) Return to Main Menu
+┋    (Restart the script from Main Menu)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 EOF
+    echo
     read -e -p "Choose the listing type : " lt
+    if [[ $lt -ne 7 ]]; then
+      read -e -p "Enter the folder id or url : " src
+      src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    fi
     case $lt in
     1)
       fclone ls gd:{$src}
@@ -179,30 +223,43 @@ EOF
       continue
       ;;
     esac
-
     ;;
   7)
+    cecho b "NCDU option has been selected"
     read -e -p "Enter the folder id or url : " src
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
     fclone ncdu gd:{$src} --fast-list
     ;;
   8)
+    cecho b "Empty Trash option has been selected"
     read -e -p "Enter the folder id or url : " src
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
     fclone delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --tpslimit=4 --tpslimit-burst=32 --transfers=16 --verbose=2
     ;;
   9)
+    cecho b "Delete Empty folders option has been selected"
     read -e -p "Enter the folder id or url : " src
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
     fclone rmdirs gd:{$src} --leave-root
     ;;
   10)
-    cat <<EOF
-1) Compare only Size ( Quick ) 
-2) Compare Size + MD5 / SHA1 Hash ( Slow )
-3) Compare after Downloading data locally ( Very Slow )
-4) Return to Main Menu
+    cecho b "Check option has been selected"
+    cat << EOF
+┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋1) Compare only Size
+┋    (MD5/SHA1 is not considered here. Use this for a quick check)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋2) Compare Size + MD5 / SHA1 Hash
+┋    (Compares sizes and hashes and logs report of unmatched files .Very slow process)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋3) Compare after Downloading data locally
+┋    (Download data from both the directories and Compare them on the fly .Use only if remote doesn't support hashes)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋4) Return to Main Menu
+┋    (Restart the script from Main Menu)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 EOF
+    echo
     read -e -p "Choose the Comparison Mode : " opt
     if [[ $opt -ne 4 ]]; then
       read -e -p "Enter the source folder id or url : " src
@@ -224,15 +281,25 @@ EOF
       continue
       ;;
     esac
-
     ;;
   11)
-    cat <<EOF
-1. Delete      ( Delete the contents of path )
-2. Deletefile ( Delete a single file from path )
-3. Purge       ( Delete the path and its content )
-4. Return to Main Menu
+    cecho b "Delete option has been selected"
+    cat << EOF
+┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋1) Delete
+┋    (Delete the contents of path)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋2) Deletefile
+┋    (Delete a single file from path)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋3) Purge
+┋    (Delete the path and its content)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋4) Return to Main Menu
+┋    (Restart the script from Main Menu)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 EOF
+    echo
     read -e -p "Enter your input : " opt
     if [[ $opt -ne 4 ]]; then
       read -e -p "Enter the source folder id or url : " src
@@ -252,7 +319,6 @@ EOF
       continue
       ;;
     esac
-
     ;;
   12)
     exit
