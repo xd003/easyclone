@@ -8,23 +8,24 @@
 #=============================================================
 
 cecho() {
-        local code="\033["
-        case "$1" in
-                black  | bk) color="${code}0;30m";;
-                red    |  r) color="${code}1;31m";;
-                green  |  g) color="${code}1;32m";;
-                yellow |  y) color="${code}1;33m";;
-                blue   |  b) color="${code}1;34m";;
-                purple |  p) color="${code}1;35m";;
-                cyan   |  c) color="${code}1;36m";;
-                gray   | gr) color="${code}0;37m";;
-                *) local text="$1"
-        esac
-        [ -z "$text" ] && local text="$color$2${code}0m"
-        echo -e "$text"
+  local code="\033["
+  case "$1" in
+  black | bk) color="${code}0;30m" ;;
+  red | r) color="${code}1;31m" ;;
+  green | g) color="${code}1;32m" ;;
+  yellow | y) color="${code}1;33m" ;;
+  blue | b) color="${code}1;34m" ;;
+  purple | p) color="${code}1;35m" ;;
+  cyan | c) color="${code}1;36m" ;;
+  gray | gr) color="${code}0;37m" ;;
+  *) local text="$1" ;;
+  esac
+  [ -z "$text" ] && local text="$color$2${code}0m"
+  echo -e "$text"
 }
 
-cat << EOF 
+while true; do
+  cat <<EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋1) Copy
 ┋    (Copy files from source to dest, skipping already copied)
@@ -64,33 +65,33 @@ cat << EOF
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 EOF
 
-echo
-read -e -p "Enter your input : " opt
-case $opt in
-  1 )
-  read -e -p "Enter the source folder id or url : " src
-  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  read -e -p "Enter the destination folder id or url : " dst
-  dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone copy gd:{$src} gd:{$dst} --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone
-  ;;
-  2 )
-  read -e -p "Enter the source folder id or url : " src
-  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  read -e -p "Enter the destination folder id or url : " dst
-  dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone move gd:{$src} gd:{$dst} --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone
-  ;;
-  3 )
-  read -e -p "Enter the source folder id or url : " src
-  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  read -e -p "Enter the destination folder id or url : " dst
-  dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone sync gd:{$src} gd:{$dst} --drive-server-side-across-configs --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone
-  ;; 
-  4 )
-  echo "Dedupe is selected ( It will delete any duplicate files present in given Folder ID/URL on the basis of MD5 & Filename )"
-cat << EOF
+  echo
+  read -e -p "Enter your input : " opt
+  case $opt in
+  1)
+    read -e -p "Enter the source folder id or url : " src
+    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    read -e -p "Enter the destination folder id or url : " dst
+    dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    fclone copy gd:{$src} gd:{$dst} --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone
+    ;;
+  2)
+    read -e -p "Enter the source folder id or url : " src
+    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    read -e -p "Enter the destination folder id or url : " dst
+    dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    fclone move gd:{$src} gd:{$dst} --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone
+    ;;
+  3)
+    read -e -p "Enter the source folder id or url : " src
+    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    read -e -p "Enter the destination folder id or url : " dst
+    dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    fclone sync gd:{$src} gd:{$dst} --drive-server-side-across-configs --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone
+    ;;
+  4)
+    echo "Dedupe is selected ( It will delete any duplicate files present in given Folder ID/URL on the basis of MD5 & Filename )"
+    cat <<EOF
 1 = Interactive
 2 = skip          removes identical files then skips anything left
 3 = first          removes identical files then keeps the first one
@@ -101,48 +102,51 @@ cat << EOF
 8 = rename    removes identical files then renames the rest to be different
 9 = Return to Main Menu
 EOF
-  read -e -p "Enter the Dedupe Operation Mode (1-5) : " dm
-  read -e -p "Enter the folder id or url : " src
-  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  case $dm in
-    1 )
-    fclone dedupe --dedupe-mode interactive gd:{$src} --verbose=2
-    ;;
-    2 )
-    fclone dedupe --dedupe-mode skip gd:{$src} --verbose=2
-    ;;
-    3 )
-    fclone dedupe --dedupe-mode first gd:{$src} --verbose=2
-    ;;
-    4 )
-    fclone dedupe --dedupe-mode newest gd:{$src} --verbose=2
-    ;;
-    5 )
-    fclone dedupe --dedupe-mode oldest gd:{$src} --verbose=2
-    ;;
-    6 )
-    fclone dedupe --dedupe-mode largest gd:{$src} --verbose=2
-    ;;
-    7 )
-    fclone dedupe --dedupe-mode smallest gd:{$src} --verbose=2
-    ;;
-    8 )
-    fclone dedupe --dedupe-mode rename gd:{$src} --verbose=2
-    ;;
-    9 )
+    read -e -p "Enter the Dedupe Operation Mode (1-5) : " dm
+    if [[ $dm -ne 9 ]]; then
+      read -e -p "Enter the folder id or url : " src
+      src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    fi
+    case $dm in
+    1)
+      fclone dedupe --dedupe-mode interactive gd:{$src} --verbose=2
+      ;;
+    2)
+      fclone dedupe --dedupe-mode skip gd:{$src} --verbose=2
+      ;;
+    3)
+      fclone dedupe --dedupe-mode first gd:{$src} --verbose=2
+      ;;
+    4)
+      fclone dedupe --dedupe-mode newest gd:{$src} --verbose=2
+      ;;
+    5)
+      fclone dedupe --dedupe-mode oldest gd:{$src} --verbose=2
+      ;;
+    6)
+      fclone dedupe --dedupe-mode largest gd:{$src} --verbose=2
+      ;;
+    7)
+      fclone dedupe --dedupe-mode smallest gd:{$src} --verbose=2
+      ;;
+    8)
+      fclone dedupe --dedupe-mode rename gd:{$src} --verbose=2
+      ;;
+    9)
+      continue
+      ;;
+    esac
 
     ;;
-  esac
-  ;;
-  5 )
-  read -e -p "Enter the folder id or url : " src
-  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone size gd:{$src} --fast-list
-  ;;
-  6 )
-  read -e -p "Enter the folder id or url : " src
-  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-cat << EOF
+  5)
+    read -e -p "Enter the folder id or url : " src
+    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    fclone size gd:{$src} --fast-list
+    ;;
+  6)
+    read -e -p "Enter the folder id or url : " src
+    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    cat <<EOF
 1. ls      List the objects in the path with size and path
 2. lsd     List all directories/containers/buckets in the path
 3. lsf     List directories and objects in remote:path formatted for parsing
@@ -151,99 +155,107 @@ cat << EOF
 6. tree    List the contents of the remote in a tree like fashion
 7. Return to Main Menu
 EOF
-  read -e -p "Choose the listing type : " lt
-  case $lt in
-    1 )
-    fclone ls gd:{$src}
+    read -e -p "Choose the listing type : " lt
+    case $lt in
+    1)
+      fclone ls gd:{$src}
+      ;;
+    2)
+      fclone lsd gd:{$src}
+      ;;
+    3)
+      fclone lsf gd:{$src}
+      ;;
+    4)
+      fclone lsjson gd:{$src}
+      ;;
+    5)
+      fclone lsl gd:{$src}
+      ;;
+    6)
+      fclone tree gd:{$src}
+      ;;
+    7)
+      continue
+      ;;
+    esac
+
     ;;
-    2 )
-    fclone lsd gd:{$src}
+  7)
+    read -e -p "Enter the folder id or url : " src
+    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    fclone ncdu gd:{$src} --fast-list
     ;;
-    3 )
-    fclone lsf gd:{$src}
+  8)
+    read -e -p "Enter the folder id or url : " src
+    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    fclone delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --tpslimit=4 --tpslimit-burst=32 --transfers=16 --verbose=2
     ;;
-    4 )
-    fclone lsjson gd:{$src}
+  9)
+    read -e -p "Enter the folder id or url : " src
+    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    fclone rmdirs gd:{$src} --leave-root
     ;;
-    5 )
-    fclone lsl gd:{$src}
-    ;;
-    6 )
-    fclone tree gd:{$src}
-    ;;
-    7 )
-  
-    ;;
-  esac
-  ;;
-  7 )
-  read -e -p "Enter the folder id or url : " src
-  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone ncdu gd:{$src} --fast-list
-  ;;
-  8 )
-  read -e -p "Enter the folder id or url : " src
-  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --tpslimit=4 --tpslimit-burst=32 --transfers=16 --verbose=2
-  ;;
-  9 )
-  read -e -p "Enter the folder id or url : " src
-  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  fclone rmdirs gd:{$src} --leave-root
-  ;;
-  10 )
-cat << EOF 
+  10)
+    cat <<EOF
 1) Compare only Size ( Quick ) 
 2) Compare Size + MD5 / SHA1 Hash ( Slow )
 3) Compare after Downloading data locally ( Very Slow )
 4) Return to Main Menu
 EOF
-  read -e -p "Choose the Comparison Mode : " opt
-  read -e -p "Enter the source folder id or url : " src
-  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  read -e -p "Enter the destination folder id or url : " dst
-  dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  case $opt in
-    1 )
-    fclone check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --size-only
-    ;;
-    2 )
-    fclone check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list
-    ;;
-    3 )
-    fclone check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --download
-    ;;
-    4 )
+    read -e -p "Choose the Comparison Mode : " opt
+    if [[ $opt -ne 4 ]]; then
+      read -e -p "Enter the source folder id or url : " src
+      src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+      read -e -p "Enter the destination folder id or url : " dst
+      dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    fi
+    case $opt in
+    1)
+      fclone check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --size-only
+      ;;
+    2)
+      fclone check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list
+      ;;
+    3)
+      fclone check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --download
+      ;;
+    4)
+      continue
+      ;;
+    esac
 
     ;;
-  esac
-  ;;
-  11 )
-cat << EOF
+  11)
+    cat <<EOF
 1. Delete      ( Delete the contents of path )
 2. Deletefile ( Delete a single file from path )
 3. Purge       ( Delete the path and its content )
 4. Return to Main Menu
 EOF
-  read -e -p "Enter your input : " opt
-  read -e -p "Enter the source folder id or url : " src
-  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-  case $opt in
-    1 )
-    fclone delete gd:{$src} -vP --stats-one-line --stats=15s --fast-list
-    ;;
-    2 )
-    fclone deletefile gd:{$src} -vP --stats-one-line --stats=15s --fast-list
-    ;;
-    3 )
-    fclone purge gd:{$src} -vP --stats-one-line --stats=15s --fast-list
-    ;;
-    4 )
+    read -e -p "Enter your input : " opt
+    if [[ $opt -ne 4 ]]; then
+      read -e -p "Enter the source folder id or url : " src
+      src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+    fi
+    case $opt in
+    1)
+      fclone delete gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+      ;;
+    2)
+      fclone deletefile gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+      ;;
+    3)
+      fclone purge gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+      ;;
+    4)
+      continue
+      ;;
+    esac
 
     ;;
+  12)
+    exit
+    ;;
   esac
-  ;;
-  12 )
-  exit
-  ;;
-esac
+done
