@@ -67,6 +67,7 @@ cecho r "Deleting old files & pulling new ones from github"
 sudo rm -rf $(which fclone)
 rm -rf $HOME/.easyclone
 mkdir $HOME/.easyclone
+mkdir $HOME/.config/rclone
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
 wget -c -t 0 --timeout=60 --waitretry=60 https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip -O $HOME/tmp/fclone.zip
