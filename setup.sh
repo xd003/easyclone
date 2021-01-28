@@ -62,7 +62,7 @@ fi
 
 # Detecting Source path for binaries and script to be added
 spath="$(which git)"
-spath=$(echo $spath | sed 's/git$/c/')
+spath=$(echo $spath | sed 's/git$//')
 
 # Removing old Files and pulling new ones
 echo
