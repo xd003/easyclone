@@ -31,7 +31,6 @@ ehome="$(echo $HOME)"
 epac="$(which pacman)"
 eapt="$(which apt)"
 ednf="$(which dnf)"
-eclone="$(which clone)"
 conf="$HOME/easyclone/rc.conf"
 
 # Detecting the OS and installing required dependencies
@@ -61,44 +60,25 @@ elif [ "$arch" == "x86_64" ] ; then
   arch=amd64
 fi
 
+# Detecting Source path for binaries and script to be added
+spath="$(which git)"
+spath=$(echo $spath | sed 's/git$/c/')
+
 # Removing old Files and pulling new ones
 echo
 cecho r "Deleting old files & pulling new ones from github"
 sudo rm -rf $(which fclone)
-rm -rf $HOME/.easyclone
-mkdir $HOME/.easyclone
+sudo rm -rf $(which clone)
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
 wget -c -t 0 --timeout=60 --waitretry=60 https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip -O $HOME/tmp/fclone.zip
 unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
-mv $HOME/tmp/clone $HOME/.easyclone
-mv $HOME/tmp/fclone-$version-linux-$arch/fclone $HOME/.easyclone
-chmod u+x $HOME/.easyclone/clone
-chmod u+x $HOME/.easyclone/fclone
+sudo mv $HOME/tmp/clone $spath
+sudo mv $HOME/tmp/fclone-$version-linux-$arch/fclone $spath
+sudo chmod u+x $spath/clone
+sudo chmod u+x $spath/fclone
 rm -rf $HOME/tmp
 cecho b "Easyclone script & fclone successfully updated"
-
-# Adding the clone script & fclone executable to path
-echo
-cecho r "Adding the clone script & fclone executable to path"
-if [ "$eclone" == "$HOME/.easyclone/clone" ]; then
-    cecho b "Easyclone Script pre exists in path //Skipping"
-else
-    if [ -f "$HOME/.bashrc" ]; then
-        echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
-        cecho b "Successfully added the necessary files to path"
-        source ~/.bashrc
-    elif [ -f "$HOME/.zshrc" ]; then
-        echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.zshrc && \
-        cecho b "Successfully added the necessary files to path"
-        source ~/.zshrc
-    else
-        touch $HOME/.bashrc && \
-        echo 'export PATH="$PATH:$HOME/.easyclone"' >> $HOME/.bashrc && \
-        cecho b "Successfully added the necessary files to path"
-        source ~/.bashrc
-    fi
-fi
 
 # Pulling the accounts folder containing service accounts from github 
 echo
