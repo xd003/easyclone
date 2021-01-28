@@ -75,7 +75,7 @@ EOF
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
     read -e -p "Enter the destination folder id or url : " dst
     dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    fclone --config=$HOME/.easyclone/rc.conf copy gd:{$src} gd:{$dst} --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone/log.txt
+    fclone --config=$HOME/easyclone/rc.conf copy gd:{$src} gd:{$dst} --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone/log.txt
     ;;
   2)
     cecho b "Move option has been selected"
@@ -83,7 +83,7 @@ EOF
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
     read -e -p "Enter the destination folder id or url : " dst
     dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    fclone --config=$HOME/.easyclone/rc.conf move gd:{$src} gd:{$dst} --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone/log.txt
+    fclone --config=$HOME/easyclone/rc.conf move gd:{$src} gd:{$dst} --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone/log.txt
     ;;
   3)
     cecho b "Sync option has been selected"
@@ -91,7 +91,7 @@ EOF
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
     read -e -p "Enter the destination folder id or url : " dst
     dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    fclone --config=$HOME/.easyclone/rc.conf sync gd:{$src} gd:{$dst} --drive-server-side-across-configs --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone/log.txt
+    fclone --config=$HOME/easyclone/rc.conf sync gd:{$src} gd:{$dst} --drive-server-side-across-configs --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --checkers=320 --transfers=320 --drive-pacer-min-sleep=1ms --drive-pacer-burst=5000 --check-first --drive-chunk-size 128M --log-file $HOME/easyclone/log.txt
     ;;
   4)
     cecho b "Dedupe option has been selected"
@@ -133,28 +133,28 @@ EOF
     fi
     case $dm in
     1)
-      fclone --config=$HOME/.easyclone/rc.conf dedupe --dedupe-mode interactive gd:{$src} --verbose=2
+      fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode interactive gd:{$src} --verbose=2
       ;;
     2)
-      fclone --config=$HOME/.easyclone/rc.conf dedupe --dedupe-mode skip gd:{$src} --verbose=2
+      fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode skip gd:{$src} --verbose=2
       ;;
     3)
-      fclone --config=$HOME/.easyclone/rc.conf dedupe --dedupe-mode first gd:{$src} --verbose=2
+      fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode first gd:{$src} --verbose=2
       ;;
     4)
-      fclone --config=$HOME/.easyclone/rc.conf dedupe --dedupe-mode newest gd:{$src} --verbose=2
+      fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode newest gd:{$src} --verbose=2
       ;;
     5)
-      fclone --config=$HOME/.easyclone/rc.conf dedupe --dedupe-mode oldest gd:{$src} --verbose=2
+      fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode oldest gd:{$src} --verbose=2
       ;;
     6)
-      fclone --config=$HOME/.easyclone/rc.conf dedupe --dedupe-mode largest gd:{$src} --verbose=2
+      fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode largest gd:{$src} --verbose=2
       ;;
     7)
-      fclone --config=$HOME/.easyclone/rc.conf dedupe --dedupe-mode smallest gd:{$src} --verbose=2
+      fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode smallest gd:{$src} --verbose=2
       ;;
     8)
-      fclone --config=$HOME/.easyclone/rc.conf dedupe --dedupe-mode rename gd:{$src} --verbose=2
+      fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode rename gd:{$src} --verbose=2
       ;;
     9)
       continue
@@ -166,7 +166,7 @@ EOF
     cecho b "Size option has been selected"
     read -e -p "Enter the folder id or url : " src
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    fclone --config=$HOME/.easyclone/rc.conf size gd:{$src} --fast-list
+    fclone --config=$HOME/easyclone/rc.conf size gd:{$src} --fast-list
     ;;
   6)
     cecho b "Listing option has been selected"
@@ -202,22 +202,22 @@ EOF
     fi
     case $lt in
     1)
-      fclone --config=$HOME/.easyclone/rc.conf ls gd:{$src}
+      fclone --config=$HOME/easyclone/rc.conf ls gd:{$src}
       ;;
     2)
-      fclone --config=$HOME/.easyclone/rc.conf lsd gd:{$src}
+      fclone --config=$HOME/easyclone/rc.conf lsd gd:{$src}
       ;;
     3)
-      fclone --config=$HOME/.easyclone/rc.conf lsf gd:{$src}
+      fclone --config=$HOME/easyclone/rc.conf lsf gd:{$src}
       ;;
     4)
-      fclone --config=$HOME/.easyclone/rc.conf lsjson gd:{$src}
+      fclone --config=$HOME/easyclone/rc.conf lsjson gd:{$src}
       ;;
     5)
-      fclone --config=$HOME/.easyclone/rc.conf lsl gd:{$src}
+      fclone --config=$HOME/easyclone/rc.conf lsl gd:{$src}
       ;;
     6)
-      fclone --config=$HOME/.easyclone/rc.conf tree gd:{$src}
+      fclone --config=$HOME/easyclone/rc.conf tree gd:{$src}
       ;;
     7)
       continue
@@ -228,19 +228,19 @@ EOF
     cecho b "NCDU option has been selected"
     read -e -p "Enter the folder id or url : " src
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    fclone --config=$HOME/.easyclone/rc.conf ncdu gd:{$src} --fast-list
+    fclone --config=$HOME/easyclone/rc.conf ncdu gd:{$src} --fast-list
     ;;
   8)
     cecho b "Empty Trash option has been selected"
     read -e -p "Enter the folder id or url : " src
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    fclone --config=$HOME/.easyclone/rc.conf delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --fast-list --verbose=2
+    fclone --config=$HOME/easyclone/rc.conf delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --fast-list --verbose=2
     ;;
   9)
     cecho b "Delete Empty folders option has been selected"
     read -e -p "Enter the folder id or url : " src
     src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    fclone --config=$HOME/.easyclone/rc.conf rmdirs gd:{$src} --leave-root
+    fclone --config=$HOME/easyclone/rc.conf rmdirs gd:{$src} --leave-root
     ;;
   10)
     cecho b "Check option has been selected"
@@ -269,13 +269,13 @@ EOF
     fi
     case $opt in
     1)
-      fclone --config=$HOME/.easyclone/rc.conf check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --size-only
+      fclone --config=$HOME/easyclone/rc.conf check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --size-only
       ;;
     2)
-      fclone --config=$HOME/.easyclone/rc.conf check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list
+      fclone --config=$HOME/easyclone/rc.conf check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list
       ;;
     3)
-      fclone --config=$HOME/.easyclone/rc.conf check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --download
+      fclone --config=$HOME/easyclone/rc.conf check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --download
       ;;
     4)
       continue
@@ -307,13 +307,13 @@ EOF
     fi
     case $opt in
     1)
-      fclone --config=$HOME/.easyclone/rc.conf delete gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+      fclone --config=$HOME/easyclone/rc.conf delete gd:{$src} -vP --stats-one-line --stats=15s --fast-list
       ;;
     2)
-      fclone --config=$HOME/.easyclone/rc.conf deletefile gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+      fclone --config=$HOME/easyclone/rc.conf deletefile gd:{$src} -vP --stats-one-line --stats=15s --fast-list
       ;;
     3)
-      fclone --config=$HOME/.easyclone/rc.conf purge gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+      fclone --config=$HOME/easyclone/rc.conf purge gd:{$src} -vP --stats-one-line --stats=15s --fast-list
       ;;
     4)
       continue
