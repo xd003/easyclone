@@ -11,3 +11,5 @@ The script utilises the rclone modded binary also known as [fclone](https://gith
 * ```bash <(curl -L http://tiny.cc/easyclone)```
 
 The above setup script will automatically install or update the fclone binary ,easyclone script & all the dependencies .It will prompt for github authentication for downloading service accounts. Lastly it will automatically create the fclone config based on input entered. Just enter ```clone``` whenever you need to execute the script henceforth
+
+![sample_pic](https://i.ibb.co/H4qHh1h/Screenshot-20210128-211947-2.jpg)
