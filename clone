@@ -133,27 +133,35 @@ EOF
     fi
     case $dm in
     1)
+      cecho b "Dedupe Interactive Mode has been selected"
       fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode interactive gd:{$src} --verbose=2
       ;;
     2)
+      cecho b "Dedupe Skip Mode has been selected"
       fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode skip gd:{$src} --verbose=2
       ;;
     3)
+      cecho b "Dedupe First Mode has been selected"
       fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode first gd:{$src} --verbose=2
       ;;
     4)
+      cecho b "Dedupe Newest Mode has been selected"
       fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode newest gd:{$src} --verbose=2
       ;;
     5)
+      cecho b "Dedupe Oldest Mode has been selected"
       fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode oldest gd:{$src} --verbose=2
       ;;
     6)
+      cecho b "Dedupe Largest Mode has been selected"
       fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode largest gd:{$src} --verbose=2
       ;;
     7)
+      cecho b "Dedupe Smallest Mode has been selected"
       fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode smallest gd:{$src} --verbose=2
       ;;
     8)
+      cecho b "Dedupe Rename Mode has been selected"
       fclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode rename gd:{$src} --verbose=2
       ;;
     9)
