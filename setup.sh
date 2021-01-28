@@ -106,7 +106,6 @@ cecho r "Pulling the accounts folder containing service accounts from github"
 if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
     cecho b "Accounts folder already existing //Skipping"
 else
-    rm -rf $HOME/easyclone
     mkdir -p $HOME/easyclone/accounts
     echo && cecho r "Downloading the service accounts from your private repo"
     read -e -p "Input your github username : " username
