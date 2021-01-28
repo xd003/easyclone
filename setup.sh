@@ -103,7 +103,7 @@ fi
 # Pulling the accounts folder containing service accounts from github 
 echo
 cecho r "Pulling the accounts folder containing service accounts from github"
-if [ -d "$HOME/easyclone" ] && [ -d "$HOME/easyclone/accounts/1.json" ]; then
+if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
     cecho b "Accounts folder already existing //Skipping"
 else
     rm -rf $HOME/easyclone
