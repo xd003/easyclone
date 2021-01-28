@@ -32,7 +32,7 @@ epac="$(which pacman)"
 eapt="$(which apt)"
 ednf="$(which dnf)"
 eclone="$(which clone)"
-conf="$HOME/.config/rclone/rclone.conf"
+conf="$HOME/.easyclone/rc.conf"
 
 # Detecting the OS and installing required dependencies
 echo
@@ -67,7 +67,6 @@ cecho r "Deleting old files & pulling new ones from github"
 sudo rm -rf $(which fclone)
 rm -rf $HOME/.easyclone
 mkdir $HOME/.easyclone
-mkdir $HOME/.config/rclone
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
 wget -c -t 0 --timeout=60 --waitretry=60 https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip -O $HOME/tmp/fclone.zip
@@ -104,7 +103,7 @@ fi
 # Pulling the accounts folder containing service accounts from github 
 echo
 cecho r "Pulling the accounts folder containing service accounts from github"
-if [ -d "$HOME/easyclone" ] && [ -d "$HOME/easyclone/accounts" ]; then
+if [ -d "$HOME/easyclone" ] && [ -d "$HOME/easyclone/accounts/1.json" ]; then
     cecho b "Accounts folder already existing //Skipping"
 else
     rm -rf $HOME/easyclone
@@ -124,12 +123,7 @@ if grep -q "$HOME/easyclone/accounts/1.json" $conf; then
 else
     read -e -p "Input your client_id : " client
     read -e -p "Input your client_secret : " secret
-
-    if [ -f "$conf" ]; then
-        echo >> $conf
-    else
-        touch $conf
-    fi
+    touch $conf
     echo "[gd]" >> $conf
     echo "type = drive" >> $conf
     eval echo "client_id = $client" >> $conf
