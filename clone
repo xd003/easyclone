@@ -324,7 +324,7 @@ EOF
     exit
     ;;
   esac
-  if [[ "$?" -ne 0 ]]; then
+  if [[ "$?" ]]; then
       break
   fi
 done
