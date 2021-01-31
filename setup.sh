@@ -75,10 +75,7 @@ EOF
 read -e -p "What would you like to install , Enter input as 1 or 2 : " opt
 case $opt in
 1)
-  if [ "$arch' == "tarm64" ] ; then
-    URL=
-  else
-    URL=
+URL=
 ;;
 2
 URL=
