@@ -25,7 +25,8 @@ cecho() {
 }
 
 #Variables 
-version=v0.4.1
+fclone_version=v0.4.1
+gclone version=v1.53.3
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
 epac="$(which pacman)"
@@ -71,7 +72,7 @@ sudo rm -rf $(which fclone)
 sudo rm -rf $(which clone)
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
-wget -c -t 0 --timeout=60 --waitretry=60 https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$version-linux-$arch.zip -O $HOME/tmp/fclone.zip
+wget -c -t 0 --timeout=60 --waitretry=60 https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$fclone_version-linux-$arch.zip -O $HOME/tmp/fclone.zip
 unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
 sudo mv $HOME/tmp/clone $spath
 sudo mv $HOME/tmp/fclone-$version-linux-$arch/fclone $spath
