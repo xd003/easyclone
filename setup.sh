@@ -72,10 +72,7 @@ echo
 cecho r "Downloading latest easyclone script from github"
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
-wget -c -t 0 --timeout=60 --waitretry=60 https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$fclone_version-linux-$arch.zip -O $HOME/tmp/fclone.zip
-unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
 sudo mv $HOME/tmp/clone $spath
-sudo mv $HOME/tmp/fclone-$version-linux-$arch/fclone $spath
 sudo chmod u+x $spath/clone
 
 # Downloading Latest fclone/gclone binary and adding to path
@@ -91,19 +88,23 @@ case $opt in
 1)
   sudo rm -rf $(which fclone)
   URL=https://easyclone.xd003.workers.dev/fclone/fclone-$fclone_version-linux-$arch.zip
-  
+  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/fclone.zip
+  unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
+  sudo mv $HOME/tmp/fclone $spath
   sudo chmod u+x $spath/fclone
 ;;
 2)
   sudo rm -rf $(which gclone)
   URL=https://easyclone.xd003.workers.dev/gclone/gclone-$gclone_version-linux-$arch.zip
-
+  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/gclone.zip
+  unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp
+  sudo mv $HOME/tmp/gclone $spath
   sudo chmod u+x $spath/gclone
 ;;
 esac
 
 rm -rf $HOME/tmp
-cecho b "Easyclone script & fclone successfully updated"
+cecho b "Easyclone script & gclone/fclone successfully updated"
 
 # Pulling the accounts folder containing service accounts from github 
 echo
