@@ -66,8 +66,13 @@ spath="$(which git)"
 spath=$(echo $spath | sed 's/\/git$//')
 
 #
-
-read -e -p "What would you like to install : " opt
+cat << EOF
+1. Fclone
+2. Gclone
+EOF
+read -e -p "What would you like to install , Enter input as 1 or 2 : " opt
+case $opt in
+1)
 
 
 # Removing old Files and pulling new ones
