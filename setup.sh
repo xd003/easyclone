@@ -67,12 +67,26 @@ fi
 spath="$(which git)"
 spath=$(echo $spath | sed 's/\/git$//')
 
-#
+# Downloading latest easyclone script from github
+echo
+cecho r "Downloading latest easyclone script from github"
+mkdir $HOME/tmp
+git clone https://github.com/xd003/easyclone $HOME/tmp
+wget -c -t 0 --timeout=60 --waitretry=60 https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$fclone_version-linux-$arch.zip -O $HOME/tmp/fclone.zip
+unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
+sudo mv $HOME/tmp/clone $spath
+sudo mv $HOME/tmp/fclone-$version-linux-$arch/fclone $spath
+sudo chmod u+x $spath/clone
+
+# Downloading Latest fclone/gclone binary and adding to path
+echo
 cat << EOF
 1. Fclone
 2. Gclone
 EOF
 read -e -p "What would you like to install , Enter input as 1 or 2 : " opt
+echo
+cecho r "Downloading Latest fclone/gclone binary and adding to path"
 case $opt in
 1)
   sudo rm -rf $(which fclone)
@@ -87,18 +101,6 @@ case $opt in
   sudo chmod u+x $spath/gclone
 ;;
 esac
-
-
-# Removing old Files and pulling new ones
-echo
-cecho r "Deleting old files & pulling new ones from github"
-mkdir $HOME/tmp
-git clone https://github.com/xd003/easyclone $HOME/tmp
-wget -c -t 0 --timeout=60 --waitretry=60 https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$fclone_version-linux-$arch.zip -O $HOME/tmp/fclone.zip
-unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
-sudo mv $HOME/tmp/clone $spath
-sudo mv $HOME/tmp/fclone-$version-linux-$arch/fclone $spath
-sudo chmod u+x $spath/clone
 
 rm -rf $HOME/tmp
 cecho b "Easyclone script & fclone successfully updated"
