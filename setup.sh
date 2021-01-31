@@ -92,6 +92,7 @@ case $opt in
   unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
   sudo mv $HOME/tmp/fclone $spath
   sudo chmod u+x $spath/fclone
+  cecho b "Easyclone script & fclone successfully updated"
 ;;
 2)
   sudo rm -rf $(which gclone)
@@ -100,11 +101,11 @@ case $opt in
   unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp
   sudo mv $HOME/tmp/gclone $spath
   sudo chmod u+x $spath/gclone
+  sudo sed
+  cecho b "Easyclone script & gclone successfully updated"
 ;;
 esac
-
 rm -rf $HOME/tmp
-cecho b "Easyclone script & gclone/fclone successfully updated"
 
 # Pulling the accounts folder containing service accounts from github 
 echo
