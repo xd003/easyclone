@@ -90,6 +90,7 @@ esac
 echo
 cecho r "Deleting old files & pulling new ones from github"
 sudo rm -rf $(which fclone)
+sudo rm -rf $(which gclone)
 sudo rm -rf $(which clone)
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
