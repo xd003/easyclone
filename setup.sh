@@ -65,6 +65,11 @@ fi
 spath="$(which git)"
 spath=$(echo $spath | sed 's/\/git$//')
 
+#
+
+read -e -p "What would you like to install : " opt
+
+
 # Removing old Files and pulling new ones
 echo
 cecho r "Deleting old files & pulling new ones from github"
