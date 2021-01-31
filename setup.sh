@@ -26,7 +26,7 @@ cecho() {
 
 #Variables 
 fclone_version=v0.4.1
-gclone version=v1.53.3
+gclone_version=v1.53.3
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
 epac="$(which pacman)"
@@ -75,10 +75,16 @@ EOF
 read -e -p "What would you like to install , Enter input as 1 or 2 : " opt
 case $opt in
 1)
-URL=
+  sudo rm -rf $(which fclone)
+  URL=https://easyclone.xd003.workers.dev/fclone/fclone-$fclone_version-linux-$arch.zip
+  
+  sudo chmod u+x $spath/fclone
 ;;
-2
-URL=
+2)
+  sudo rm -rf $(which gclone)
+  URL=https://easyclone.xd003.workers.dev/gclone/gclone-$gclone_version-linux-$arch.zip
+
+  sudo chmod u+x $spath/gclone
 ;;
 esac
 
@@ -86,9 +92,6 @@ esac
 # Removing old Files and pulling new ones
 echo
 cecho r "Deleting old files & pulling new ones from github"
-sudo rm -rf $(which fclone)
-sudo rm -rf $(which gclone)
-sudo rm -rf $(which clone)
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
 wget -c -t 0 --timeout=60 --waitretry=60 https://github.com/mawaya/rclone/releases/download/fclone-$version/fclone-$fclone_version-linux-$arch.zip -O $HOME/tmp/fclone.zip
@@ -96,7 +99,7 @@ unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
 sudo mv $HOME/tmp/clone $spath
 sudo mv $HOME/tmp/fclone-$version-linux-$arch/fclone $spath
 sudo chmod u+x $spath/clone
-sudo chmod u+x $spath/fclone
+
 rm -rf $HOME/tmp
 cecho b "Easyclone script & fclone successfully updated"
 
