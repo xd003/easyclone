@@ -1,6 +1,6 @@
 # easyclone
 This is just a bash script which aims to ease the process of cloning , moving and syncing and other rclone operations.
-The script utilises the rclone modded binary also known as [fclone](https://github.com/mawaya/rclone) which helps us to bypass the 750GB daily limit by google while also getting comparatively higher speeds than rclone
+The script gives the option to either install the rclone modded binary called [fclone](https://github.com/mawaya/rclone) or [gclone](https://github.com/donwa/gclone) which helps us to bypass the 750GB daily limit by google present in rclone
 
 ![sample_pic](https://i.ibb.co/H4qHh1h/Screenshot-20210128-211947-2.jpg)
 
@@ -12,4 +12,4 @@ The script utilises the rclone modded binary also known as [fclone](https://gith
 # How to install / update
 * ```bash <(curl -L http://tiny.cc/easyclone)```
 
-The above setup script will automatically install or update the fclone binary ,easyclone script & all the dependencies .It will prompt for github authentication for downloading service accounts. Lastly it will automatically create the fclone config based on input entered. Just enter ```clone``` whenever you need to execute the script henceforth
+The above setup script will automatically install or update the fclone/gclone binary ,easyclone script & all the dependencies .It will prompt for github authentication for downloading service accounts. Lastly it will automatically create the fclone config based on input entered. Just enter ```clone``` whenever you need to execute the script henceforth
