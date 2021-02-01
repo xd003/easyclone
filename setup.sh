@@ -103,6 +103,7 @@ case $opt in
   sudo mv $HOME/tmp/gclone $spath
   sudo chmod u+x $spath/gclone
   sudo sed -i 's/fclone/gclone/g' $(which clone)
+  sudo sed -i 's/ --check-first//g' $(which clone)
   cecho b "Easyclone script & gclone successfully updated"
 ;;
 esac
