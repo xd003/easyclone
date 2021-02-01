@@ -16,7 +16,7 @@ The above given script is the only single thing one would need to do run to setu
 Proceeding installation, just enter ```clone``` whenever you need to execute the script henceforth 
 
 # Note for Termux Unrooted users
-Since the original script needs access to root directory for adding script in source , i have made a separate script for unrooted termux users. Simply run the below given 2 commands. Termux users with root should use the above universal script only
+Since the original script needs access to root directory for adding script in source , i have made a separate script for unrooted termux users. Simply run the below given 2 commands. **Termux users with root access should use the above universal script only**
 * ```pkg install proot proot-distro && proot-distro install ubuntu-20.04 && proot-distro login ubuntu-20.04```
 * ```apt update && apt install curl && bash <(curl -L tiny.cc/easyclonetmux)```
 
