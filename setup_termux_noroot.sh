@@ -38,14 +38,8 @@ apt install -y unzip git wget
 
 # Detecting the linux kernel architecture
 echo
-cecho r "Detecting the kernel architecture"
-if [ "$arch" == "aarch64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
-  arch=tarm64
-elif [ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]; then
-  arch=arm64
-elif [ "$arch" == "x86_64" ] ; then
-  arch=amd64
-fi
+cecho r "Defining the kernel architecture"
+arch=tarm64
 
 # Detecting Source path for binaries and script to be added
 spath="$(which git)"
@@ -59,7 +53,6 @@ mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
 mv $HOME/tmp/clone $spath
 chmod u+x $spath/clone
-
 
 # Downloading Latest fclone/gclone binary and adding to path
 echo
