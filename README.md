@@ -13,3 +13,9 @@ The script gives the option to either install the rclone modded binary called [f
 * ```bash <(curl -L http://tiny.cc/easyclone)```
 
 The above setup script will automatically install or update the fclone/gclone binary ,easyclone script & all the dependencies .It will prompt for github authentication for downloading service accounts. Lastly it will automatically create the fclone config based on input entered. Just enter ```clone``` whenever you need to execute the script henceforth
+
+# Credits
+* [rclone](https://github.com/rclone/rclone)    -  for existing 
+* [domwa](https://github.com/domwa/gclone)      -  for gclone 
+* [mawaya](https://github.com/mawaya/rclone)    -  for fclone 
+* [mervin](https://github.com/tomyummmm/gclone) -  for updating gclone
