@@ -4,7 +4,7 @@
 # File Name: setup.sh
 # Author: xd003
 # Description: Installing prerequisites for clone script
-# System Supported: Arch , Ubuntu/Debian , Fedora & Termux ( amd64 & arm64 )
+# System Supported: Unrooted Termux ( arm64 / aarch64 )
 #=============================================================
 
 cecho() {
@@ -27,41 +27,19 @@ cecho() {
 #Variables 
 fclone_version=v0.4.1
 gclone_version=v1.53.3
-arch="$(uname -m)"
 ehome="$(echo $HOME)"
-epac="$(which pacman)"
-eapt="$(which apt)"
-ednf="$(which dnf)"
 conf="$HOME/easyclone/rc.conf"
+arch="$(uname -m)"
 
-# Detecting the OS and installing required dependencies
-echo
-cecho r "Detecting the OS and installing required dependencies"
-if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    cecho g "Termux detected" && \
-    pkg install -y unzip git wget
-elif [ "$epac" == "/usr/bin/pacman" ]; then
-    cecho g "Arch based OS detected" && \
-    sudo pacman --noconfirm -S unzip git wget
-elif [ "$eapt" == "/usr/bin/apt" ]; then 
-    cecho g "Ubuntu based OS detected" && \
-    sudo apt install -y unzip git wget
-elif [ "$ednf" == "/usr/bin/dnf" ]; then
-    cecho g "Fedora based OS detected"
-    sudo dnf install -y unzip git wget
-fi
-cecho b "All dependencies were installed successfully"
+# Installing Dependencies
+cecho r "Installing all the required dependencies"
+apt update && \
+apt install -y unzip git wget 
 
 # Detecting the linux kernel architecture
 echo
-cecho r "Detecting the kernel architecture"
-if [ "$arch" == "aarch64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
-  arch=tarm64
-elif [ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]; then
-  arch=arm64
-elif [ "$arch" == "x86_64" ] ; then
-  arch=amd64
-fi
+cecho r "Defining the kernel architecture"
+arch=tarm64
 
 # Detecting Source path for binaries and script to be added
 spath="$(which git)"
@@ -70,11 +48,11 @@ spath=$(echo $spath | sed 's/\/git$//')
 # Downloading latest easyclone script from github
 echo
 cecho r "Downloading latest easyclone script from github"
-sudo rm -rf $(which clone)
+rm -rf $(which clone)
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
-sudo mv $HOME/tmp/clone $spath
-sudo chmod u+x $spath/clone
+mv $HOME/tmp/clone $spath
+chmod u+x $spath/clone
 
 # Downloading Latest fclone/gclone binary and adding to path
 echo
@@ -87,23 +65,23 @@ echo
 cecho r "Downloading Latest fclone/gclone binary and adding to path"
 case $opt in
 1)
-  sudo rm -rf $(which fclone)
+  rm -rf $(which fclone)
   URL=http://easyclone.xd003.workers.dev/0:/fclone/fclone-$fclone_version-linux-$arch.zip
   wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/fclone.zip
   unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
-  sudo mv $HOME/tmp/fclone $spath
-  sudo chmod u+x $spath/fclone
+  mv $HOME/tmp/fclone $spath
+  chmod u+x $spath/fclone
   cecho b "Easyclone script & fclone successfully updated"
 ;;
 2)
-  sudo rm -rf $(which gclone)
+  rm -rf $(which gclone)
   URL=http://easyclone.xd003.workers.dev/0:/gclone/gclone-$gclone_version-linux-$arch.zip
   wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/gclone.zip
   unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp
-  sudo mv $HOME/tmp/gclone $spath
-  sudo chmod u+x $spath/gclone
-  sudo sed -i 's/fclone/gclone/g' $(which clone)
-  sudo sed -i 's/ --check-first//g' $(which clone)
+  mv $HOME/tmp/gclone $spath
+  chmod u+x $spath/gclone
+  sed -i 's/fclone/gclone/g' $(which clone)
+  sed -i 's/ --check-first//g' $(which clone)
   cecho b "Easyclone script & gclone successfully updated"
 ;;
 esac
