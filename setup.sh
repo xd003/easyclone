@@ -87,7 +87,7 @@ cecho r "Downloading Latest fclone/gclone binary and adding to path"
 case $opt in
 1)
   sudo rm -rf $(which fclone)
-  URL=https://easyclone.xd003.workers.dev/fclone/fclone-$fclone_version-linux-$arch.zip
+  URL=http://easyclone.xd003.workers.dev/0:/fclone/fclone-$fclone_version-linux-$arch.zip
   wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/fclone.zip
   unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
   sudo mv $HOME/tmp/fclone $spath
@@ -96,7 +96,7 @@ case $opt in
 ;;
 2)
   sudo rm -rf $(which gclone)
-  URL=https://easyclone.xd003.workers.dev/gclone/gclone-$gclone_version-linux-$arch.zip
+  URL=http://easyclone.xd003.workers.dev/0:/gclone/gclone-$gclone_version-linux-$arch.zip
   wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/gclone.zip
   unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp
   sudo mv $HOME/tmp/gclone $spath
