@@ -4,7 +4,7 @@
 # File Name: setup.sh
 # Author: xd003
 # Description: Installing prerequisites for clone script
-# System Supported: Arch , Ubuntu/Debian , Fedora & Termux
+# System Supported: Arch , Ubuntu/Debian , Fedora & Termux ( amd64 & arm64 )
 #=============================================================
 
 cecho() {
@@ -38,16 +38,16 @@ conf="$HOME/easyclone/rc.conf"
 echo
 cecho r "Detecting the OS and installing required dependencies"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    echo "Termux detected" && \
+    cecho g "Termux detected" && \
     pkg install -y unzip git wget
 elif [ "$epac" == "/usr/bin/pacman" ]; then
-    echo "Arch based OS detected" && \
+    cecho g "Arch based OS detected" && \
     sudo pacman --noconfirm -S unzip git wget
 elif [ "$eapt" == "/usr/bin/apt" ]; then 
-    echo "Ubuntu based OS detected" && \
+    cecho g "Ubuntu based OS detected" && \
     sudo apt install -y unzip git wget
 elif [ "$ednf" == "/usr/bin/dnf" ]; then
-    echo "Fedora based OS detected"
+    cecho g "Fedora based OS detected"
     sudo dnf install -y unzip git wget
 fi
 cecho b "All dependencies were installed successfully"
