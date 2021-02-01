@@ -4,7 +4,7 @@
 # File Name: setup.sh
 # Author: xd003
 # Description: Installing prerequisites for clone script
-# System Supported: Arch , Ubuntu/Debian , Fedora & Termux ( amd64 & arm64 )
+# System Supported: Unrooted Termux ( arm64 / aarch64 )
 #=============================================================
 
 cecho() {
@@ -74,7 +74,7 @@ case $opt in
   cecho b "Easyclone script & fclone successfully updated"
 ;;
 2)
-  sudo rm -rf $(which gclone)
+  rm -rf $(which gclone)
   URL=http://easyclone.xd003.workers.dev/0:/gclone/gclone-$gclone_version-linux-$arch.zip
   wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/gclone.zip
   unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp
