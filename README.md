@@ -12,7 +12,12 @@ The script gives the option to either install the rclone modded binary called [f
 # How to install / update
 * ```bash <(curl -L http://tiny.cc/easyclone)```
 
-The above setup script will automatically install or update the fclone/gclone binary ,easyclone script & all the dependencies .It will prompt for github authentication for downloading service accounts. Lastly it will automatically create the fclone config based on input entered. Just enter ```clone``` whenever you need to execute the script henceforth
+The above given script is the only single thing one would need to do run to setup everything from scratch . According run it at a later stage to update script and binaries as and when needed.
+Proceeding installation, just enter ```clone``` whenever you need to execute the script henceforth 
+
+# Note for Termux Unrooted users
+Since the original script needs access to root directory for adding script in source , i have made a separate script for unrooted termux users. Simply run the below given 2 commands
+* 
 
 # Credits
 * [rclone](https://github.com/rclone/rclone)    -  for existing 
