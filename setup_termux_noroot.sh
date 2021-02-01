@@ -27,6 +27,7 @@ cecho() {
 #Variables 
 fclone_version=v0.4.1
 gclone_version=v1.53.3
+ehome="$(echo $HOME)"
 conf="$HOME/easyclone/rc.conf"
 arch="$(uname -m)"
 
