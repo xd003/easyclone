@@ -102,7 +102,7 @@ case $opt in
   unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp
   sudo mv $HOME/tmp/gclone $spath
   sudo chmod u+x $spath/gclone
-  sudo sed
+  sudo sed -i 's/fclone/gclone/g' $(which clone)
   cecho b "Easyclone script & gclone successfully updated"
 ;;
 esac
