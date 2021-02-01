@@ -70,6 +70,7 @@ spath=$(echo $spath | sed 's/\/git$//')
 # Downloading latest easyclone script from github
 echo
 cecho r "Downloading latest easyclone script from github"
+sudo rm -rf $(which clone)
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
 sudo mv $HOME/tmp/clone $spath
