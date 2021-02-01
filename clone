@@ -3,8 +3,8 @@
 # https://github.com/xd003/clone
 # File Name: clone
 # Author: xd003
-# Description: Clone bash script to be used for common fclone operations
-# System Supported: Arch , Ubuntu/Debian , Fedora & Termux
+# Description: Clone bash script to be used for common fclone/gclone operations
+# System Supported: Arch , Ubuntu/Debian , Fedora & Termux ( amd64 & arm64 )
 #=============================================================
 
 cecho() {
