@@ -57,7 +57,7 @@ echo
 cecho r "Detecting the kernel architecture"
 if [ "$arch" == "aarch64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
   arch=tarm64
-elif [ "$arch" == "arm64" ] ; then
+elif [ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ]; then
   arch=arm64
 elif [ "$arch" == "x86_64" ] ; then
   arch=amd64
