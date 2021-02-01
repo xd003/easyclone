@@ -28,6 +28,7 @@ cecho() {
 fclone_version=v0.4.1
 gclone_version=v1.53.3
 conf="$HOME/easyclone/rc.conf"
+arch="$(uname -m)"
 
 # Installing Dependencies
 cecho r "Installing all the required dependencies"
