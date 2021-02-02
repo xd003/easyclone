@@ -112,6 +112,7 @@ else
     touch $conf
     echo "[gd]" >> $conf
     echo "type = drive" >> $conf
+    echo "Press enter and leave the below two options blank if you don't prefer to use your own client id and secret"
     eval echo "client_id = $client" >> $conf
     eval echo "client_secret = $secret" >> $conf
     echo "scope = drive" >> $conf
