@@ -17,8 +17,8 @@ Proceeding installation, just enter ```clone``` whenever you need to execute the
 
 # Installation for Unrooted Termux 
 Since the original script needs access to root directory for adding script in source , i have made a separate script for unrooted termux users. Simply run the below given 2 commands. **Termux users with root access should use the above universal script only**
-* ```pkg install proot proot-distro && proot-distro install ubuntu-20.04 && proot-distro login ubuntu-20.04 && echo "proot-distro login ubuntu-20.04" > $PREFIX/etc/profile.d/proot-autostart.sh```
-* ```apt update && apt install curl && bash <(curl -L tiny.cc/easyclonetmux)```
+* ```pkg install proot proot-distro && proot-distro install ubuntu-20.04 && proot-distro login ubuntu-20.04```
+* ```echo "proot-distro login ubuntu-20.04" > $PREFIX/etc/profile.d/proot-autostart.sh && apt update && apt install curl && bash <(curl -L tiny.cc/easyclonetmux)```
 
 # Credits
 * [rclone](https://github.com/rclone/rclone)    -  for existing 
