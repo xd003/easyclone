@@ -38,8 +38,16 @@ apt install -y unzip git wget
 
 # Detecting the linux kernel architecture
 echo
-cecho r "Defining the kernel architecture"
-arch=tarm64
+cecho r "Detecting the kernel architecture"
+if [ "$arch" == "aarch64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
+  arch=tarm64
+elif [ "$arch" == "arm64" ] ; then
+  arch=arm64
+elif [ "$arch" == "x86_64" ] ; then
+  arch=amd64
+elif [ "$arch" == "armv7*" ] ; then
+  arch=armv7
+fi
 
 # Detecting Source path for binaries and script to be added
 spath="$(which git)"
