@@ -78,8 +78,14 @@ sudo mv $HOME/tmp/clone $spath
 sudo chmod u+x $spath/clone
 
 # Downloading rclone 
-sudo rm -rf $(which rclone)
-curl https://rclone.org/install.sh | sudo bash
+case $ehome in
+/data/data/com.termux/files/home)
+  pkg install rclone
+  ;;
+*)
+  curl https://rclone.org/install.sh | sudo bash
+  ;;
+esac
 
 # Downloading and adding crop to path
 sudo rm -rf $(which crop)
