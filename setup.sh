@@ -125,9 +125,11 @@ while true; do
     sed -i "10s/$/ $id/" $conf
     sed -i "11s/$/ $secret/" $conf
     cecho b "Successfully added client_id & secret to the config file"
+    break
     ;;
   [Nn]* )
     echo "skipping client_id and client_secret input"
+    break
     ;;
   * )
     cecho r "Invalid Input Entered , try again"
