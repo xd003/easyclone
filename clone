@@ -23,6 +23,8 @@ cecho() {
   [ -z "$text" ] && local text="$color$2${code}0m"
   echo -e "$text"
 }
+
+# Variable
 conf="$HOME/easyclone/rc.conf"
 
 # Functions
@@ -153,8 +155,7 @@ EOF
     echo
     read -e -p "Enter the Dedupe Operation Mode (1-9) : " dm
     if [[ $dm -ne 9 ]]; then
-      read -e -p "Enter the folder id or url : " src
-      src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+      fsrc
     fi
     case $dm in
     1)
