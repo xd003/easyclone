@@ -160,43 +160,34 @@ EOF
     case $dm in
     1)
       cecho b "Dedupe Interactive option has been selected"
-      : > $HOME/easyclone/log.txt
-     
       rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode interactive gd:{$src} --verbose=2
       ;;
     2)
       cecho b "Dedupe Skip option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode skip gd:{$src} --verbose=2
       ;;
     3)
       cecho b "Dedupe First option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode first gd:{$src} --verbose=2
       ;;
     4)
       cecho b "Dedupe Newest option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode newest gd:{$src} --verbose=2
       ;;
     5)
       cecho b "Dedupe Oldest option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode oldest gd:{$src} --verbose=2
       ;;
     6)
       cecho b "Dedupe Largest option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode largest gd:{$src} --verbose=2
       ;;
     7)
       cecho b "Dedupe Smallest option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode smallest gd:{$src} --verbose=2
       ;;
     8)
       cecho b "Dedupe Rename option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode rename gd:{$src} --verbose=2
       ;;
     9)
@@ -207,9 +198,7 @@ EOF
     ;;
   5)
     cecho b "Size option has been selected"
-    read -e -p "Enter the folder id or url : " src
-    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    : > $HOME/easyclone/log.txt
+    fsrc
     rclone --config=$HOME/easyclone/rc.conf size gd:{$src} --fast-list
     ;;
   6)
@@ -241,8 +230,7 @@ EOF
     echo
     read -e -p "Choose the listing type : " lt
     if [[ $lt -ne 7 ]]; then
-      read -e -p "Enter the folder id or url : " src
-      src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+     fsrc
     fi
     case $lt in
     1)
