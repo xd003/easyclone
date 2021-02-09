@@ -1,8 +1,6 @@
 # easyclone
 This is just a bash script which aims to ease the process of cloning , moving and syncing and other rclone operations.
-The script gives the option to either install the rclone modded binary called [fclone](https://github.com/mawaya/rclone) or [gclone](https://github.com/donwa/gclone) which helps us to bypass the 750GB daily limit by google present in rclone
-
-![sample_pic](https://i.ibb.co/H4qHh1h/Screenshot-20210128-211947-2.jpg)
+The script uses [crop](https://github.com/l3uddz/crop) to bypass the 750GB daily limit by google present in rclone by rotating the service accounts
 
 # Pre Requisites
 * Firstly , you should have generated the service accounts and have them downloaded in a folder named accounts. Follow steps from [here](https://github.com/smartass08/Service-Accounts-to-Google-groups/blob/master/README.md) if you don't have service accounts yet. Also rename any of the json file as 1.json inside accounts folder
