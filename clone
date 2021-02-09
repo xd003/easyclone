@@ -102,56 +102,14 @@ EOF
   case $opt in
   1)
     cecho b "Copy option has been selected"
-    read -e -p "Enter the source folder id or url : " src
-    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    read -e -p "Enter the destination folder id or url : " dst
-    dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    : > $HOME/easyclone/log.txt
-    sed -i '/^team_drive/d' $conf
-    sed -i '/^root_folder_id/d' $conf
-    case $src in
-    0*)
-      sed -i "6iteam_drive = $src" $conf
-      ;;
-    1*)
-      sed -i "6iroot_folder_id = $src" $conf
-      ;;
-    esac
-    case $dst in
-    0*)
-      sed -i "13iteam_drive = $dst" $conf
-      ;;
-    1*)
-      sed -i "13iroot_folder_id = $dst" $conf
-      ;;
-    esac
+    fsrc 
+    fdst
     crop manual --copy --src src: --dst dst: --config $HOME/easyclone/config.yaml
     ;;
   2)
     cecho b "Move option has been selected"
-    read -e -p "Enter the source folder id or url : " src
-    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    read -e -p "Enter the destination folder id or url : " dst
-    dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    : > $HOME/easyclone/log.txt
-    sed -i '/^team_drive/d' $conf
-    sed -i '/^root_folder_id/d' $conf
-    case $src in
-    0*)
-      sed -i "6iteam_drive = $src" $conf
-      ;;
-    1*)
-      sed -i "6iroot_folder_id = $src" $conf
-      ;;
-    esac
-    case $dst in
-    0*)
-      sed -i "13iteam_drive = $dst" $conf
-      ;;
-    1*)
-      sed -i "13iroot_folder_id = $dst" $conf
-      ;;
-    esac
+    fsrc
+    fdst
     crop manual --move --src src: --dst dst: --config $HOME/easyclone/config.yaml
     ;;
   3)
