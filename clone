@@ -303,17 +303,14 @@ EOF
     case $opt in
     1)
       cecho b "Check / Compare only size option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --size-only
       ;;
     2)
       cecho b "Check / Compare size + MD5 option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list
       ;;
     3)
       cecho b "Check / Compare locally downloaded date option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --download
       ;;
     4)
@@ -341,23 +338,19 @@ EOF
     echo
     read -e -p "Enter your input : " opt
     if [[ $opt -ne 4 ]]; then
-      read -e -p "Enter the source folder id or url : " src
-      src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+      fsrc
     fi
     case $opt in
     1)
       cecho b "Delete / Default option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf delete gd:{$src} -vP --stats-one-line --stats=15s --fast-list
       ;;
     2)
       cecho b "Delete / Deletet option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf deletefile gd:{$src} -vP --stats-one-line --stats=15s --fast-list
       ;;
     3)
       cecho b "Delete / Purge option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf purge gd:{$src} -vP --stats-one-line --stats=15s --fast-list
       ;;
     4)
