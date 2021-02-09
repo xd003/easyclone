@@ -138,7 +138,7 @@ while true; do
   esac
 done
 
-sed -i "3ipath: $eclone" $HOME/easyclone/config.yaml
+sed -i "3i\  path: $eclone" $HOME/easyclone/config.yaml
 
 echo
 cecho g "Entering clone will always start the script henceforth"
