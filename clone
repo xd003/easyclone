@@ -160,35 +160,35 @@ EOF
     case $dm in
     1)
       cecho b "Dedupe Interactive option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode interactive gd:{$src} --verbose=2
+      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode interactive src: --verbose=2
       ;;
     2)
       cecho b "Dedupe Skip option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode skip gd:{$src} --verbose=2
+      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode skip src: --verbose=2
       ;;
     3)
       cecho b "Dedupe First option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode first gd:{$src} --verbose=2
+      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode first src: --verbose=2
       ;;
     4)
       cecho b "Dedupe Newest option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode newest gd:{$src} --verbose=2
+      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode newest src: --verbose=2
       ;;
     5)
       cecho b "Dedupe Oldest option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode oldest gd:{$src} --verbose=2
+      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode oldest src: --verbose=2
       ;;
     6)
       cecho b "Dedupe Largest option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode largest gd:{$src} --verbose=2
+      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode largest src: --verbose=2
       ;;
     7)
       cecho b "Dedupe Smallest option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode smallest gd:{$src} --verbose=2
+      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode smallest src: --verbose=2
       ;;
     8)
       cecho b "Dedupe Rename option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode rename gd:{$src} --verbose=2
+      rclone --config=$HOME/easyclone/rc.conf dedupe --dedupe-mode rename src: --verbose=2
       ;;
     9)
       continue
@@ -199,7 +199,7 @@ EOF
   5)
     cecho b "Size option has been selected"
     fsrc
-    rclone --config=$HOME/easyclone/rc.conf size gd:{$src} --fast-list
+    rclone --config=$HOME/easyclone/rc.conf size src: --fast-list
     ;;
   6)
     cecho b "Listing option has been selected"
@@ -235,27 +235,27 @@ EOF
     case $lt in
     1)
       cecho b "Listing / ls option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf ls gd:{$src}
+      rclone --config=$HOME/easyclone/rc.conf ls src:
       ;;
     2)
       cecho b "Listing / lsd option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf lsd gd:{$src}
+      rclone --config=$HOME/easyclone/rc.conf lsd src:
       ;;
     3)
       cecho b "Listing / lsf option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf lsf gd:{$src}
+      rclone --config=$HOME/easyclone/rc.conf lsf src:
       ;;
     4)
       cecho b "Listing / lsjson option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf lsjson gd:{$src}
+      rclone --config=$HOME/easyclone/rc.conf lsjson src:
       ;;
     5)
       cecho b "Listing / lsl option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf lsl gd:{$src}
+      rclone --config=$HOME/easyclone/rc.conf lsl src:
       ;;
     6)
       cecho b "Listing / tree option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf tree gd:{$src}
+      rclone --config=$HOME/easyclone/rc.conf tree src:
       ;;
     7)
       continue
@@ -265,17 +265,17 @@ EOF
   7)
     cecho b "NCDU option has been selected"
     fsrc
-    rclone --config=$HOME/easyclone/rc.conf ncdu gd:{$src} --fast-list
+    rclone --config=$HOME/easyclone/rc.conf ncdu src: --fast-list
     ;;
   8)
     cecho b "Empty Trash option has been selected"
     fsrc
-    rclone --config=$HOME/easyclone/rc.conf delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --fast-list --verbose=2
+    rclone --config=$HOME/easyclone/rc.conf delete src: --drive-trashed-only=true --drive-use-trash=false --fast-list --verbose=2
     ;;
   9)
     cecho b "Delete Empty folders option has been selected"
     fsrc
-    rclone --config=$HOME/easyclone/rc.conf rmdirs gd:{$src} --leave-root
+    rclone --config=$HOME/easyclone/rc.conf rmdirs src: --leave-root
     ;;
   10)
     cecho b "Check option has been selected"
@@ -303,15 +303,15 @@ EOF
     case $opt in
     1)
       cecho b "Check / Compare only size option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --size-only
+      rclone --config=$HOME/easyclone/rc.conf check src: dst: -P --drive-server-side-across-configs --fast-list --size-only
       ;;
     2)
       cecho b "Check / Compare size + MD5 option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list
+      rclone --config=$HOME/easyclone/rc.conf check src: dst: -P --drive-server-side-across-configs --fast-list
       ;;
     3)
       cecho b "Check / Compare locally downloaded date option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf check gd:{$src} gd:{$dst} -P --drive-server-side-across-configs --fast-list --download
+      rclone --config=$HOME/easyclone/rc.conf check src: dst: -P --drive-server-side-across-configs --fast-list --download
       ;;
     4)
       continue
@@ -343,15 +343,15 @@ EOF
     case $opt in
     1)
       cecho b "Delete / Default option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf delete gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+      rclone --config=$HOME/easyclone/rc.conf delete src: -vP --stats-one-line --stats=15s --fast-list
       ;;
     2)
       cecho b "Delete / Deletet option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf deletefile gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+      rclone --config=$HOME/easyclone/rc.conf deletefile src: -vP --stats-one-line --stats=15s --fast-list
       ;;
     3)
       cecho b "Delete / Purge option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf purge gd:{$src} -vP --stats-one-line --stats=15s --fast-list
+      rclone --config=$HOME/easyclone/rc.conf purge src: -vP --stats-one-line --stats=15s --fast-list
       ;;
     4)
       continue
