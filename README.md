@@ -10,7 +10,7 @@ The script uses [crop](https://github.com/l3uddz/crop) to bypass the 750GB daily
 # How to install / update
 * ```WIP```
 
-The above given script is the only single thing one would need to do run to setup everything from scratch . According run it at a later stage to update script and binaries as and when needed.
+Installation is as easy as just running the above command .It will setup everything from scratch .Accordingly run it at a later stage to update script and binaries as and when needed.
 Proceeding installation, just enter ```clone``` whenever you need to execute the script henceforth 
 
 # Installation for Unrooted Termux 
