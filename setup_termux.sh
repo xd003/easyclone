@@ -28,37 +28,21 @@ cecho() {
 crop_version=v0.6.0
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
-epac="$(which pacman)"
 eapt="$(which apt)"
-ednf="$(which dnf)"
 conf="$HOME/easyclone/rc.conf"
 eclone="$(which rclone)"
 
 # Detecting the OS and installing required dependencies
 echo
 cecho r "Detecting the OS and installing required dependencies"
-if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    cecho g "Termux detected" && \
-    pkg install -y unzip git wget tsu
-elif [ "$epac" == "/usr/bin/pacman" ]; then
-    cecho g "Arch based OS detected" && \
-    sudo pacman --noconfirm -S unzip git wget
-elif [ "$eapt" == "/usr/bin/apt" ]; then 
-    cecho g "Ubuntu based OS detected" && \
-    sudo apt install -y unzip git wget
-elif [ "$ednf" == "/usr/bin/dnf" ]; then
-    cecho g "Fedora based OS detected"
-    sudo dnf install -y unzip git wget
-fi
+apt install -y unzip git wget
 cecho b "All dependencies were installed successfully"
 
 # Detecting the linux kernel architecture
 echo
 cecho r "Detecting the kernel architecture"
-if [ "$arch" == "arm64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
+if [ "$arch" == "arm64" ] || [ "$arch" == "aarch64" ] ; then
   arch=arm64
-elif [ "$arch" == "x86_64" ] ; then
-  arch=amd64
 elif [ "$arch" == "*" ] ; then
   cecho r "Unsupported Kernel architecture" && \
   exit
