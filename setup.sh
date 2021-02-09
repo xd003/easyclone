@@ -82,7 +82,7 @@ curl https://rclone.org/install.sh | sudo bash
 
 # Downloading and adding crop to path
 sudo rm -rf $(which crop)
-URL=http://easyclone.xd003.workers.dev/0:/crop/crop_$crop_version_linux_$arch.zip
+URL=http://easyclone.xd003.workers.dev/0:/crop/crop-$crop_version-linux-$arch.zip
 wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/crop.zip
 unzip -q $HOME/tmp/crop.zip -d $HOME/tmp
 sudo mv $HOME/tmp/crop $spath
