@@ -120,7 +120,10 @@ while true; do
   [Yy]* )
     read -e -p "Enter your client_id" : id
     read -e -p "Enter your client_secret" : secret
-    
+    sed -i "3s/$/ $id/" $conf
+    sed -i "4s/$/ $secret/" $conf
+    sed -i "11s/$/ $id/" $conf
+    sed -i "12s/$/ $secret/" $conf
     cecho b "Successfully added client_id & secret to the config file"
     ;;
   [Nn]* )
