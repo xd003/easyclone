@@ -118,8 +118,8 @@ while true; do
   read -e -p "Do you want to use your own client_id & client_secret [y/n] : " opt
   case $opt in
   [Yy]* )
-    read -e -p "Enter your client_id" : id
-    read -e -p "Enter your client_secret" : secret
+    read -e -p "Enter your client_id : " id
+    read -e -p "Enter your client_secret : " secret
     sed -i "3s/$/ $id/" $conf
     sed -i "4s/$/ $secret/" $conf
     sed -i "10s/$/ $id/" $conf
