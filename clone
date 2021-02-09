@@ -230,37 +230,31 @@ EOF
     echo
     read -e -p "Choose the listing type : " lt
     if [[ $lt -ne 7 ]]; then
-     fsrc
+      fsrc
     fi
     case $lt in
     1)
       cecho b "Listing / ls option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf ls gd:{$src}
       ;;
     2)
       cecho b "Listing / lsd option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf lsd gd:{$src}
       ;;
     3)
       cecho b "Listing / lsf option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf lsf gd:{$src}
       ;;
     4)
       cecho b "Listing / lsjson option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf lsjson gd:{$src}
       ;;
     5)
       cecho b "Listing / lsl option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf lsl gd:{$src}
       ;;
     6)
       cecho b "Listing / tree option has been selected"
-      : > $HOME/easyclone/log.txt
       rclone --config=$HOME/easyclone/rc.conf tree gd:{$src}
       ;;
     7)
@@ -270,23 +264,17 @@ EOF
     ;;
   7)
     cecho b "NCDU option has been selected"
-    read -e -p "Enter the folder id or url : " src
-    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    : > $HOME/easyclone/log.txt
+    fsrc
     rclone --config=$HOME/easyclone/rc.conf ncdu gd:{$src} --fast-list
     ;;
   8)
     cecho b "Empty Trash option has been selected"
-    read -e -p "Enter the folder id or url : " src
-    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    : > $HOME/easyclone/log.txt
+    fsrc
     rclone --config=$HOME/easyclone/rc.conf delete gd:{$src} --drive-trashed-only=true --drive-use-trash=false --fast-list --verbose=2
     ;;
   9)
     cecho b "Delete Empty folders option has been selected"
-    read -e -p "Enter the folder id or url : " src
-    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-    : > $HOME/easyclone/log.txt
+    fsrc
     rclone --config=$HOME/easyclone/rc.conf rmdirs gd:{$src} --leave-root
     ;;
   10)
@@ -309,10 +297,8 @@ EOF
     echo
     read -e -p "Choose the Comparison Mode : " opt
     if [[ $opt -ne 4 ]]; then
-      read -e -p "Enter the source folder id or url : " src
-      src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
-      read -e -p "Enter the destination folder id or url : " dst
-      dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+      fsrc
+      fdst
     fi
     case $opt in
     1)
