@@ -127,7 +127,7 @@ while true; do
     cecho b "Successfully added client_id & secret to the config file"
     ;;
   [Nn]* )
-    pass
+    echo "skipping client_id and client_secret input"
     ;;
   * )
     cecho r "Invalid Input Entered , try again"
