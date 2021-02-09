@@ -8,15 +8,15 @@ The script uses [crop](https://github.com/l3uddz/crop) to bypass the 750GB daily
 * ( Optional )  You can generate your own client id & secret from [here](https://developers.google.com/drive/api/v3/quickstart/python). There will be a option to enter it during config creation. Just leave it blank and proceed ahead if you don't want to use it
 
 # How to install / update
-* ```WIP```
+* ```bash <(curl -L http://tiny.cc/easyclone)```
 
 Installation is as easy as just running the above command .It will setup everything from scratch .Accordingly run it at a later stage to update script and binaries as and when needed.
 Proceeding installation, just enter ```clone``` whenever you need to execute the script henceforth 
 
 # Installation for Unrooted Termux 
 Since the original script needs access to root directory for adding script in source , i have made a separate script for unrooted termux users. Simply run the below given 2 commands. **Termux users with root access should use the above universal script only**
-* ```WIP```
-
+* ```pkg install proot proot-distro && proot-distro install ubuntu-20.04 && proot-distro login ubuntu-20.04```
+* ```echo "proot-distro login ubuntu-20.04" > $PREFIX/etc/profile.d/proot-autostart.sh && apt update && apt install curl && bash <(curl -L tiny.cc/easyclonetmux)```
 # Credits
 * [rclone](https://github.com/rclone/rclone)
 * [l3uddz](https://github.com/l3uddz/crop)    
