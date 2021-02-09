@@ -1,6 +1,5 @@
 rclone:
   config: $HOME/easyclone/rc.conf
-  path: $(which rclone)
   stats: 30s
   live_rotate: true
   service_account_remotes:
