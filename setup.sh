@@ -138,6 +138,8 @@ while true; do
   esac
 done
 
+# Adjusting Config 
+sed -i "2i\  config: $ehome/easyclone/rc.conf" $HOME/easyclone/config.yaml
 sed -i "3i\  path: $eclone" $HOME/easyclone/config.yaml
 
 echo
