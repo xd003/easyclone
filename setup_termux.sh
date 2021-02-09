@@ -62,37 +62,7 @@ git clone https://github.com/xd003/easyclone $HOME/tmp
 mv $HOME/tmp/clone $spath
 chmod u+x $spath/clone
 
-# Downloading Latest fclone/gclone binary and adding to path
-echo
-cat << EOF
-1. fclone
-2. gclone
-EOF
-read -e -p "What would you like to install , Enter input as 1 or 2 : " opt
-echo
-cecho r "Downloading Latest fclone/gclone binary and adding to path"
-case $opt in
-1)
-  rm -rf $(which fclone)
-  URL=http://easyclone.xd003.workers.dev/0:/fclone/fclone-$fclone_version-linux-$arch.zip
-  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/fclone.zip
-  unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
-  mv $HOME/tmp/fclone $spath
-  chmod u+x $spath/fclone
-  cecho b "Easyclone script & fclone successfully updated"
-;;
-2)
-  rm -rf $(which gclone)
-  URL=http://easyclone.xd003.workers.dev/0:/gclone/gclone-$gclone_version-linux-$arch.zip
-  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/gclone.zip
-  unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp
-  mv $HOME/tmp/gclone $spath
-  chmod u+x $spath/gclone
-  sed -i 's/fclone/gclone/g' $(which clone)
-  sed -i 's/ --check-first//g' $(which clone)
-  cecho b "Easyclone script & gclone successfully updated"
-;;
-esac
+
 rm -rf $HOME/tmp
 
 # Pulling the accounts folder containing service accounts from github 

@@ -25,8 +25,7 @@ cecho() {
 }
 
 #Variables 
-fclone_version=v0.4.1
-gclone_version=v1.53.3
+crop_version=v0.6.0
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
 epac="$(which pacman)"
@@ -39,7 +38,8 @@ echo
 cecho r "Detecting the OS and installing required dependencies"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     cecho g "Termux detected" && \
-    pkg install -y unzip git wget
+    cecho r "Please Use the Script for Termux" && \
+    exit
 elif [ "$epac" == "/usr/bin/pacman" ]; then
     cecho g "Arch based OS detected" && \
     sudo pacman --noconfirm -S unzip git wget
@@ -55,14 +55,13 @@ cecho b "All dependencies were installed successfully"
 # Detecting the linux kernel architecture
 echo
 cecho r "Detecting the kernel architecture"
-if [ "$arch" == "aarch64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
-  arch=tarm64
-elif [ "$arch" == "arm64" ] ; then
+if [ "$arch" == "arm64" ] ; then
   arch=arm64
 elif [ "$arch" == "x86_64" ] ; then
   arch=amd64
-elif [ "$arch" == "armv7*" ] ; then
-  arch=armv7
+elif [ "$arch" == "*" ] ; then
+  cecho r "Unsupported Kernel architecture" && \
+  exit
 fi
 
 # Detecting Source path for binaries and script to be added
@@ -78,37 +77,22 @@ git clone https://github.com/xd003/easyclone $HOME/tmp
 sudo mv $HOME/tmp/clone $spath
 sudo chmod u+x $spath/clone
 
-# Downloading Latest fclone/gclone binary and adding to path
-echo
-cat << EOF
-1. fclone
-2. gclone
-EOF
-read -e -p "What would you like to install , Enter input as 1 or 2 : " opt
-echo
-cecho r "Downloading Latest fclone/gclone binary and adding to path"
-case $opt in
-1)
-  sudo rm -rf $(which fclone)
-  URL=http://easyclone.xd003.workers.dev/0:/fclone/fclone-$fclone_version-linux-$arch.zip
-  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/fclone.zip
-  unzip -q $HOME/tmp/fclone.zip -d $HOME/tmp
-  sudo mv $HOME/tmp/fclone $spath
-  sudo chmod u+x $spath/fclone
-  cecho b "Easyclone script & fclone successfully updated"
-;;
-2)
-  sudo rm -rf $(which gclone)
-  URL=http://easyclone.xd003.workers.dev/0:/gclone/gclone-$gclone_version-linux-$arch.zip
-  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/gclone.zip
-  unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp
-  sudo mv $HOME/tmp/gclone $spath
-  sudo chmod u+x $spath/gclone
-  sudo sed -i 's/fclone/gclone/g' $(which clone)
-  sudo sed -i 's/ --check-first//g' $(which clone)
-  cecho b "Easyclone script & gclone successfully updated"
-;;
-esac
+# Downloading rclone 
+sudo rm -rf $(which rclone)
+curl https://rclone.org/install.sh | sudo bash
+
+# Downloading and adding crop to path
+sudo rm -rf $(which crop)
+URL=http://easyclone.xd003.workers.dev/0:/crop/crop_$crop_version_linux_$arch.zip
+wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/crop.zip
+unzip -q $HOME/tmp/crop.zip -d $HOME/tmp
+sudo mv $HOME/tmp/crop $spath
+sudo chmod u+x $spath/crop
+cecho b "crop successfully updated"
+
+
+
+
 rm -rf $HOME/tmp
 
 # Pulling the accounts folder containing service accounts from github 

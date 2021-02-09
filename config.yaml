@@ -1,0 +1,26 @@
+rclone:
+  config: $HOME/easyclone/rc.conf
+  path: $(which rclone)
+  stats: 30s
+  live_rotate: true
+  service_account_remotes:
+    '$HOME/easyclone/accounts':
+      - src
+      - dst
+  global_params:
+    default:
+      move:
+        - '--order-by=modtime,ascending'
+        - '--transfers=8'
+        - '--delete-empty-src-dirs'
+      sync:
+        - '--fast-list'
+        - '--tpslimit-burst=50'
+        - '--max-backlog=2000000'
+        - '--track-renames'
+        - '--use-mmap'
+        - '--no-update-modtime'
+        - '--drive-chunk-size=128M'
+      dedupe:
+        - '--dedupe-mode=newest'
+        - '--tpslimit=5'
