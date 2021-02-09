@@ -24,6 +24,8 @@ cecho() {
   echo -e "$text"
 }
 
+conf="$HOME/easyclone/rc.conf"
+
 while true; do
   cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
