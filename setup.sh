@@ -76,11 +76,20 @@ spath=$(echo $spath | sed 's/\/git$//')
 # Downloading latest easyclone script from github
 echo
 cecho r "Downloading latest easyclone script from github"
-sudo rm -rf $(which clone)
+if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+    rm -rf $(which clone)
+else
+    sudo rm -rf $(which clone)
+fi
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
-sudo mv $HOME/tmp/clone $spath
-sudo chmod u+x $spath/clone
+if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+    mv $HOME/tmp/clone $spath
+    chmod u+x $spath/clone
+else  
+    sudo mv $HOME/tmp/clone $spath
+    sudo chmod u+x $spath/clone
+fi
 
 # Downloading rclone 
 case $ehome in
@@ -93,12 +102,21 @@ case $ehome in
 esac
 
 # Downloading and adding crop to path
-sudo rm -rf $(which crop)
+if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+    rm -rf $(which crop)
+else    
+    sudo rm -rf $(which crop)
+fi
 URL=http://easyclone.xd003.workers.dev/0:/crop/crop-$crop_version-linux-$arch.zip
 wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/crop.zip
 unzip -q $HOME/tmp/crop.zip -d $HOME/tmp
-sudo mv $HOME/tmp/crop $spath
-sudo chmod u+x $spath/crop
+if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+    mv $HOME/tmp/crop $spath
+    chmod u+x $spath/crop
+else     
+    sudo mv $HOME/tmp/crop $spath
+    sudo chmod u+x $spath/crop
+fi
 cecho b "crop successfully updated"
 
 # Moving config files to easyclone folder
