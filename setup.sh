@@ -76,11 +76,20 @@ spath=$(echo $spath | sed 's/\/git$//')
 # Downloading latest easyclone script from github
 echo
 cecho r "Downloading latest easyclone script from github"
-sudo rm -rf $(which clone)
+if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+    rm -rf $(which clone)
+else
+    sudo rm -rf $(which clone)
+fi
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
-sudo mv $HOME/tmp/clone $spath
-sudo chmod u+x $spath/clone
+if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+    mv $HOME/tmp/clone $spath
+    chmod u+x $spath/clone
+else  
+    sudo mv $HOME/tmp/clone $spath
+    sudo chmod u+x $spath/clone
+fi
 
 # Downloading rclone 
 case $ehome in
