@@ -15,11 +15,6 @@ The script uses [crop](https://github.com/l3uddz/crop) to bypass the 750GB daily
 Installation is as easy as just running the above command .It will setup everything from scratch .Accordingly run it at a later stage to update script and binaries as and when needed.
 Proceeding installation, just enter ```clone``` whenever you need to execute the script henceforth 
 
-# Installation for Unrooted Termux 
-Since the original script needs access to root directory for adding script in source , i have made a separate script for unrooted termux users. Simply run the below given 2 commands. **Termux users with root access should use the above universal script only**
-* ```pkg install proot proot-distro && proot-distro install ubuntu-20.04 && proot-distro login ubuntu-20.04```
-* ```echo "proot-distro login ubuntu-20.04" > $PREFIX/etc/profile.d/proot-autostart.sh && apt update && apt install curl && bash <(curl -L tiny.cc/easyclonetmux)```
-
 # Pre Requisites
 * Firstly , you should have generated the service accounts and have them downloaded in a folder named accounts. Follow steps from [here](https://github.com/smartass08/Service-Accounts-to-Google-groups/blob/master/README.md) if you don't have service accounts yet. Also rename any of the json file as 1.json inside accounts folder
 * Secondly , you need to make a new repository named accounts in your github account and upload all the service accounts json files directly in that repo.
