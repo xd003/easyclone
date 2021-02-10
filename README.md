@@ -16,7 +16,7 @@ Since the original script needs access to root directory for adding script in so
 # Pre Requisites
 * Firstly , you should have generated the service accounts and have them downloaded in a folder named accounts. Follow steps from [here](https://github.com/smartass08/Service-Accounts-to-Google-groups/blob/master/README.md) if you don't have service accounts yet. Also rename any of the json file as 1.json inside accounts folder
 * Secondly , you need to make a new repository named accounts in your github account and upload all the service accounts json files directly in that repo.
-* ( Optional )  You can generate your own client id & secret from [here](https://developers.google.com/drive/api/v3/quickstart/python). There will be a option to enter it during config creation. Just leave it blank and proceed ahead if you don't want to use it
+* ( Optional )  You can generate your own client id & secret from [here](https://developers.google.com/drive/api/v3/quickstart/python). There will be a option to enter it during installation
 
 # Credits
 * [rclone](https://github.com/rclone/rclone)
