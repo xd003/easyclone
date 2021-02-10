@@ -2,6 +2,13 @@
 This is just a bash script which aims to ease the process of cloning , moving and syncing and other rclone operations.
 The script uses [crop](https://github.com/l3uddz/crop) to bypass the 750GB daily limit by google present in rclone by rotating the service accounts
 
+# Features
+* Easy one command installation from scratch does everything
+* Linux 64 bit OS supported ( including termux root + unrooted )
+* Dynamic generation of rclone config based on input so no need to create any config
+* Easy one word execution to invoke script
+* Uses stable & latest rclone to rotate service accounts so no need to use outdated or unstable mods
+
 # How to install / update
 * ```bash <(curl -L http://tiny.cc/easyclone)```
 
