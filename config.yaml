@@ -18,6 +18,8 @@ rclone:
         - '-vP'
         - '--stats=1s'
         - '--drive-chunk-size 128M'
+        - '--transfers=16'
+        - '--checkers=32'
         - '--log-file $HOME/easyclone/log.txt'
       move:
         - '--fast-list'
@@ -30,6 +32,8 @@ rclone:
         - '-vP'
         - '--stats=1s'
         - '--drive-chunk-size 128M'
+        - '--transfers=16'
+        - '--checkers=32'
         - '--log-file $HOME/easyclone/log.txt'
       sync:
         - '--fast-list'
@@ -41,6 +45,8 @@ rclone:
         - '-vP'
         - '--stats=1s'
         - '--drive-chunk-size 128M'
+        - '--transfers=16'
+        - '--checkers=32'
         - '--log-file $HOME/easyclone/log.txt'
       dedupe:
         - '--verbose=2'
