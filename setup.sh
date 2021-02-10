@@ -138,7 +138,11 @@ else
     echo && cecho r "Downloading the service accounts from your private repo"
     read -e -p "Input your github username : " username
     read -e -p "Input your github password : " password
-    git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts
+    while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do
+      cecho r 'Invalid username or password, please retry' >&2;
+      read -e -p "Input your github username : " username
+      read -e -p "Input your github password : " password
+    done
     cecho b "Service accounts were added Successfully"
 fi
 
