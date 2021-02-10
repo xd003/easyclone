@@ -40,6 +40,11 @@ cecho r "Detecting the OS and installing required dependencies"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     cecho g "Termux detected" && \
     pkg install -y unzip git wget tsu
+    if [ ! -d ~/storage ]; then
+        cecho r "Setting up storage access for Termux"
+        termux-setup-storage
+        sleep 2
+    fi
 elif [ "$epac" == "/usr/bin/pacman" ]; then
     cecho g "Arch based OS detected" && \
     sudo pacman --noconfirm -S unzip git wget
