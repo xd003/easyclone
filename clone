@@ -106,19 +106,19 @@ EOF
     cecho b "Copy option has been selected"
     fsrc 
     fdst
-    crop manual --copy --src src: --dst dst: --config $HOME/easyclone/config.yaml --sa $HOME/easyclone/accounts -d $HOME/easyclone -f $HOME/easyclone -l $HOME/easyclone
+    crop manual --copy --src src: --dst dst: --config $HOME/easyclone/config.yaml --sa $HOME/easyclone/accounts -f $HOME/easyclone/crop.lock -l $HOME/easyclone/activity.log
     ;;
   2)
     cecho b "Move option has been selected"
     fsrc
     fdst
-    crop manual --move --src src: --dst dst: --config $HOME/easyclone/config.yaml --sa $HOME/easyclone/accounts -d $HOME/easyclone -f $HOME/easyclone -l $HOME/easyclone
+    crop manual --move --src src: --dst dst: --config $HOME/easyclone/config.yaml --sa $HOME/easyclone/accounts -f $HOME/easyclone/crop.lock -l $HOME/easyclone/activity.log
     ;;
   3)
     cecho b "Sync option has been selected"
     fsrc
     fdst
-    crop manual --sync --src src: --dst dst: --config $HOME/easyclone/config.yaml --sa $HOME/easyclone/accounts -d $HOME/easyclone -f $HOME/easyclone -l $HOME/easyclone
+    crop manual --sync --src src: --dst dst: --config $HOME/easyclone/config.yaml --sa $HOME/easyclone/accounts -f $HOME/easyclone/crop.lock -l $HOME/easyclone/activity.log
     ;;
   4)
     cecho b "Dedupe option has been selected"
