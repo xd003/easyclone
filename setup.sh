@@ -134,7 +134,7 @@ if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]
     cecho b "accounts folder containing service accounts already exists //Skipping"
 else
     mkdir -p $HOME/easyclone/accounts
-    echo && cecho r "Downloading the service accounts from your private repo"
+    cecho r "Downloading the service accounts from your private repo"
     read -e -p "Input your github username : " username
     read -e -p "Input your github password : " password
     while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do
