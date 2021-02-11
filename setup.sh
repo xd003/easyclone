@@ -122,7 +122,7 @@ cecho b "crop successfully updated"
 # Moving config files to easyclone folder
 rm -rf $HOME/easyclone/rc.conf
 rm -rf $HOME/easyclone/config.yaml
-mkdir -p $HOME/easyclone
+mkdir -p $HOME/easyclone/cache
 mv $HOME/tmp/rc.conf $HOME/easyclone
 mv $HOME/tmp/config.yaml $HOME/easyclone
 
