@@ -130,9 +130,8 @@ rm -rf $HOME/tmp
 
 # Pulling the accounts folder containing service accounts from github 
 echo
-cecho r "Pulling the accounts folder containing service accounts from github"
 if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
-    cecho b "Accounts folder already existing //Skipping"
+    cecho b "accounts folder containing service accounts already exists //Skipping"
 else
     mkdir -p $HOME/easyclone/accounts
     echo && cecho r "Downloading the service accounts from your private repo"
