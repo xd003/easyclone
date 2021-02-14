@@ -21,20 +21,6 @@ rclone:
         - '--transfers=16'
         - '--checkers=32'
         - '--log-file $HOME/easyclone/log.txt'
-      move:
-        - '--fast-list'
-        - '--drive-server-side-across-configs'
-        - '--ignore-existing'
-        - '--drive-acknowledge-abuse'
-        - '--drive-keep-revision-forever'
-        - '--stats=1s'
-        - '--stats-one-line'
-        - '-vP'
-        - '--stats=1s'
-        - '--drive-chunk-size 128M'
-        - '--transfers=16'
-        - '--checkers=32'
-        - '--log-file $HOME/easyclone/log.txt'
       sync:
         - '--fast-list'
         - '--drive-server-side-across-configs'
@@ -50,4 +36,3 @@ rclone:
         - '--log-file $HOME/easyclone/log.txt'
       dedupe:
         - '--verbose=2'
-    
