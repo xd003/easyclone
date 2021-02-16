@@ -275,7 +275,7 @@ EOF
   9)
     cecho b "Delete Empty folders option has been selected"
     fsrc
-    rclone --config=$HOME/easyclone/rc.conf rmdirs src: --leave-root --log-file $HOME/easyclone/log.txt
+    rclone --config=$HOME/easyclone/rc.conf rmdirs src: --leave-root --fast-list --log-file $HOME/easyclone/log.txt
     ;;
   10)
     cecho b "Check option has been selected"
