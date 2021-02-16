@@ -270,12 +270,12 @@ EOF
   8)
     cecho b "Empty Trash option has been selected"
     fsrc
-    rclone --config=$HOME/easyclone/rc.conf delete src: --drive-trashed-only=true --drive-use-trash=false --fast-list --verbose=2
+    rclone --config=$HOME/easyclone/rc.conf delete src: --drive-trashed-only=true --drive-use-trash=false --fast-list --verbose=2 --log-file $HOME/easyclone/log.txt
     ;;
   9)
     cecho b "Delete Empty folders option has been selected"
     fsrc
-    rclone --config=$HOME/easyclone/rc.conf rmdirs src: --leave-root
+    rclone --config=$HOME/easyclone/rc.conf rmdirs src: --leave-root --log-file $HOME/easyclone/log.txt
     ;;
   10)
     cecho b "Check option has been selected"
@@ -343,15 +343,15 @@ EOF
     case $opt in
     1)
       cecho b "Delete / Default option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf delete src: -vP --stats-one-line --stats=15s --fast-list
+      rclone --config=$HOME/easyclone/rc.conf delete src: -vP --stats-one-line --stats=15s --fast-list --log-file $HOME/easyclone/log.txt
       ;;
     2)
       cecho b "Delete / Deletet option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf deletefile src: -vP --stats-one-line --stats=15s --fast-list
+      rclone --config=$HOME/easyclone/rc.conf deletefile src: -vP --stats-one-line --stats=15s --fast-list --log-file $HOME/easyclone/log.txt
       ;;
     3)
       cecho b "Delete / Purge option has been selected"
-      rclone --config=$HOME/easyclone/rc.conf purge src: -vP --stats-one-line --stats=15s --fast-list
+      rclone --config=$HOME/easyclone/rc.conf purge src: -vP --stats-one-line --stats=15s --fast-list --log-file $HOME/easyclone/log.txt
       ;;
     4)
       continue
