@@ -102,7 +102,7 @@ case $ehome in
 esac
 
 # Downloading and adding crop to path
-if [ ! -f $path/crop ]; then
+if [ ! -f $spath/crop ]; then
   URL=http://easyclone.xd003.workers.dev/0:/crop/crop-$crop_version-linux-$arch.zip
   wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/crop.zip
   unzip -q $HOME/tmp/crop.zip -d $HOME/tmp
