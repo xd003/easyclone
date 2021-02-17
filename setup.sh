@@ -102,22 +102,21 @@ case $ehome in
 esac
 
 # Downloading and adding crop to path
-if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    rm -rf $(which crop)
-else    
-    sudo rm -rf $(which crop)
-fi
-URL=http://easyclone.xd003.workers.dev/0:/crop/crop-$crop_version-linux-$arch.zip
-wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/crop.zip
-unzip -q $HOME/tmp/crop.zip -d $HOME/tmp
-if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    mv $HOME/tmp/crop $spath
-    chmod u+x $spath/crop
-else     
-    sudo mv $HOME/tmp/crop $spath
-    sudo chmod u+x $spath/crop
-fi
+if [ ! -f $path/crop ]; then
+  URL=http://easyclone.xd003.workers.dev/0:/crop/crop-$crop_version-linux-$arch.zip
+  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/crop.zip
+  unzip -q $HOME/tmp/crop.zip -d $HOME/tmp
+  if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+      mv $HOME/tmp/crop $spath
+      chmod u+x $spath/crop
+  else     
+      sudo mv $HOME/tmp/crop $spath
+      sudo chmod u+x $spath/crop
+  fi
 cecho b "crop successfully updated"
+else
+  cecho b "Crop binary already exists in path // Skipping"
+fi
 
 # Moving config files to easyclone folder
 rm -rf $HOME/easyclone/rc.conf
