@@ -113,7 +113,7 @@ if [ ! -f $spath/crop ]; then
       sudo mv $HOME/tmp/crop $spath
       sudo chmod u+x $spath/crop
   fi
-cecho b "crop successfully updated"
+cecho b "Crop successfully updated"
 else
   cecho b "Crop binary already exists in path // Skipping"
 fi
@@ -130,7 +130,7 @@ rm -rf $HOME/tmp
 # Pulling the accounts folder containing service accounts from github 
 echo
 if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
-    cecho b "accounts folder containing service accounts already exists //Skipping"
+    cecho b "Accounts folder containing service accounts already exists //Skipping"
 else
     mkdir -p $HOME/easyclone/accounts
     cecho r "Downloading the service accounts from your private repo"
