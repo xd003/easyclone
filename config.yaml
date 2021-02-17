@@ -1,5 +1,5 @@
 rclone:
-  stats: 1s
+  stats: 5s
   live_rotate: true
   service_account_remotes:
     '$HOME/easyclone/accounts':
