@@ -32,5 +32,3 @@ rclone:
         - '--transfers=16'
         - '--checkers=32'
         - '--log-file $HOME/easyclone/log.txt'
-      dedupe:
-        - '--verbose=2'
