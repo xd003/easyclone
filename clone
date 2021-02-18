@@ -106,7 +106,7 @@ EOF
     cecho b "Copy option has been selected"
     fsrc 
     fdst
-    bash $HOME/easyclone/sasync/sasync set.copy
+    (cd $HOME/easyclone/sasync; bash sasync set.copy)
     ;;
   2)
     cecho b "Move option has been selected"
@@ -118,7 +118,7 @@ EOF
     cecho b "Sync option has been selected"
     fsrc
     fdst
-    bash $HOME/easyclone/sasync/sasync set.sync
+    (cd $HOME/easyclone/sasync; bash sasync set.sync)
     ;;
   4)
     cecho b "Dedupe option has been selected"
