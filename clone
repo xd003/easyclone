@@ -45,7 +45,7 @@ fsrc() {
     sed -i "6iroot_folder_id = $src" $conf
     ;;
   esac
-#sed -i "7s/*\.json/$rjc1\.json/" $HOME/easyclone/rc conf
+#sed -i "7s/*\.json/$rjc1\.json/" $conf
 }
 
 fdst() {
@@ -59,7 +59,7 @@ fdst() {
     sed -i "13iroot_folder_id = $dst" $conf
     ;;
   esac
-#sed -i "15s/*\.json/$rjc2\.json/" $HOME/easyclone/rc conf
+#sed -i "15s/*\.json/$rjc2\.json/" $conf
 }
 
 while true; do
