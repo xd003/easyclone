@@ -102,7 +102,7 @@ rm -rf $HOME/tmp
 # Pulling the accounts folder containing service accounts from github 
 echo
 if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
-    cecho b "Accounts folder containing service accounts already exists //Skipping"
+    cecho b "Accounts folder containing service accounts already exists // Skipping"
 else
     mkdir -p $HOME/easyclone/accounts
     cecho r "Downloading the service accounts from your private repo"
@@ -143,7 +143,7 @@ if [ "$erc" == "client_id =" ]; then
     esac
   done
 else
-  cecho b "Client_id & Secret already present in config //Skipping"
+  cecho b "Client_id & Secret already present in config // Skipping"
 fi
 
 # Adjusting sasync Config 
