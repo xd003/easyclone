@@ -4,7 +4,7 @@
 # File Name: setup.sh
 # Author: xd003
 # Description: Installing prerequisites for clone script
-# System Supported: Arch , Ubuntu/Debian , Fedora & Termux ( amd64 & arm64 )
+# System Supported: Arch , Ubuntu/Debian , Fedora & Termux
 #=============================================================
 
 cecho() {
