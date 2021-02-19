@@ -39,13 +39,13 @@ fsrc() {
   src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   case $src in
   0*)
-    sed -i "6iteam_drive = $src" $conf
+    sed -i "4iteam_drive = $src" $conf
     ;;
   1*)
-    sed -i "6iroot_folder_id = $src" $conf
+    sed -i "4iroot_folder_id = $src" $conf
     ;;
   esac
-  sed -ri "7s/[[:digit:]]+.json/$rjc1.json/" $conf
+  sed -ri "5s/[[:digit:]]+.json/$rjc1.json/" $conf
 }
 
 fdst() {
@@ -53,13 +53,13 @@ fdst() {
   dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   case $dst in
   0*)
-    sed -i "13iteam_drive = $dst" $conf
+    sed -i "10iteam_drive = $dst" $conf
     ;;
   1*)
-    sed -i "13iroot_folder_id = $dst" $conf
+    sed -i "10iroot_folder_id = $dst" $conf
     ;;
   esac
-  sed -ri "15s/[[:digit:]]+.json/$rjc2.json/" $conf
+  sed -ri "11s/[[:digit:]]+.json/$rjc2.json/" $conf
 }
 
 while true; do
