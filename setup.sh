@@ -91,10 +91,9 @@ esac
 
 # Moving config files & sasync to easyclone folder
 rm -rf $HOME/easyclone/sasync
+rm -rf $HOME/easyclone/rc.conf
 mkdir -p $HOME/easyclone
-if [ ! -f $conf ]; then
-  mv $HOME/tmp/rc.conf $HOME/easyclone
-fi
+mv $HOME/tmp/rc.conf $HOME/easyclone
 mv $HOME/tmp/sasync $HOME/easyclone
 
 rm -rf $HOME/tmp
