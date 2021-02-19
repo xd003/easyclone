@@ -117,7 +117,7 @@ EOF
     cecho b "Move option has been selected"
     fsrc
     fdst
-    rclone --config=$HOME/easyclone/rc.conf move src: dst: --fast-list --drive-server-side-across-configs --ignore-existing --drive-acknowledge-abuse --drive-keep-revision-forever --stats=1s --stats-one-line -vP --drive-chunk-size 128M --transfers=16 --checkers=32 --log-file $HOME/easyclone/log.txt
+    (cd $HOME/easyclone/sasync; bash sasync set.move)
     ;;
   3)
     cecho b "Sync option has been selected"
