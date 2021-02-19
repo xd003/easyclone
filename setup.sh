@@ -116,36 +116,6 @@ else
     cecho b "Service accounts were added Successfully"
 fi
 
-# Adding Client_id & secret to rc.conf
-echo
-erc="$(sed -n '3p' $HOME/easyclone/rc.conf)"
-if [ "$erc" == "client_id =" ]; then
-  while true; do
-    read -e -p "Do you want to use your own client_id & client_secret [y/n] : " opt
-    case $opt in
-    [Yy]* )
-      read -e -p "Enter your client_id : " id
-      read -e -p "Enter your client_secret : " secret
-      sed -i "3s/$/ $id/" $conf
-      sed -i "4s/$/ $secret/" $conf
-      sed -i "10s/$/ $id/" $conf
-      sed -i "11s/$/ $secret/" $conf
-      cecho b "Successfully added client_id & secret to the config file";
-      break
-      ;;
-    [Nn]* )
-      echo "skipping client_id and client_secret input";
-      break
-      ;;
-    * )
-      cecho r "Invalid Input Entered , try again"
-      ;;
-    esac
-  done
-else
-  cecho b "Client_id & Secret already present in config // Skipping"
-fi
-
 # Adjusting sasync Config 
 jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
 sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
