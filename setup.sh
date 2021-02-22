@@ -118,7 +118,7 @@ fi
 # Adjusting sasync Config 
 jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
 sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
-sed -i "s|$HOME|$ehome|g" $conf
+sed -i "s|HOME|$ehome|g" $conf
 echo 1 > $HOME/easyclone/sasync/json.count
 
 echo
