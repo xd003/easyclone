@@ -53,13 +53,13 @@ fdst() {
   dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
   case $dst in
   0*)
-    sed -i "10iteam_drive = $dst" $conf
+    sed -i "11iteam_drive = $dst" $conf
     ;;
   1*)
-    sed -i "10iroot_folder_id = $dst" $conf
+    sed -i "11iroot_folder_id = $dst" $conf
     ;;
   esac
-  sed -ri "11s/[[:digit:]]+.json/$rjc2.json/" $conf
+  sed -ri "12s/[[:digit:]]+.json/$rjc2.json/" $conf
 }
 
 while true; do
