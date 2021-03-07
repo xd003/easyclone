@@ -12,7 +12,7 @@ The script uses [sasync](https://github.com/88lex/sasync) to bypass the 750GB da
 # How to install / update
 * ```bash <(curl -L http://tiny.cc/easyclone)```
 
-Installation is as easy as just running the above command .It will setup everything from scratch .Accordingly run it at a later stage to update script and binaries as and when needed.
+Installation is as easy as just running the above command . It will setup everything from scratch . Accordingly run it at a later stage to update script and binaries as and when needed.
 Proceeding installation, just enter ```clone``` whenever you need to execute the script henceforth 
 
 # Pre Requisites
