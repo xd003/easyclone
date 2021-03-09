@@ -7,7 +7,6 @@ The script uses [sasync](https://github.com/88lex/sasync) to bypass the 750GB da
 * Linux along with termux supported
 * Dynamic generation of rclone config before each operation so no need to create any config manually
 * Easy one word execution to invoke script
-* Uses stable & latest rclone to rotate service accounts so no need to use outdated or unstable mods
 
 # How to install / update
 * ```bash <(curl -L http://tiny.cc/easyclone)```
