@@ -126,7 +126,7 @@ case $ehome in
   ;;
 esac
 
-mkdir -p $HOME/easyclone
+
 
 # Moving config files & sasync to easyclone folder
 rm -rf $HOME/easyclone/sasync
