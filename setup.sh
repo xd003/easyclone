@@ -69,6 +69,7 @@ if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
 else
     sudo rm -rf $(which clone)
 fi
+rm -rf $HOME/tmp
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
@@ -89,12 +90,15 @@ case $ehome in
   ;;
 esac
 
+mkdir -p $HOME/easyclone
+
 # Moving config files & sasync to easyclone folder
 rm -rf $HOME/easyclone/sasync
-rm -rf $HOME/easyclone/rc.conf
-mkdir -p $HOME/easyclone
-mv $HOME/tmp/rc.conf $HOME/easyclone
 mv $HOME/tmp/sasync $HOME/easyclone
+
+# Moving rclone Config file to easyclone folder
+rm -rf $HOME/easyclone/rc.conf
+mv $HOME/tmp/rc.conf $HOME/easyclone
 
 rm -rf $HOME/tmp
 
