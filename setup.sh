@@ -127,6 +127,17 @@ case $opt in
   echo 1 > $HOME/easyclone/sasync/json.count
   jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
   sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
+  if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+    sed -i '29d' $(which clone)
+    sed -i '116d' $(which clone)
+    sed -i '123d' $(which clone)
+    sed -i '130d' $(which clone)
+  else
+    sudo sed -i '29d' $(which clone)
+    sudo sed -i '116d' $(which clone)
+    sudo sed -i '123d' $(which clone)
+    sudo sed -i '130d' $(which clone)
+  fi
   ;;
 2)
   # Detecting the linux kernel architecture
@@ -160,7 +171,17 @@ case $opt in
   else
     cecho b "lclone binary already exists in path // Skipping"
   fi
-
+  if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+    sed -i '115d' $(which clone)
+    sed -i '122d' $(which clone)
+    sed -i '129d' $(which clone)
+    sed -i "s|rclone|lclone|g" $conf
+  else
+    sudo sed -i '115d' $(which clone)
+    sudo sed -i '122d' $(which clone)
+    sudo sed -i '129d' $(which clone)
+    sudo sed -i "s|rclone|lclone|g" $conf
+  fi
   ;;
 esac
 
