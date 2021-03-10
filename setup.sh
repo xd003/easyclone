@@ -110,8 +110,10 @@ fi
 ####################################################################
 echo
 center "1. Sasync + Rclone"
+echo
 center "2. Lclone"
-read -e -p "What would you like to use : " opt
+echo
+read -e -p "What would you like to use [1/2] : " opt
 case $opt in
 1)
   # Downloading rclone 
