@@ -113,21 +113,18 @@ EOF
     fsrc 
     fdst
     (cd $HOME/easyclone/sasync; bash sasync set.copy)
-    lclone copy src: dst: $uflags --ignore-existing
     ;;
   2)
     cecho b "Move option has been selected"
     fsrc
     fdst
     (cd $HOME/easyclone/sasync; bash sasync set.move)
-    lclone move src: dst: $uflags --delete-empty-src-dirs --ignore-existing
     ;;
   3)
     cecho b "Sync option has been selected"
     fsrc
     fdst
     (cd $HOME/easyclone/sasync; bash sasync set.sync)
-    lclone sync src: dst: $uflags --ignore-existing
     ;;
   4)
     cecho b "Dedupe option has been selected"
