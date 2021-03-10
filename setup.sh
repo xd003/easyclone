@@ -141,6 +141,23 @@ case $opt in
     exit
   fi
 
+  # Downloading and adding lclone to path
+  if [ ! -f $spath/lclone ]; then
+    URL=http://easyclone.xd003.workers.dev/0:/lclone/crop-$crop_version-linux-$arch.zip
+    wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip
+    unzip -q $HOME/tmp/lclone.zip -d $HOME/tmp
+    if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+        mv $HOME/tmp/lclone $spath
+        chmod u+x $spath/lclone
+    else     
+        sudo mv $HOME/tmp/lclone $spath
+        sudo chmod u+x $spath/lclone
+    fi
+  cecho b "lclone successfully installed / updated"
+  else
+    cecho b "lclone binary already exists in path // Skipping"
+  fi
+
   ;;
 esac
 
