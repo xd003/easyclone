@@ -181,6 +181,7 @@ if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
   sed -i "s|--config=$HOME/easyclone/rc.conf|--config=$conf|g" $(which clone)
 else
   sudo sed -i "s|--config=$HOME/easyclone/rc.conf|--config=$conf|g" $(which clone)
+fi
 rm -rf $HOME/tmp
 echo
 cecho g "Entering clone will always start the script henceforth"
