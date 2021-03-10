@@ -132,14 +132,14 @@ case $opt in
   sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     sed -i '29d' $(which clone)
-    sed -i '116d' $(which clone)
-    sed -i '123d' $(which clone)
-    sed -i '130d' $(which clone)
+    sed -i '115d' $(which clone)
+    sed -i '121d' $(which clone)
+    sed -i '127d' $(which clone)
   else
     sudo sed -i '29d' $(which clone)
-    sudo sed -i '116d' $(which clone)
-    sudo sed -i '123d' $(which clone)
-    sudo sed -i '130d' $(which clone)
+    sudo sed -i '115d' $(which clone)
+    sudo sed -i '121d' $(which clone)
+    sudo sed -i '127d' $(which clone)
   fi
   ;;
 2)
