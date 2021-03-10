@@ -25,7 +25,6 @@ cecho() {
 }
 
 #Variables 
-crop_version=v0.6.0
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
 epac="$(which pacman)"
@@ -130,6 +129,17 @@ case $opt in
   sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
   ;;
 2)
+  # Detecting the linux kernel architecture
+  echo
+  cecho r "Detecting the kernel architecture"
+  if [ "$arch" == "arm64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
+    arch=arm64
+  elif [ "$arch" == "x86_64" ] ; then
+    arch=amd64
+  elif [ "$arch" == "*" ] ; then
+    cecho r "Unsupported Kernel architecture" && \
+    exit
+  fi
 
   ;;
 esac
