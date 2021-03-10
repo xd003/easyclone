@@ -80,6 +80,21 @@ else
     sudo chmod u+x $spath/clone
 fi
 
+#################
+cat << EOF
+1. Sasync + Rclone
+2. Lclone
+EOF
+read -e -p "What would you like to use : " opt
+case $opt in
+1)
+
+;;
+2)
+
+;;
+esac
+
 # Downloading rclone 
 case $ehome in
 /data/data/com.termux/files/home)
