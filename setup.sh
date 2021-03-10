@@ -80,6 +80,27 @@ else
     sudo chmod u+x $spath/clone
 fi
 
+# Moving rclone Config file to easyclone folder
+rm -rf $HOME/easyclone/rc.conf
+mv $HOME/tmp/rc.conf $HOME/easyclone
+
+# Pulling the accounts folder containing service accounts from github 
+echo
+if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
+    cecho b "Accounts folder containing service accounts already exists // Skipping"
+else
+    mkdir -p $HOME/easyclone/accounts
+    cecho r "Downloading the service accounts from your private repo"
+    read -e -p "Input your github username : " username
+    read -e -p "Input your github password : " password
+    while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do
+      cecho r 'Invalid username or password, please retry' >&2;
+      read -e -p "Input your github username : " username
+      read -e -p "Input your github password : " password
+    done
+    cecho b "Service accounts were added Successfully"
+fi
+
 #################
 cat << EOF
 1. Sasync + Rclone
@@ -111,28 +132,7 @@ mkdir -p $HOME/easyclone
 rm -rf $HOME/easyclone/sasync
 mv $HOME/tmp/sasync $HOME/easyclone
 
-# Moving rclone Config file to easyclone folder
-rm -rf $HOME/easyclone/rc.conf
-mv $HOME/tmp/rc.conf $HOME/easyclone
 
-rm -rf $HOME/tmp
-
-# Pulling the accounts folder containing service accounts from github 
-echo
-if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
-    cecho b "Accounts folder containing service accounts already exists // Skipping"
-else
-    mkdir -p $HOME/easyclone/accounts
-    cecho r "Downloading the service accounts from your private repo"
-    read -e -p "Input your github username : " username
-    read -e -p "Input your github password : " password
-    while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do
-      cecho r 'Invalid username or password, please retry' >&2;
-      read -e -p "Input your github username : " username
-      read -e -p "Input your github password : " password
-    done
-    cecho b "Service accounts were added Successfully"
-fi
 
 # Adjusting sasync Config 
 jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
@@ -140,5 +140,6 @@ sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
 sed -i "s|HOME|$ehome|g" $conf
 echo 1 > $HOME/easyclone/sasync/json.count
 
+rm -rf $HOME/tmp
 echo
 cecho g "Entering clone will always start the script henceforth"
