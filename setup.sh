@@ -145,7 +145,8 @@ case $opt in
   elclone="$(lclone version)"
   check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
   if [ -z "${check}" ] ; then
-    URL=http://easyclone.xd003.workers.dev/0:/lclone/crop-$crop_version-linux-$arch.zip
+    lclone_version="1.55.0-DEV"
+    URL=http://easyclone.xd003.workers.dev/0:/lclone/lclone-$lclone_version-linux-$arch.zip
     wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip
     unzip -q $HOME/tmp/lclone.zip -d $HOME/tmp
     if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
