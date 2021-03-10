@@ -83,6 +83,7 @@ fi
 # Moving rclone Config file to easyclone folder
 rm -rf $HOME/easyclone/rc.conf
 mv $HOME/tmp/rc.conf $HOME/easyclone
+sed -i "s|HOME|$ehome|g" $conf
 
 # Pulling the accounts folder containing service accounts from github 
 echo
@@ -100,6 +101,8 @@ else
     done
     cecho b "Service accounts were added Successfully"
 fi
+
+
 
 #################
 cat << EOF
@@ -126,19 +129,12 @@ case $ehome in
   ;;
 esac
 
-
-
-# Moving config files & sasync to easyclone folder
+# Moving sasync files to easyclone folder & adjusting sasync config
 rm -rf $HOME/easyclone/sasync
 mv $HOME/tmp/sasync $HOME/easyclone
-
-
-
-# Adjusting sasync Config 
+echo 1 > $HOME/easyclone/sasync/json.count
 jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
 sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
-sed -i "s|HOME|$ehome|g" $conf
-echo 1 > $HOME/easyclone/sasync/json.count
 
 rm -rf $HOME/tmp
 echo
