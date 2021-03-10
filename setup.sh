@@ -134,23 +134,6 @@ case $opt in
   ;;
 esac
 
-# Downloading rclone 
-case $ehome in
-/data/data/com.termux/files/home)
-  pkg install rclone
-  ;;
-*)
-  curl https://rclone.org/install.sh | sudo bash
-  ;;
-esac
-
-# Moving sasync files to easyclone folder & adjusting sasync config
-rm -rf $HOME/easyclone/sasync
-mv $HOME/tmp/sasync $HOME/easyclone
-echo 1 > $HOME/easyclone/sasync/json.count
-jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
-sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
-
 rm -rf $HOME/tmp
 echo
 cecho g "Entering clone will always start the script henceforth"
