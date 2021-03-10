@@ -1,6 +1,6 @@
 # easyclone
 This is just a bash script which aims to ease the process of cloning , moving and syncing and other rclone operations.
-The script uses [sasync](https://github.com/88lex/sasync) to bypass the 750GB daily limit by google present in rclone by rotating the service accounts
+The script uses sasync + rclone / lclone to bypass the 750GB daily limit by google present in rclone by rotating the service accounts
 
 # Features
 * Easy one command installation from scratch does everything
@@ -20,4 +20,5 @@ Proceeding installation, just enter ```clone``` whenever you need to execute the
 
 # Credits
 * [rclone](https://github.com/rclone/rclone)
-* [88lex](https://github.com/88lex/sasync)    
+* [88lex](https://github.com/88lex/sasync)
+* [l3uddz](https://github.com/l3uddz/rclone)    

@@ -25,7 +25,6 @@ cecho() {
 }
 
 #Variables 
-crop_version=v0.6.0
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
 epac="$(which pacman)"
@@ -69,6 +68,7 @@ if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
 else
     sudo rm -rf $(which clone)
 fi
+rm -rf $HOME/tmp
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
@@ -79,24 +79,10 @@ else
     sudo chmod u+x $spath/clone
 fi
 
-# Downloading rclone 
-case $ehome in
-/data/data/com.termux/files/home)
-  pkg install rclone
-  ;;
-*)
-  curl https://rclone.org/install.sh | sudo bash
-  ;;
-esac
-
-# Moving config files & sasync to easyclone folder
-rm -rf $HOME/easyclone/sasync
+# Moving rclone Config file to easyclone folder
 rm -rf $HOME/easyclone/rc.conf
-mkdir -p $HOME/easyclone
 mv $HOME/tmp/rc.conf $HOME/easyclone
-mv $HOME/tmp/sasync $HOME/easyclone
-
-rm -rf $HOME/tmp
+sed -i "s|HOME|$ehome|g" $conf
 
 # Pulling the accounts folder containing service accounts from github 
 echo
@@ -115,11 +101,82 @@ else
     cecho b "Service accounts were added Successfully"
 fi
 
-# Adjusting sasync Config 
-jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
-sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
-sed -i "s|HOME|$ehome|g" $conf
-echo 1 > $HOME/easyclone/sasync/json.count
+####################################################################
+echo
+cat << EOF 
+┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋1) Sasync + Rclone
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋2) Lclone
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+EOF
+echo
+read -e -p "What would you like to use [1/2] : " opt
+case $opt in
+1)
+  # Downloading rclone 
+  case $ehome in
+  /data/data/com.termux/files/home)
+    pkg install rclone
+    ;;
+  *)
+    curl https://rclone.org/install.sh | sudo bash
+    ;;
+  esac
 
+  # Moving sasync files to easyclone folder & adjusting sasync config
+  rm -rf $HOME/easyclone/sasync
+  mv $HOME/tmp/sasync $HOME/easyclone
+  echo 1 > $HOME/easyclone/sasync/json.count
+  jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
+  sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
+  ;;
+2)
+  # Detecting the linux kernel architecture
+  echo
+  cecho r "Detecting the kernel architecture"
+  if [ "$arch" == "arm64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
+    arch=arm64
+  elif [ "$arch" == "x86_64" ] ; then
+    arch=amd64
+  elif [ "$arch" == "*" ] ; then
+    cecho r "Unsupported Kernel architecture" && \
+    exit
+  fi
+
+  # Downloading and adding lclone to path
+  elclone="$(lclone version)"
+  check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
+  if [ -z "${check}" ] ; then
+    lclone_version="v1.55.0-DEV"
+    URL=http://easyclone.xd003.workers.dev/0:/lclone/lclone-$lclone_version-linux-$arch.zip
+    wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip
+    unzip -q $HOME/tmp/lclone.zip -d $HOME/tmp
+    if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+        mv $HOME/tmp/lclone $spath
+        chmod u+x $spath/lclone
+    else     
+        sudo mv $HOME/tmp/lclone $spath
+        sudo chmod u+x $spath/lclone
+    fi
+  cecho b "lclone successfully installed / updated"
+  else
+    cecho b "lclone binary already exists in path // Skipping"
+  fi
+  if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+    sed -i '115s|(cd $HOME/easyclone/sasync; bash sasync set.copy)|lclone --config=$conf copy src: dst: $uflags --ignore-existing|' $(which clone)
+    sed -i '121s|(cd $HOME/easyclone/sasync; bash sasync set.move)|lclone --config=$conf move src: dst: $uflags --delete-empty-src-dirs --ignore-existing|' $(which clone)
+    sed -i '127s|(cd $HOME/easyclone/sasync; bash sasync set.sync)|lclone --config=$conf sync src: dst: $uflags --ignore-existing|' $(which clone)
+    sed -i "s|rclone|lclone|g" $(which clone)
+  else
+    sudo sed -i '115s|(cd $HOME/easyclone/sasync; bash sasync set.copy)|lclone --config=$conf copy src: dst: $uflags --ignore-existing|' $(which clone)
+    sudo sed -i '121s|(cd $HOME/easyclone/sasync; bash sasync set.move)|lclone --config=$conf move src: dst: $uflags --delete-empty-src-dirs --ignore-existing|' $(which clone)
+    sudo sed -i '127s|(cd $HOME/easyclone/sasync; bash sasync set.sync)|lclone --config=$conf sync src: dst: $uflags --ignore-existing|' $(which clone)
+    sudo sed -i "s|rclone|lclone|g" $(which clone)
+  fi
+  ;;
+esac
+
+rm -rf $HOME/tmp
 echo
 cecho g "Entering clone will always start the script henceforth"
