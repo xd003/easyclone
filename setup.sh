@@ -180,12 +180,12 @@ case $opt in
     sed -i '115d' $(which clone)
     sed -i '122d' $(which clone)
     sed -i '129d' $(which clone)
-    sed -i "s|rclone|lclone|g" $conf
+    sed -i "s|rclone|lclone|g" $(which clone)
   else
     sudo sed -i '115d' $(which clone)
     sudo sed -i '122d' $(which clone)
     sudo sed -i '129d' $(which clone)
-    sudo sed -i "s|rclone|lclone|g" $conf
+    sudo sed -i "s|rclone|lclone|g" $(which clone)
   fi
   ;;
 esac
