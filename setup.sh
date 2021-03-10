@@ -101,9 +101,8 @@ else
     cecho b "Service accounts were added Successfully"
 fi
 
+####################################################################
 
-
-#################
 cat << EOF
 1. Sasync + Rclone
 2. Lclone
