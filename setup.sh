@@ -24,6 +24,12 @@ cecho() {
         echo -e "$text"
 }
 
+center() {
+  termwidth="$(tput cols)"
+  padding="$(printf '%0.1s'  ={1..500})"
+  printf '%*.*s %s %*.*s\n' 0 "$(((termwidth-2-${#1})/2))" "$padding" "$1" 0 "$(((termwidth-1-${#1})/2))" "$padding"
+}
+
 #Variables 
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
@@ -103,10 +109,8 @@ fi
 
 ####################################################################
 echo
-cat << EOF
-1. Sasync + Rclone
-2. Lclone
-EOF
+center "1. Sasync + Rclone"
+center "2. Lclone"
 read -e -p "What would you like to use : " opt
 case $opt in
 1)
