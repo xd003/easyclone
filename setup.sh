@@ -142,7 +142,9 @@ case $opt in
   fi
 
   # Downloading and adding lclone to path
-  if [ ! -f $spath/lclone ]; then
+  elclone="$(lclone version)"
+  check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
+  if [ -z "${check}" ] ; then
     URL=http://easyclone.xd003.workers.dev/0:/lclone/crop-$crop_version-linux-$arch.zip
     wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip
     unzip -q $HOME/tmp/lclone.zip -d $HOME/tmp
