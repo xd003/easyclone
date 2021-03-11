@@ -98,23 +98,26 @@ else
       read -e -p "Input your github username : " username
       read -e -p "Input your github password : " password
     done
+    cecho b "Service accounts were added Successfully"
 fi
 
 # Renaming the json files in numerical order if not already done by user
-if [ ! -f "$HOME/easyclone/accounts/1.json" ] && [ ! -f "$HOME/easyclone/accounts/2.json" ] && [ ! -f "$HOME/easyclone/accounts/3.json" ] ; then
+if [ -f "$HOME/easyclone/accounts/1.json" ] && [ -f "$HOME/easyclone/accounts/2.json" ] && [ -f "$HOME/easyclone/accounts/3.json" ] ; then
+  cecho b "Service account json files were renamed Successfully"
+else
   cat > $HOME/easyclone/rename.py <<'endmsg'
 import os
 base = "accounts"
-count = 0
+count = 1
 for file in os.listdir(base):
     abspath = os.path.join(base,file)
     destpath = os.path.join(base,f"{count}.json")
     os.rename(abspath,destpath)
     count += 1
 endmsg
-  python3 $HOME/easyclone/rename.py && \
+  (cd $HOME/easyclone; python3 rename.py) && \
   rm -rf $HOME/easyclone/rename.py
-  cecho b "Service accounts were added Successfully"
+  cecho b "Service account json files were renamed Successfully"
 fi
 
 ####################################################################
