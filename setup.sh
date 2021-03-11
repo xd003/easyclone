@@ -79,11 +79,6 @@ else
     sudo chmod u+x $spath/clone
 fi
 
-# Moving rclone Config file to easyclone folder
-rm -rf $HOME/easyclone/rc.conf
-mv $HOME/tmp/rc.conf $HOME/easyclone
-sed -i "s|HOME|$ehome|g" $conf
-
 # Pulling the accounts folder containing service accounts from github 
 echo
 if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
@@ -120,6 +115,11 @@ endmsg
   rm -rf $HOME/easyclone/rename.py
   cecho b "Service account json files were renamed Successfully"
 fi
+
+# Moving rclone Config file to easyclone folder
+rm -rf $HOME/easyclone/rc.conf
+mv $HOME/tmp/rc.conf $HOME/easyclone
+sed -i "s|HOME|$ehome|g" $conf
 
 ####################################################################
 echo
