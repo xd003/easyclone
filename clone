@@ -87,19 +87,22 @@ while true; do
 ┋7) NCDU
 ┋    (Explore directory with text based UI)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
-┋8) Empty Trash
+┋8) Upload
+┋    (Move , Copy or Sync Local File to Drive)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋9) Empty Trash
 ┋    (You need to have Manager Permission in TD)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
-┋9) Delete Empty Folders
+┋10) Delete Empty Folders
 ┋    (Delete all Empty Folders recursively)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
-┋10) Check
+┋11) Check
 ┋    (Check if the files in the source and destination match)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
-┋11) Delete
+┋12) Delete
 ┋    (Delete a file or a folder along with its content)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
-┋12) Quit
+┋13) Quit
 ┋    (Exit the Script)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 EOF
@@ -274,16 +277,54 @@ EOF
     rclone --config=$conf ncdu src: --fast-list
     ;;
   8)
+    cecho b "Upload option has been selected"
+    cat << EOF
+┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋1) Copy
+┋    (Copy files from source to dest, skipping already copied)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋2) Move
+┋    (Move files from source to dest, skipping already moved)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋3) Sync
+┋    (Make source and dest identical, modifying destination only)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋4) Return to Main Menu
+┋    (Restart the script from Main Menu)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+EOF
+    echo
+    read -e -p "Choose the upload option : " upl
+    if [[ $upl -ne 4 ]]; then
+    read -e -p "Enter the path of the file/folder which you want to upload : " src
+    fdst
+    fi
+    case $up in
+    1)
+      rclone --config=$conf copy src: dst: $uflags --ignore-existing
+    ;;
+    2)
+      rclone --config=$conf move src: dst: $uflags --delete-empty-src-dirs --ignore-existing
+    ;;
+    3)
+      rclone --config=$conf sync src: dst: $uflags --ignore-existing
+    ;;
+    4)
+      continue
+    ;;
+    esac
+  ;;
+  9)
     cecho b "Empty Trash option has been selected"
     fsrc
     rclone --config=$conf delete src: --drive-trashed-only=true --drive-use-trash=false --fast-list --verbose=2 --log-file $HOME/easyclone/log.txt
     ;;
-  9)
+  10)
     cecho b "Delete Empty folders option has been selected"
     fsrc
     rclone --config=$conf rmdirs src: --leave-root --fast-list --log-file $HOME/easyclone/log.txt
     ;;
-  10)
+  11)
     cecho b "Check option has been selected"
     cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
@@ -324,7 +365,7 @@ EOF
       ;;
     esac
     ;;
-  11)
+  12)
     cecho b "Delete option has been selected"
     cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
@@ -364,7 +405,7 @@ EOF
       ;;
     esac
     ;;
-  12)
+  13)
     exit
     ;;
   esac
