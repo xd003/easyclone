@@ -102,7 +102,7 @@ fi
 
 # Renaming the json files in numerical order if not already done by user
 if [ ! -f "$HOME/easyclone/accounts/1.json" ] && [ ! -f "$HOME/easyclone/accounts/2.json" ] && [ ! -f "$HOME/easyclone/accounts/3.json" ] ; then
-  cat > $HOME/easyclone/accounts/rename.py <<'endmsg' && \
+  cat > $HOME/easyclone/rename.py <<'endmsg'
 import os
 base = "accounts"
 count = 0
@@ -112,8 +112,8 @@ for file in os.listdir(base):
     os.rename(abspath,destpath)
     count += 1
 endmsg
-  python3 $HOME/easyclone/accounts/rename.py && \
-  rm -rf $HOME/easyclone/accounts/rename.py
+  python3 $HOME/easyclone/rename.py && \
+  rm -rf $HOME/easyclone/rename.py
   cecho b "Service accounts were added Successfully"
 fi
 
