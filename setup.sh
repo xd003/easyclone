@@ -38,7 +38,7 @@ echo
 cecho r "Detecting the OS and installing required dependencies"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     cecho g "Termux detected" && \
-    pkg install -y unzip git wget tsu tmux
+    pkg install -y unzip git wget tsu python tmux
     if [ ! -d ~/storage ]; then
         cecho r "Setting up storage access for Termux"
         termux-setup-storage
@@ -46,13 +46,13 @@ if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     fi
 elif [ "$epac" == "/usr/bin/pacman" ]; then
     cecho g "Arch based OS detected" && \
-    sudo pacman --noconfirm -S unzip git wget tmux
+    sudo pacman --noconfirm -S unzip git wget python tmux
 elif [ "$eapt" == "/usr/bin/apt" ]; then 
     cecho g "Ubuntu based OS detected" && \
-    sudo apt install -y unzip git wget tmux
+    sudo apt install -y unzip git wget python3 tmux
 elif [ "$ednf" == "/usr/bin/dnf" ]; then
     cecho g "Fedora based OS detected"
-    sudo dnf install -y unzip git wget tmux
+    sudo dnf install -y unzip git wget python3 tmux
 fi
 cecho b "All dependencies were installed successfully"
 
