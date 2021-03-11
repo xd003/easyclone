@@ -16,7 +16,7 @@ Proceeding installation, just enter ```clone``` whenever you need to execute the
 
 # Pre Requisites
 * Generate the service accounts and have them downloaded in a folder named accounts. Follow steps from [here](https://github.com/smartass08/Service-Accounts-to-Google-groups/blob/master/README.md) if you don't have service accounts yet.
-* Rename all those json files in numerical order using this [python script](https://del.dog/raw/saRename) & Create a new repository named accounts in your github account and upload all the service accounts json files directly in that repo 
+* Create a new repository named accounts in your github account and upload all the service accounts json files directly in that repo 
 
 # Credits
 * [rclone](https://github.com/rclone/rclone)
