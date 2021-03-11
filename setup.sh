@@ -101,18 +101,7 @@ rm -rf $HOME/easyclone/accounts/.git
 if [ -f "$HOME/easyclone/accounts/1.json" ] && [ -f "$HOME/easyclone/accounts/2.json" ] && [ -f "$HOME/easyclone/accounts/3.json" ] ; then
   cecho b "Service account json files were renamed Successfully"
 else
-  cat > $HOME/easyclone/rename.py <<'endmsg'
-import os
-base = "accounts"
-count = 1
-for file in os.listdir(base):
-    abspath = os.path.join(base,file)
-    destpath = os.path.join(base,f"{count}.json")
-    os.rename(abspath,destpath)
-    count += 1
-endmsg
-  (cd $HOME/easyclone; python3 rename.py) && \
-  rm -rf $HOME/easyclone/rename.py
+  (cd $HOME/easyclone/accounts; ls -v | cat -n | while read n f; do mv -n "$f" "$n.json"; done) && \
   cecho b "Service account json files were renamed Successfully"
 fi
 
