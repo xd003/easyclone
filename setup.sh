@@ -102,6 +102,7 @@ else
 fi
 
 # Renaming the json files in numerical order if not already done by user
+rm -rf $HOME/easyclone/accounts/.git
 if [ -f "$HOME/easyclone/accounts/1.json" ] && [ -f "$HOME/easyclone/accounts/2.json" ] && [ -f "$HOME/easyclone/accounts/3.json" ] ; then
   cecho b "Service account json files were renamed Successfully"
 else
