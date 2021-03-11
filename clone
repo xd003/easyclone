@@ -281,13 +281,13 @@ EOF
     cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋1) Copy
-┋    (Copy files from source to dest, skipping already copied)
+┋    (Copy files locally to drive, skipping already copied)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋2) Move
-┋    (Move files from source to dest, skipping already moved)
+┋    (Move files locally to drive, skipping already moved)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋3) Sync
-┋    (Make source and dest identical, modifying destination only)
+┋    (Make local and drive file/folder identical, modifying drive only)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋4) Return to Main Menu
 ┋    (Restart the script from Main Menu)
@@ -299,7 +299,7 @@ EOF
     read -e -p "Enter the path of the file/folder which you want to upload : " src
     fdst
     fi
-    case $up in
+    case $upl in
     1)
       rclone --config=$conf copy src: dst: $uflags --ignore-existing
     ;;
