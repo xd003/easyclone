@@ -88,7 +88,7 @@ while true; do
 ┋    (Explore directory with text based UI)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋8) Upload
-┋    (Move , Copy or Sync Local File to Drive)
+┋    (Move , Copy or Sync Local File/Folder to Drive)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋9) Empty Trash
 ┋    (You need to have Manager Permission in TD)
@@ -281,10 +281,10 @@ EOF
     cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋1) Copy
-┋    (Copy files locally to drive, skipping already copied)
+┋    (Copy file/folder locally to drive, skipping already copied)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋2) Move
-┋    (Move files locally to drive, skipping already moved)
+┋    (Move file/folder locally to drive, skipping already moved)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋3) Sync
 ┋    (Make local and drive file/folder identical, modifying drive only)
