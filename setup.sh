@@ -98,6 +98,20 @@ else
       read -e -p "Input your github username : " username
       read -e -p "Input your github password : " password
     done
+    
+    if [ ! -f "$HOME/easyclone/accounts/1.json" ] && [ ! -f "$HOME/easyclone/accounts/2.json" ] && [ ! -f "$HOME/easyclone/accounts/3.json" ] ; then
+    cat > $HOME/easyclone/accounts/rename.py <<'endmsg' && \
+import os
+base = "accounts"
+count = 0
+for file in os.listdir(base):
+    abspath = os.path.join(base,file)
+    destpath = os.path.join(base,f"{count}.json")
+    os.rename(abspath,destpath)
+    count += 1
+endmsg
+    python3 $HOME/easyclone/accounts/rename.py && \
+    rm -rf $HOME/easyclone/accounts/rename.py
     cecho b "Service accounts were added Successfully"
 fi
 
