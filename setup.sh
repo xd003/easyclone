@@ -38,7 +38,7 @@ echo
 cecho r "Detecting the OS and installing required dependencies"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     cecho g "Termux detected" && \
-    pkg install -y unzip git wget tsu python tmux
+    pkg install -y unzip git wget tsu python tmux > /dev/null
     if [ ! -d ~/storage ]; then
         cecho r "Setting up storage access for Termux"
         termux-setup-storage
@@ -46,13 +46,13 @@ if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     fi
 elif [ "$epac" == "/usr/bin/pacman" ]; then
     cecho g "Arch based OS detected" && \
-    sudo pacman --noconfirm -S unzip git wget python tmux
+    sudo pacman --noconfirm -S unzip git wget python tmux > /dev/null
 elif [ "$eapt" == "/usr/bin/apt" ]; then 
     cecho g "Ubuntu based OS detected" && \
-    sudo apt install -y unzip git wget python3 tmux
+    sudo apt install -y unzip git wget python3 tmux > /dev/null
 elif [ "$ednf" == "/usr/bin/dnf" ]; then
     cecho g "Fedora based OS detected"
-    sudo dnf install -y unzip git wget python3 tmux
+    sudo dnf install -y unzip git wget python3 tmux > /dev/null
 fi
 cecho b "All dependencies were installed successfully"
 
@@ -70,7 +70,7 @@ else
 fi
 rm -rf $HOME/tmp
 mkdir $HOME/tmp
-git clone https://github.com/xd003/easyclone $HOME/tmp
+git clone https://github.com/xd003/easyclone $HOME/tmp > /dev/null
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     mv $HOME/tmp/clone $spath
     chmod u+x $spath/clone
@@ -88,7 +88,7 @@ else
     cecho r "Downloading the service accounts from your private repo"
     read -e -p "Input your github username : " username
     read -e -p "Input your github password : " password
-    while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do
+    while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do > /dev/null
       cecho r 'Invalid username or password, please retry' >&2;
       read -e -p "Input your github username : " username
       read -e -p "Input your github password : " password
@@ -128,10 +128,10 @@ case $opt in
   # Downloading rclone 
   case $ehome in
   /data/data/com.termux/files/home)
-    pkg install rclone
+    pkg install rclone > /dev/null
     ;;
   *)
-    curl https://rclone.org/install.sh | sudo bash
+    curl https://rclone.org/install.sh | sudo bash > /dev/null
     ;;
   esac
 
@@ -161,7 +161,7 @@ case $opt in
   if [ -z "${check}" ] ; then
     lclone_version="v1.55.0-DEV"
     URL=http://easyclone.xd003.workers.dev/0:/lclone/lclone-$lclone_version-linux-$arch.zip
-    wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip
+    wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip > /dev/null
     unzip -q $HOME/tmp/lclone.zip -d $HOME/tmp
     if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
         mv $HOME/tmp/lclone $spath
