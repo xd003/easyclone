@@ -301,13 +301,13 @@ EOF
     fi
     case $upl in
     1)
-      rclone --config=$conf copy "$src:" dst: $uflags --ignore-existing
+      rclone --config=$conf copy "$src" dst: $uflags --ignore-existing
     ;;
     2)
-      rclone --config=$conf move "$src:" dst: $uflags --delete-empty-src-dirs --ignore-existing
+      rclone --config=$conf move "$src" dst: $uflags --delete-empty-src-dirs --ignore-existing
     ;;
     3)
-      rclone --config=$conf sync "$src:" dst: $uflags --ignore-existing
+      rclone --config=$conf sync "$src" dst: $uflags --ignore-existing
     ;;
     4)
       continue
