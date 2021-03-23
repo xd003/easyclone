@@ -297,6 +297,7 @@ EOF
     read -e -p "Choose the upload option : " upl
     if [[ $upl -ne 4 ]]; then
     read -e -p "Enter the path of the file/folder which you want to upload : " src
+    src="$(eval echo "$src")"
     fdst
     fi
     case $upl in
