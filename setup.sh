@@ -31,7 +31,7 @@ epac="$(which pacman)"
 eapt="$(which apt)"
 ednf="$(which dnf)"
 conf="$HOME/easyclone/rc.conf"
-eclone="$(which rclone)"
+sclone="$(which clone)"
 
 # Detecting the OS and installing required dependencies
 echo
