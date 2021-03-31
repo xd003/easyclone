@@ -431,12 +431,33 @@ EOF
 EOF
     echo
     read -e -p "Enter your input : " opt
+    if [[ $opt -ne 3 ]]; then
+      if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+        rm -rf $(which clone)
+      else
+        sudo rm -rf $(which clone)
+      fi
+      spath="$(which git)"
+      spath=$(echo $spath | sed 's/\/git$//')
+    fi
     case $opt in
     1)
-      
+      if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+        ln -sf "$HOME/easyclone/rclone" "$spath/clone"
+        chmod u+x $spath/clone
+      else  
+        sudo ln -sf "$HOME/easyclone/rclone" "$spath/clone"
+        sudo chmod u+x $spath/clone
+      fi
       ;;
     2)
-      
+      if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+        ln -sf "$HOME/easyclone/lclone" "$spath/clone"
+        chmod u+x $spath/clone
+      else  
+        sudo ln -sf "$HOME/easyclone/lclone" "$spath/clone"
+        sudo chmod u+x $spath/clone
+      fi
       ;;
     3)
       continue
