@@ -107,6 +107,62 @@ rm -rf $HOME/easyclone/rc.conf
 mv $HOME/tmp/rc.conf $HOME/easyclone
 sed -i "s|HOME|$ehome|g" $conf
 
+sasyncinstall() {
+# Downloading rclone 
+case $ehome in
+/data/data/com.termux/files/home)
+  pkg install rclone > /dev/null
+  ;;
+*)
+  curl https://rclone.org/install.sh | sudo bash > /dev/null
+  ;;
+esac
+
+# Moving sasync files to easyclone folder & adjusting sasync config
+rm -rf $HOME/easyclone/sasync
+mv $HOME/tmp/sasync $HOME/easyclone
+echo 1 > $HOME/easyclone/sasync/json.count
+jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
+sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
+}
+
+lcloneinstall() {
+# Detecting the linux kernel architecture
+echo
+cecho r "Detecting the kernel architecture"
+if [ "$arch" == "arm64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
+  arch=arm64
+elif [ "$arch" == "x86_64" ] ; then
+  arch=amd64
+elif [ "$arch" == "*" ] ; then
+  cecho r "Unsupported Kernel architecture" && \
+  exit
+fi
+
+# Downloading and adding lclone to path
+elclone="$(lclone version)" > /dev/null
+check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
+if [ -z "${check}" ] ; then
+  lclone_version="v1.55.0-DEV"
+  URL=http://easyclone.xd003.workers.dev/0:/lclone/lclone-$lclone_version-linux-$arch.zip
+  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip > /dev/null
+  unzip -q $HOME/tmp/lclone.zip -d $HOME/tmp
+  if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+      mv $HOME/tmp/lclone $spath
+      chmod u+x $spath/lclone
+  else     
+      sudo mv $HOME/tmp/lclone $spath
+      sudo chmod u+x $spath/lclone
+  fi
+cecho b "lclone successfully installed / updated"
+else
+  cecho b "lclone binary already exists in path // Skipping"
+fi
+}
+
+sasyncinstall
+lcloneinstall
+
 ####################################################################
 echo
 cat << EOF 
@@ -120,23 +176,6 @@ echo
 read -e -p "What would you like to use by default [1/2] : " opt
 case $opt in
 1)
-  # Downloading rclone 
-  case $ehome in
-  /data/data/com.termux/files/home)
-    pkg install rclone > /dev/null
-    ;;
-  *)
-    curl https://rclone.org/install.sh | sudo bash > /dev/null
-    ;;
-  esac
-
-  # Moving sasync files to easyclone folder & adjusting sasync config
-  rm -rf $HOME/easyclone/sasync
-  mv $HOME/tmp/sasync $HOME/easyclone
-  echo 1 > $HOME/easyclone/sasync/json.count
-  jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
-  sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
-
   # Creating Symlink for clone script in path
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
       ln -sf "$HOME/easyclone/rclone" "$spath/clone"
@@ -147,38 +186,6 @@ case $opt in
   fi
   ;;
 2)
-  # Detecting the linux kernel architecture
-  echo
-  cecho r "Detecting the kernel architecture"
-  if [ "$arch" == "arm64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
-    arch=arm64
-  elif [ "$arch" == "x86_64" ] ; then
-    arch=amd64
-  elif [ "$arch" == "*" ] ; then
-    cecho r "Unsupported Kernel architecture" && \
-    exit
-  fi
-
-  # Downloading and adding lclone to path
-  elclone="$(lclone version)" > /dev/null
-  check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
-  if [ -z "${check}" ] ; then
-    lclone_version="v1.55.0-DEV"
-    URL=http://easyclone.xd003.workers.dev/0:/lclone/lclone-$lclone_version-linux-$arch.zip
-    wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip > /dev/null
-    unzip -q $HOME/tmp/lclone.zip -d $HOME/tmp
-    if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-        mv $HOME/tmp/lclone $spath
-        chmod u+x $spath/lclone
-    else     
-        sudo mv $HOME/tmp/lclone $spath
-        sudo chmod u+x $spath/lclone
-    fi
-  cecho b "lclone successfully installed / updated"
-  else
-    cecho b "lclone binary already exists in path // Skipping"
-  fi
-
   # Creating Symlink for clone script in path
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
       ln -sf "$HOME/easyclone/lclone" "$spath/clone"
