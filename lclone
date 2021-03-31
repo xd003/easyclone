@@ -65,7 +65,7 @@ fdst() {
 }
 
 sclone="$(which clone)"
-check="$(echo "$sclone" | grep 'rclone --config')"
+check="$(cat "$sclone" | grep 'rclone --config')"
 if [ -z "${check}" ] ; then
     cecho g "Cloning Tool : Lclone"
 else
@@ -450,6 +450,7 @@ EOF
         sudo ln -sf "$HOME/easyclone/rclone" "$spath/clone"
         sudo chmod u+x $spath/clone
       fi
+      cecho g "Cloning Tool switched to Sasync , Run clone again for change to take effect"
       ;;
     2)
       if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
@@ -459,6 +460,7 @@ EOF
         sudo ln -sf "$HOME/easyclone/lclone" "$spath/clone"
         sudo chmod u+x $spath/clone
       fi
+      cecho g "Cloning Tool switched to Lclone , Run clone again for change to take effect"
       ;;
     3)
       continue
