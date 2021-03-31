@@ -63,6 +63,16 @@ fdst() {
   sed -ri "12s/[[:digit:]]+.json/$rjc2.json/" $conf
 }
 
+sclone="$(which clone)"
+check="$(echo "$sclone" | grep 'rclone --config')"
+if [ -z "${check}" ] ; then
+    cecho g "Cloning Tool : Lclone"
+else
+    cecho g "Cloning Tool : Rclone + Sasync"
+fi
+sleep 1
+echo
+
 while true; do
   cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
