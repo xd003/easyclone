@@ -136,6 +136,8 @@ EOF
     cecho b "Move option has been selected"
     fsrc
     fdst
+    read -e p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files even with different sizes will be considered equal [y/n]: " ig
+    case $ig in
     lclone --config=$conf move src: dst: $uflags --delete-empty-src-dirs --ignore-existing
     ;;
   3)
