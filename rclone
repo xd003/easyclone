@@ -114,7 +114,10 @@ while true; do
 ┋12) Delete
 ┋    (Delete a file or a folder along with its content)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
-┋13) Quit
+┋13) Switch Cloning Tool
+┋    (Switch Between Sasync & Lclone on the go)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋14) Quit
 ┋    (Exit the Script)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 EOF
@@ -419,6 +422,53 @@ EOF
     esac
     ;;
   13)
+    cat << EOF
+┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋1) Sasync + Rclone
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋2) Lclone
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋3) Return to Main Menu
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+EOF
+    echo
+    read -e -p "Enter your input : " opt
+    if [[ $opt -ne 3 ]]; then
+      if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+        rm -rf $(which clone)
+      else
+        sudo rm -rf $(which clone)
+      fi
+      spath="$(which git)"
+      spath=$(echo $spath | sed 's/\/git$//')
+    fi
+    case $opt in
+    1)
+      if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+        ln -sf "$HOME/easyclone/rclone" "$spath/clone"
+        chmod u+x $spath/clone
+      else  
+        sudo ln -sf "$HOME/easyclone/rclone" "$spath/clone"
+        sudo chmod u+x $spath/clone
+      fi
+      cecho g "Cloning Tool switched to Sasync , Run clone again for change to take effect"
+      ;;
+    2)
+      if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+        ln -sf "$HOME/easyclone/lclone" "$spath/clone"
+        chmod u+x $spath/clone
+      else  
+        sudo ln -sf "$HOME/easyclone/lclone" "$spath/clone"
+        sudo chmod u+x $spath/clone
+      fi
+      cecho g "Cloning Tool switched to Lclone , Run clone again for change to take effect"
+      ;;
+    3)
+      continue
+      ;;
+    esac
+    ;;
+  14)
     exit
     ;;
   esac
