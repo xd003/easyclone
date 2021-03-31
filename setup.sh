@@ -71,13 +71,7 @@ fi
 rm -rf $HOME/tmp
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp > /dev/null
-if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    mv $HOME/tmp/clone $spath
-    chmod u+x $spath/clone
-else  
-    sudo mv $HOME/tmp/clone $spath
-    sudo chmod u+x $spath/clone
-fi
+
 
 # Pulling the accounts folder containing service accounts from github 
 echo
@@ -141,6 +135,15 @@ case $opt in
   echo 1 > $HOME/easyclone/sasync/json.count
   jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
   sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
+
+  # Creating Symlink for clone script in path
+  if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+      ln -sf "$HOME/easyclone/rclone" "$spath/clone"
+      chmod u+x $spath/clone
+  else  
+      sudo ln -sf "$HOME/easyclone/rclone" "$spath/clone"
+      sudo chmod u+x $spath/clone
+  fi
   ;;
 2)
   # Detecting the linux kernel architecture
@@ -174,14 +177,25 @@ case $opt in
   else
     cecho b "lclone binary already exists in path // Skipping"
   fi
+
+  # Creating Symlink for clone script in path
+  if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+      ln -sf "$HOME/easyclone/lclone" "$spath/clone"
+      chmod u+x $spath/clone
+  else  
+      sudo ln -sf "$HOME/easyclone/lclone" "$spath/clone"
+      sudo chmod u+x $spath/clone
+  fi
   ;;
 esac
 
+# Shorten Expanded Variable
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
   sed -i "s|--config=$HOME/easyclone/rc.conf|--config=$conf|g" $(which clone)
 else
   sudo sed -i "s|--config=$HOME/easyclone/rc.conf|--config=$conf|g" $(which clone)
 fi
+
 rm -rf $HOME/tmp
 echo
 cecho g "Entering clone will always start the script henceforth"
