@@ -130,7 +130,7 @@ EOF
     cecho b "Copy option has been selected"
     fsrc 
     fdst
-    read -e p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files even with different sizes will be considered equal [y/n]: " ig
+    read -e p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files with different sizes will be considered equal [y/n]: " ig
     case $ig in
     [Yy]*)
       lclone --config=$conf copy src: dst: $uflags --ignore-existing
@@ -143,7 +143,7 @@ EOF
     cecho b "Move option has been selected"
     fsrc
     fdst
-    read -e p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files even with different sizes will be considered equal [y/n]: " ig
+    read -e p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files with different sizes will be considered equal [y/n]: " ig
     case $ig in
     [Yy]*)
       lclone --config=$conf move src: dst: $uflags --delete-empty-src-dirs --ignore-existing
@@ -156,7 +156,7 @@ EOF
     cecho b "Sync option has been selected"
     fsrc
     fdst
-    read -e p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files even with different sizes will be considered equal [y/n]: " ig
+    read -e p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files with different sizes will be considered equal [y/n]: " ig
     case $ig in
     [Yy]*)
       lclone --config=$conf sync src: dst: $uflags --ignore-existing
