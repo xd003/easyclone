@@ -118,7 +118,7 @@ cat << EOF
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 EOF
 echo
-read -e -p "What would you like to use [1/2] : " opt
+read -e -p "What would you like to use by default [1/2] : " opt
 case $opt in
 1)
   # Downloading rclone 
