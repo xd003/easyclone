@@ -174,17 +174,6 @@ case $opt in
   else
     cecho b "lclone binary already exists in path // Skipping"
   fi
-  if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    sed -i '115s|(cd $HOME/easyclone/sasync; bash sasync set.copy)|lclone --config=$conf copy src: dst: $uflags --ignore-existing|' $(which clone)
-    sed -i '121s|(cd $HOME/easyclone/sasync; bash sasync set.move)|lclone --config=$conf move src: dst: $uflags --delete-empty-src-dirs --ignore-existing|' $(which clone)
-    sed -i '127s|(cd $HOME/easyclone/sasync; bash sasync set.sync)|lclone --config=$conf sync src: dst: $uflags --ignore-existing|' $(which clone)
-    sed -i "s|rclone|lclone|g" $(which clone)
-  else
-    sudo sed -i '115s|(cd $HOME/easyclone/sasync; bash sasync set.copy)|lclone --config=$conf copy src: dst: $uflags --ignore-existing|' $(which clone)
-    sudo sed -i '121s|(cd $HOME/easyclone/sasync; bash sasync set.move)|lclone --config=$conf move src: dst: $uflags --delete-empty-src-dirs --ignore-existing|' $(which clone)
-    sudo sed -i '127s|(cd $HOME/easyclone/sasync; bash sasync set.sync)|lclone --config=$conf sync src: dst: $uflags --ignore-existing|' $(which clone)
-    sudo sed -i "s|rclone|lclone|g" $(which clone)
-  fi
   ;;
 esac
 
