@@ -138,6 +138,7 @@ EOF
     [Nn]*)
       lclone --config=$conf copy src: dst: $uflags
       ;;
+    esac
     ;;
   2)
     cecho b "Move option has been selected"
@@ -151,6 +152,7 @@ EOF
     [Nn]*)
       lclone --config=$conf move src: dst: $uflags --delete-empty-src-dirs
       ;;
+    esac
     ;;
   3)
     cecho b "Sync option has been selected"
@@ -163,6 +165,8 @@ EOF
       ;;
     [Nn]*)
       lclone --config=$conf sync src: dst: $uflags
+      ;;
+    esac
     ;;
   4)
     cecho b "Dedupe option has been selected"
