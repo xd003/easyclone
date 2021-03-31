@@ -130,19 +130,43 @@ EOF
     cecho b "Copy option has been selected"
     fsrc 
     fdst
-    (cd $HOME/easyclone/sasync; bash sasync set.copy)
+    read -e p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files with different sizes will be considered equal [y/n]: " ig
+    case $ig in
+    [Yy]*)
+      (cd $HOME/easyclone/sasync; bash sasync set.copyig)
+      ;;
+    [Nn]*)
+      (cd $HOME/easyclone/sasync; bash sasync set.copy)
+      ;;
+    esac
     ;;
   2)
     cecho b "Move option has been selected"
     fsrc
     fdst
-    (cd $HOME/easyclone/sasync; bash sasync set.move)
+    read -e p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files with different sizes will be considered equal [y/n]: " ig
+    case $ig in
+    [Yy]*)
+      (cd $HOME/easyclone/sasync; bash sasync set.moveig)
+      ;;
+    [Nn]*)
+      (cd $HOME/easyclone/sasync; bash sasync set.move)
+      ;;
+    esac
     ;;
   3)
     cecho b "Sync option has been selected"
     fsrc
     fdst
-    (cd $HOME/easyclone/sasync; bash sasync set.sync)
+    read -e p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files with different sizes will be considered equal [y/n]: " ig
+    case $ig in
+    [Yy]*)
+      (cd $HOME/easyclone/sasync; bash sasync set.syncig)
+      ;;
+    [Nn]*)
+      (cd $HOME/easyclone/sasync; bash sasync set.sync)
+      ;;
+    esac
     ;;
   4)
     cecho b "Dedupe option has been selected"
