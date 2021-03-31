@@ -71,7 +71,9 @@ fi
 rm -rf $HOME/tmp
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp > /dev/null
-
+mkdir -p $HOME/easyclone
+mv $HOME/tmp/rclone $HOME/easyclone
+mv $HOME/tmp/lclone $HOME/easyclone
 
 # Pulling the accounts folder containing service accounts from github 
 echo
