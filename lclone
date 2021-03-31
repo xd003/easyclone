@@ -112,7 +112,10 @@ while true; do
 ┋12) Delete
 ┋    (Delete a file or a folder along with its content)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
-┋13) Quit
+┋13) Switch Cloning Tool
+┋    (Switch Between Sasync & Lclone on the go)
+┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
+┋14) Quit
 ┋    (Exit the Script)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 EOF
@@ -417,6 +420,9 @@ EOF
     esac
     ;;
   13)
+  
+    ;;
+  14)
     exit
     ;;
   esac
