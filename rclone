@@ -23,9 +23,11 @@ cecho() {
   [ -z "$text" ] && local text="$color$2${code}0m"
   echo -e "$text"
 }
+# Sasync Script
 
 # Variable
 conf="$HOME/easyclone/rc.conf"
+ehome="$(echo $HOME)"
 uflags="--fast-list --drive-server-side-across-configs --drive-acknowledge-abuse --drive-keep-revision-forever --stats=10s -vP --drive-chunk-size 256M --transfers 50 --tpslimit-burst 50 --checkers 32 --drive-use-trash=false --drive-stop-on-upload-limit --size-only --no-update-modtime --use-mmap --check-first --log-file $HOME/easyclone/log.txt"
 jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
 rjc1="$(shuf -i 1-$jc -n 1)"
