@@ -23,6 +23,7 @@ cecho() {
   [ -z "$text" ] && local text="$color$2${code}0m"
   echo -e "$text"
 }
+# Lclone Script
 
 # Variable
 conf="$HOME/easyclone/rc.conf"
