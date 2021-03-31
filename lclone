@@ -431,9 +431,17 @@ EOF
 EOF
     echo
     read -e -p "Enter your input : " opt
-    if [[ $opt -ne 4 ]]; then
-    
-    fi
+    case $opt in
+    1)
+      
+      ;;
+    2)
+      
+      ;;
+    3)
+      continue
+      ;;
+    esac
     ;;
   14)
     exit
