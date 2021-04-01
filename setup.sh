@@ -74,7 +74,7 @@ spath=$(echo $spath | sed 's/\/git$//')
 
 # Downloading latest easyclone script from github
 echo
-cecho r "¶ Downloading latest easyclone script from github"
+cecho b "¶ Downloading latest easyclone script from github"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     rm -rf $(which clone)
 else
