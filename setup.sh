@@ -49,9 +49,8 @@ conf="$HOME/easyclone/rc.conf"
 
 # Detecting the OS and installing required dependencies
 echo
-cecho r "Detecting the OS and installing required dependencies"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    cecho g "Termux detected , Installing required packages" && \
+    cecho g "¶ Termux detected , Installing required packages" && \
     pkg install -y unzip git wget tsu python tmux &>/dev/null 
     if [ ! -d ~/storage ]; then
         cecho r "Setting up storage access for Termux"
@@ -59,13 +58,13 @@ if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
         sleep 2
     fi
 elif [ "$epac" == "/usr/bin/pacman" ]; then
-    cecho g "Arch based OS detected, Installing required packages" && \
+    cecho g "¶ Arch based OS detected, Installing required packages" && \
     sudo pacman --noconfirm -S unzip git wget python tmux 
 elif [ "$eapt" == "/usr/bin/apt" ]; then 
-    cecho g "Ubuntu based OS detected, Installing required packages" && \
+    cecho g "¶ Ubuntu based OS detected, Installing required packages" && \
     sudo apt install -y unzip git wget python3 tmux 
 elif [ "$ednf" == "/usr/bin/dnf" ]; then
-    cecho g "Fedora based OS detected, Installing required packages"
+    cecho g "¶ Fedora based OS detected, Installing required packages"
     sudo dnf install -y unzip git wget python3 tmux 
 fi
 
@@ -75,7 +74,7 @@ spath=$(echo $spath | sed 's/\/git$//')
 
 # Downloading latest easyclone script from github
 echo
-cecho r "Downloading latest easyclone script from github"
+cecho r "¶ Downloading latest easyclone script from github"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     rm -rf $(which clone)
 else
@@ -91,10 +90,10 @@ mv $HOME/tmp/lclone $HOME/easyclone
 # Pulling the accounts folder containing service accounts from github 
 echo
 if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
-    cecho b "Accounts folder containing service accounts already exists // Skipping"
+    cecho b "✓ Accounts folder containing service accounts already exists // Skipping"
 else
     mkdir -p $HOME/easyclone/accounts
-    cecho r "Downloading the service accounts from your private repo"
+    cecho r "¶ Downloading the service accounts from your private repo"
     read -e -p "Input your github username : " username
     read -e -p "Input your github password : " password
     while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do 
@@ -104,15 +103,12 @@ else
     done
 fi
 
-# Renaming the json files in numerical order if not already done by user
+cecho b "¶ Renaming the json files in numerical order if not already done"
 rm -rf $HOME/easyclone/accounts/.git
 if [ -f "$HOME/easyclone/accounts/1.json" ] && [ -f "$HOME/easyclone/accounts/2.json" ] && [ -f "$HOME/easyclone/accounts/3.json" ] ; then
-  echo
-  cecho b "Service account json files were renamed Successfully"
+  cecho b "✓ Service account json files are already renamed // Skipping"
 else
   (cd $HOME/easyclone/accounts; ls -v | cat -n | while read n f; do mv -n "$f" "$n.json"; done) && \
-  echo
-  cecho b "Service account json files were renamed Successfully"
 fi
 
 # Moving rclone Config file to easyclone folder
@@ -140,20 +136,18 @@ sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
 }
 
 lcloneinstall() {
-# Detecting the linux kernel architecture
 echo
-cecho r "Detecting the kernel architecture"
 if [ "$arch" == "arm64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
   arch=arm64
 elif [ "$arch" == "x86_64" ] ; then
   arch=amd64
 elif [ "$arch" == "*" ] ; then
-  cecho r "Unsupported Kernel architecture" && \
+  cecho r "Unsupported Kernel architecture , Install again and select Sasync as default cloning tool" && \
   exit
 fi
 
 # Downloading and adding lclone to path
-cecho b "Downloading and adding lclone binary to path"
+cecho b "¶ Downloading and adding lclone binary to path"
 elclone="$(lclone version)" &>/dev/null
 check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
 if [ -z "${check}" ] ; then
@@ -169,7 +163,7 @@ if [ -z "${check}" ] ; then
       sudo chmod u+x $spath/lclone
   fi
 else
-  cecho b "lclone binary already exists in path // Skipping"
+  cecho b "✓ lclone binary already exists in path // Skipping"
 fi
 }
 
