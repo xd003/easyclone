@@ -132,7 +132,7 @@ EOF
     fdst
     echo
     cecho b "Do you want to use --ignore-existing flag for this process ?"
-    cecho b "[Only use it if your source/destination doesn't contain modification of any file with same name as even after having different size they will be considered equal and ingored]"
+    cecho b "[Only use it if your source/destination doesn't contain modification of any file overwritten with same name as even after having different size they will be considered equal and ingored]"
     read -e -p "Enter Your Input [y/n] : " ig
     case $ig in
     [Yy]*)
@@ -149,7 +149,7 @@ EOF
     fdst
     echo
     cecho b "Do you want to use --ignore-existing flag for this process ?"
-    cecho b "[Only use it if your source/destination doesn't contain modification of any file with same name as even after having different size they will be considered equal and ingored]"
+    cecho b "[Only use it if your source/destination doesn't contain modification of any file overwritten with same name as even after having different size they will be considered equal and ingored]"
     read -e -p "Enter Your Input [y/n] : " ig
     case $ig in
     [Yy]*)
@@ -166,7 +166,7 @@ EOF
     fdst
     echo
     cecho b "Do you want to use --ignore-existing flag for this process ?"
-    cecho b "[Only use it if your source/destination doesn't contain modification of any file with same name as even after having different size they will be considered equal and ingored]"
+    cecho b "[Only use it if your source/destination doesn't contain modification of any file overwritten with same name as even after having different size they will be considered equal and ingored]"
     read -e -p "Enter Your Input [y/n] : " ig
     case $ig in
     [Yy]*)
