@@ -87,7 +87,7 @@ mv $HOME/tmp/rclone $HOME/easyclone
 mv $HOME/tmp/lclone $HOME/easyclone
 
 cecho g "¶ Pulling the accounts folder containing service accounts from github" 
-if [ ! -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
+if [ ! -d "$HOME/easyclone/accounts" ] && [ ! -f "$HOME/easyclone/accounts/1.json" ]; then
     mkdir -p $HOME/easyclone/accounts
     cecho r "¶ Downloading the service accounts from your private repo"
     read -e -p "Input your github username : " username
@@ -101,7 +101,7 @@ fi
 
 cecho g "¶ Renaming the json files in numerical order"
 rm -rf $HOME/easyclone/accounts/.git
-if [ ! -f "$HOME/easyclone/accounts/1.json" ] && [ -f "$HOME/easyclone/accounts/2.json" ] && [ -f "$HOME/easyclone/accounts/3.json" ] ; then
+if [ ! -f "$HOME/easyclone/accounts/1.json" ] && [ ! -f "$HOME/easyclone/accounts/2.json" ] && [ ! -f "$HOME/easyclone/accounts/3.json" ] ; then
   (cd $HOME/easyclone/accounts; ls -v | cat -n | while read n f; do mv -n "$f" "$n.json"; done)
 fi
   
