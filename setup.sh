@@ -132,7 +132,6 @@ sed -i "7s/999/$jc/" $HOME/easyclone/sasync/sasync.conf
 }
 
 lcloneinstall() {
-echo
 if [ "$arch" == "arm64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
   arch=arm64
 elif [ "$arch" == "x86_64" ] ; then
@@ -174,6 +173,7 @@ cat << EOF
 EOF
 echo
 read -e -p "What would you like to use by default [1/2] : " opt
+echo
 case $opt in
 1)
    cecho g "¶ Creating Symlink for clone script in path"
@@ -207,4 +207,4 @@ fi
 rm -rf $HOME/tmp
 cecho g "¶ Installation 100% successful"
 echo
-cecho g "¶ Entering clone will always start the script henceforth"
+cecho g "✓ Entering clone will always start the script henceforth"
