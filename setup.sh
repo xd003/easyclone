@@ -74,7 +74,7 @@ spath=$(echo $spath | sed 's/\/git$//')
 
 # Downloading latest easyclone script from github
 echo
-cecho b "¶ Downloading latest easyclone script from github"
+cecho g "¶ Downloading latest easyclone script from github"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     rm -rf $(which clone)
 else
@@ -103,12 +103,12 @@ else
     done
 fi
 
-cecho b "¶ Renaming the json files in numerical order if not already done"
+cecho g "¶ Renaming the json files in numerical order if not already done"
 rm -rf $HOME/easyclone/accounts/.git
 if [ -f "$HOME/easyclone/accounts/1.json" ] && [ -f "$HOME/easyclone/accounts/2.json" ] && [ -f "$HOME/easyclone/accounts/3.json" ] ; then
-  cecho b "✓ Service account json files are already renamed // Skipping"
+  cecho g "✓ Service account json files are already renamed // Skipping"
 else
-  (cd $HOME/easyclone/accounts; ls -v | cat -n | while read n f; do mv -n "$f" "$n.json"; done) && \
+  (cd $HOME/easyclone/accounts; ls -v | cat -n | while read n f; do mv -n "$f" "$n.json"; done)
 fi
 
 # Moving rclone Config file to easyclone folder
@@ -147,7 +147,7 @@ elif [ "$arch" == "*" ] ; then
 fi
 
 # Downloading and adding lclone to path
-cecho b "¶ Downloading and adding lclone binary to path"
+cecho g "¶ Downloading and adding lclone binary to path"
 elclone="$(lclone version)" &>/dev/null
 check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
 if [ -z "${check}" ] ; then
@@ -163,7 +163,7 @@ if [ -z "${check}" ] ; then
       sudo chmod u+x $spath/lclone
   fi
 else
-  cecho b "✓ lclone binary already exists in path // Skipping"
+  cecho g "✓ lclone binary already exists in path // Skipping"
 fi
 }
 
