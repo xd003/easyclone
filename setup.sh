@@ -87,8 +87,17 @@ mv $HOME/tmp/rclone $HOME/easyclone
 mv $HOME/tmp/lclone $HOME/easyclone
 
 cecho g "¶ Pulling the accounts folder containing service accounts from github" 
-if [ ! -d "$HOME/easyclone/accounts" ] && [ ! -f "$HOME/easyclone/accounts/1.json" ]; then
+if [ ! -d "$HOME/easyclone/accounts" ]; then
     mkdir -p $HOME/easyclone/accounts
+    read -e -p "Input your github username : " username
+    read -e -p "Input your github password : " password
+    while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do 
+      cecho r 'Invalid username or password, please retry' >&2;
+      read -e -p "Input your github username : " username
+      read -e -p "Input your github password : " password
+    done
+ elif [ ! -f "$HOME/easyclone/accounts/1.json" ]; then
+     mkdir -p $HOME/easyclone/accounts
     read -e -p "Input your github username : " username
     read -e -p "Input your github password : " password
     while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do 
