@@ -131,7 +131,9 @@ EOF
     fsrc 
     fdst
     echo
-    read -e -p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files with different sizes will be considered equal [y/n]: " ig
+    cecho b "Do you want to use --ignore-existing flag for this process ?"
+    cecho b "[ Only use it if your source and destination doesn't have same named files with different size as they will be considered equal ]"
+    read -e -p "Enter Your Input [y/n] : " ig
     case $ig in
     [Yy]*)
       (cd $HOME/easyclone/sasync; bash sasync set.copyig)
@@ -146,7 +148,9 @@ EOF
     fsrc
     fdst
     echo
-    read -e -p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files with different sizes will be considered equal [y/n]: " ig
+    cecho b "Do you want to use --ignore-existing flag for this process ?"
+    cecho b "[ Only use it if your source and destination doesn't have same named files with different size as they will be considered equal ]"
+    read -e -p "Enter Your Input [y/n] : " ig
     case $ig in
     [Yy]*)
       (cd $HOME/easyclone/sasync; bash sasync set.moveig)
@@ -161,7 +165,9 @@ EOF
     fsrc
     fdst
     echo
-    read -e -p "Do you want to use --ignore-existing flag for this process ? Only use it if your destination has all new files as same named files with different sizes will be considered equal [y/n]: " ig
+    cecho b "Do you want to use --ignore-existing flag for this process ?"
+    cecho b "[ Only use it if your source and destination doesn't have same named files with different size as they will be considered equal ]"
+    read -e -p "Enter Your Input [y/n] : " ig
     case $ig in
     [Yy]*)
       (cd $HOME/easyclone/sasync; bash sasync set.syncig)
