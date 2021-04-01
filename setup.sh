@@ -87,10 +87,10 @@ mkdir -p $HOME/easyclone
 mv $HOME/tmp/rclone $HOME/easyclone
 mv $HOME/tmp/lclone $HOME/easyclone
 
-# Pulling the accounts folder containing service accounts from github 
+cecho g "Pulling the accounts folder containing service accounts from github" 
 echo
 if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
-    cecho b "✓ Accounts folder containing service accounts already exists // Skipping"
+    cecho g "✓ Accounts folder containing service accounts already exists // Skipping"
 else
     mkdir -p $HOME/easyclone/accounts
     cecho r "¶ Downloading the service accounts from your private repo"
@@ -103,6 +103,7 @@ else
     done
 fi
 
+echo
 cecho g "¶ Renaming the json files in numerical order if not already done"
 rm -rf $HOME/easyclone/accounts/.git
 if [ -f "$HOME/easyclone/accounts/1.json" ] && [ -f "$HOME/easyclone/accounts/2.json" ] && [ -f "$HOME/easyclone/accounts/3.json" ] ; then
