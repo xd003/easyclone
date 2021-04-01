@@ -42,9 +42,9 @@ banner
 #Variables 
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
-epac="$(which pacman)"
-eapt="$(which apt)"
-ednf="$(which dnf)"
+epac="$(which pacman)" &>/dev/null 
+eapt="$(which apt)" &>/dev/null 
+ednf="$(which dnf)" &>/dev/null 
 conf="$HOME/easyclone/rc.conf"
 
 # Detecting the OS and installing required dependencies
@@ -75,9 +75,9 @@ spath=$(echo $spath | sed 's/\/git$//')
 # Downloading latest easyclone script from github
 cecho g "¶ Downloading latest easyclone script from github"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    rm -rf $(which clone)
+    rm -rf $(which clone) &>/dev/null 
 else
-    sudo rm -rf $(which clone)
+    sudo rm -rf $(which clone) &>/dev/null 
 fi
 rm -rf $HOME/tmp
 mkdir $HOME/tmp
