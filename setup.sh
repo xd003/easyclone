@@ -148,7 +148,6 @@ elif [ "$arch" == "*" ] ; then
 fi
 
 # Downloading and adding lclone to path
-cecho g "¶ Downloading and adding lclone binary to path"
 elclone="$(lclone version)" &>/dev/null
 check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
 if [ -z "${check}" ] ; then
@@ -168,6 +167,8 @@ else
 fi
 }
 
+echo
+cecho g "¶ Downloading rclone and moving Sasync files & lclone binary to path"
 sasyncinstall
 lcloneinstall
 
