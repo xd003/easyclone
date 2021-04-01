@@ -88,7 +88,6 @@ mv $HOME/tmp/rclone $HOME/easyclone
 mv $HOME/tmp/lclone $HOME/easyclone
 
 cecho g "¶ Pulling the accounts folder containing service accounts from github" 
-echo
 if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
     cecho g "✓ Accounts folder containing service accounts already exists // Skipping"
 else
