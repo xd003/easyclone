@@ -89,9 +89,7 @@ mv $HOME/tmp/lclone $HOME/easyclone
 
 echo
 cecho g "¶ Pulling the accounts folder containing service accounts from github" 
-if [ -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
-    cecho g "✓ Accounts folder containing service accounts already exists // Skipping"
-else
+if [ ! -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
     mkdir -p $HOME/easyclone/accounts
     cecho r "¶ Downloading the service accounts from your private repo"
     read -e -p "Input your github username : " username
@@ -104,13 +102,12 @@ else
 fi
 
 echo
-cecho g "¶ Renaming the json files in numerical order if not already done"
+cecho g "¶ Renaming the json files in numerical order"
 rm -rf $HOME/easyclone/accounts/.git
-if [ -f "$HOME/easyclone/accounts/1.json" ] && [ -f "$HOME/easyclone/accounts/2.json" ] && [ -f "$HOME/easyclone/accounts/3.json" ] ; then
-  cecho g "✓ Service account json files are already renamed // Skipping"
-else
+if [ ! -f "$HOME/easyclone/accounts/1.json" ] && [ -f "$HOME/easyclone/accounts/2.json" ] && [ -f "$HOME/easyclone/accounts/3.json" ] ; then
   (cd $HOME/easyclone/accounts; ls -v | cat -n | while read n f; do mv -n "$f" "$n.json"; done)
 fi
+  
 
 # Moving rclone Config file to easyclone folder
 rm -rf $HOME/easyclone/rc.conf
@@ -162,8 +159,6 @@ if [ -z "${check}" ] ; then
       sudo mv $HOME/tmp/lclone $spath
       sudo chmod u+x $spath/lclone
   fi
-else
-  cecho g "✓ lclone binary already exists in path // Skipping"
 fi
 }
 
