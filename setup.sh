@@ -24,6 +24,28 @@ cecho() {
         echo -e "$text"
 }
 
+banner () {
+clear
+cat << EOF
+╭━━━╮╱╱╱╱╱╱╱╱╱╱╱╱╭╮
+┃╭━━╯╱╱╱╱╱╱╱╱╱╱╱╱┃┃
+┃╰━━┳━━┳━━┳╮╱╭┳━━┫┃╭━━┳━╮╭━━╮
+┃╭━━┫╭╮┃━━┫┃╱┃┃╭━┫┃┃╭╮┃╭╮┫┃━┫
+┃╰━━┫╭╮┣━━┃╰━╯┃╰━┫╰┫╰╯┃┃┃┃┃━┫
+╰━━━┻╯╰┻━━┻━╮╭┻━━┻━┻━━┻╯╰┻━━╯
+╱╱╱╱╱╱╱╱╱╱╭━╯┃
+╱╱╱╱╱╱╱╱╱╱╰━━╯
+EOF
+}
+banner
+
+# Handy function to silence stuff.
+shutt () {
+    { "$@" || return $?; } | while read -r line; do
+        :
+    done
+}
+
 #Variables 
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
@@ -37,7 +59,7 @@ echo
 cecho r "Detecting the OS and installing required dependencies"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     cecho g "Termux detected" && \
-    pkg install -y unzip git wget tsu python tmux > /dev/null
+    pkg install -y unzip git wget tsu python tmux 
     if [ ! -d ~/storage ]; then
         cecho r "Setting up storage access for Termux"
         termux-setup-storage
@@ -45,13 +67,13 @@ if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     fi
 elif [ "$epac" == "/usr/bin/pacman" ]; then
     cecho g "Arch based OS detected" && \
-    sudo pacman --noconfirm -S unzip git wget python tmux > /dev/null
+    sudo pacman --noconfirm -S unzip git wget python tmux 
 elif [ "$eapt" == "/usr/bin/apt" ]; then 
     cecho g "Ubuntu based OS detected" && \
-    sudo apt install -y unzip git wget python3 tmux > /dev/null
+    sudo apt install -y unzip git wget python3 tmux 
 elif [ "$ednf" == "/usr/bin/dnf" ]; then
     cecho g "Fedora based OS detected"
-    sudo dnf install -y unzip git wget python3 tmux > /dev/null
+    sudo dnf install -y unzip git wget python3 tmux 
 fi
 cecho b "All dependencies were installed successfully"
 
@@ -69,7 +91,7 @@ else
 fi
 rm -rf $HOME/tmp
 mkdir $HOME/tmp
-git clone https://github.com/xd003/easyclone $HOME/tmp > /dev/null
+git clone https://github.com/xd003/easyclone $HOME/tmp 
 mkdir -p $HOME/easyclone
 mv $HOME/tmp/rclone $HOME/easyclone
 mv $HOME/tmp/lclone $HOME/easyclone
@@ -83,7 +105,7 @@ else
     cecho r "Downloading the service accounts from your private repo"
     read -e -p "Input your github username : " username
     read -e -p "Input your github password : " password
-    while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do > /dev/null
+    while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do 
       cecho r 'Invalid username or password, please retry' >&2;
       read -e -p "Input your github username : " username
       read -e -p "Input your github password : " password
@@ -111,10 +133,10 @@ sasyncinstall() {
 # Downloading rclone 
 case $ehome in
 /data/data/com.termux/files/home)
-  pkg install rclone > /dev/null
+  pkg install rclone 
   ;;
 *)
-  curl https://rclone.org/install.sh | sudo bash > /dev/null
+  curl https://rclone.org/install.sh | sudo bash 
   ;;
 esac
 
@@ -140,12 +162,12 @@ elif [ "$arch" == "*" ] ; then
 fi
 
 # Downloading and adding lclone to path
-elclone="$(lclone version)" > /dev/null
+elclone="$(lclone version)" 
 check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
 if [ -z "${check}" ] ; then
   lclone_version="v1.55.0-DEV"
   URL=http://easyclone.xd003.workers.dev/0:/lclone/lclone-$lclone_version-linux-$arch.zip
-  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip > /dev/null
+  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip 
   unzip -q $HOME/tmp/lclone.zip -d $HOME/tmp
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
       mv $HOME/tmp/lclone $spath
