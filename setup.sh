@@ -73,7 +73,6 @@ spath="$(which git)"
 spath=$(echo $spath | sed 's/\/git$//')
 
 # Downloading latest easyclone script from github
-echo
 cecho g "¶ Downloading latest easyclone script from github"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     rm -rf $(which clone)
@@ -87,7 +86,6 @@ mkdir -p $HOME/easyclone
 mv $HOME/tmp/rclone $HOME/easyclone
 mv $HOME/tmp/lclone $HOME/easyclone
 
-echo
 cecho g "¶ Pulling the accounts folder containing service accounts from github" 
 if [ ! -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json" ]; then
     mkdir -p $HOME/easyclone/accounts
@@ -101,7 +99,6 @@ if [ ! -d "$HOME/easyclone/accounts" ] && [ -f "$HOME/easyclone/accounts/1.json"
     done
 fi
 
-echo
 cecho g "¶ Renaming the json files in numerical order"
 rm -rf $HOME/easyclone/accounts/.git
 if [ ! -f "$HOME/easyclone/accounts/1.json" ] && [ -f "$HOME/easyclone/accounts/2.json" ] && [ -f "$HOME/easyclone/accounts/3.json" ] ; then
@@ -110,12 +107,13 @@ fi
   
 
 # Moving rclone Config file to easyclone folder
+cecho g "¶ Moving the config file to easyclone folder"
 rm -rf $HOME/easyclone/rc.conf
 mv $HOME/tmp/rc.conf $HOME/easyclone
 sed -i "s|HOME|$ehome|g" $conf
 
 sasyncinstall() {
-# Downloading rclone 
+cecho g "¶ Installing rclone"
 case $ehome in
 /data/data/com.termux/files/home)
   pkg install rclone &>/dev/null
@@ -125,7 +123,7 @@ case $ehome in
   ;;
 esac
 
-# Moving sasync files to easyclone folder & adjusting sasync config
+cecho g "¶ Moving sasync files to easyclone folder & adjusting sasync config"
 rm -rf $HOME/easyclone/sasync
 mv $HOME/tmp/sasync $HOME/easyclone
 echo 1 > $HOME/easyclone/sasync/json.count
@@ -144,7 +142,7 @@ elif [ "$arch" == "*" ] ; then
   exit
 fi
 
-# Downloading and adding lclone to path
+cecho g "¶ Downloading and adding lclone to path"
 elclone="$(lclone version)" &>/dev/null
 check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
 if [ -z "${check}" ] ; then
@@ -162,8 +160,6 @@ if [ -z "${check}" ] ; then
 fi
 }
 
-echo
-cecho g "¶ Downloading rclone and moving Sasync files & lclone binary to path"
 sasyncinstall
 lcloneinstall
 
@@ -180,7 +176,7 @@ echo
 read -e -p "What would you like to use by default [1/2] : " opt
 case $opt in
 1)
-  # Creating Symlink for clone script in path
+   cecho g "¶ Creating Symlink for clone script in path"
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
       ln -sf "$HOME/easyclone/rclone" "$spath/clone"
       chmod u+x $spath/clone
@@ -190,7 +186,7 @@ case $opt in
   fi
   ;;
 2)
-  # Creating Symlink for clone script in path
+  cecho g "¶ Creating Symlink for clone script in path"
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
       ln -sf "$HOME/easyclone/lclone" "$spath/clone"
       chmod u+x $spath/clone
@@ -209,5 +205,6 @@ else
 fi
 
 rm -rf $HOME/tmp
+cecho g "¶ Installation 100% successful"
 echo
-cecho g "Entering clone will always start the script henceforth"
+cecho g "¶ Entering clone will always start the script henceforth"
