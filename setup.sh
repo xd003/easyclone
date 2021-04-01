@@ -39,13 +39,6 @@ EOF
 }
 banner
 
-# Handy function to silence stuff.
-shutt () {
-    { "$@" || return $?; } | while read -r line; do
-        :
-    done
-}
-
 #Variables 
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
@@ -58,24 +51,23 @@ conf="$HOME/easyclone/rc.conf"
 echo
 cecho r "Detecting the OS and installing required dependencies"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    cecho g "Termux detected" && \
-    pkg install -y unzip git wget tsu python tmux 
+    cecho g "Termux detected , Installing required packages" && \
+    pkg install -y unzip git wget tsu python tmux &>/dev/null 
     if [ ! -d ~/storage ]; then
         cecho r "Setting up storage access for Termux"
         termux-setup-storage
         sleep 2
     fi
 elif [ "$epac" == "/usr/bin/pacman" ]; then
-    cecho g "Arch based OS detected" && \
+    cecho g "Arch based OS detected, Installing required packages" && \
     sudo pacman --noconfirm -S unzip git wget python tmux 
 elif [ "$eapt" == "/usr/bin/apt" ]; then 
-    cecho g "Ubuntu based OS detected" && \
+    cecho g "Ubuntu based OS detected, Installing required packages" && \
     sudo apt install -y unzip git wget python3 tmux 
 elif [ "$ednf" == "/usr/bin/dnf" ]; then
-    cecho g "Fedora based OS detected"
+    cecho g "Fedora based OS detected, Installing required packages"
     sudo dnf install -y unzip git wget python3 tmux 
 fi
-cecho b "All dependencies were installed successfully"
 
 # Detecting Source path for binaries and script to be added
 spath="$(which git)"
@@ -91,7 +83,7 @@ else
 fi
 rm -rf $HOME/tmp
 mkdir $HOME/tmp
-git clone https://github.com/xd003/easyclone $HOME/tmp 
+git clone https://github.com/xd003/easyclone $HOME/tmp  &>/dev/null
 mkdir -p $HOME/easyclone
 mv $HOME/tmp/rclone $HOME/easyclone
 mv $HOME/tmp/lclone $HOME/easyclone
@@ -110,7 +102,6 @@ else
       read -e -p "Input your github username : " username
       read -e -p "Input your github password : " password
     done
-    cecho b "Service accounts were added Successfully"
 fi
 
 # Renaming the json files in numerical order if not already done by user
@@ -133,10 +124,10 @@ sasyncinstall() {
 # Downloading rclone 
 case $ehome in
 /data/data/com.termux/files/home)
-  pkg install rclone 
+  pkg install rclone &>/dev/null
   ;;
 *)
-  curl https://rclone.org/install.sh | sudo bash 
+  curl https://rclone.org/install.sh | sudo bash &>/dev/null
   ;;
 esac
 
@@ -162,13 +153,14 @@ elif [ "$arch" == "*" ] ; then
 fi
 
 # Downloading and adding lclone to path
-elclone="$(lclone version)" 
+cecho b "Downloading and adding lclone binary to path"
+elclone="$(lclone version)" &>/dev/null
 check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
 if [ -z "${check}" ] ; then
   lclone_version="v1.55.0-DEV"
   URL=http://easyclone.xd003.workers.dev/0:/lclone/lclone-$lclone_version-linux-$arch.zip
-  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip 
-  unzip -q $HOME/tmp/lclone.zip -d $HOME/tmp
+  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip &>/dev/null
+  unzip -q $HOME/tmp/lclone.zip -d $HOME/tmp &>/dev/null
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
       mv $HOME/tmp/lclone $spath
       chmod u+x $spath/lclone
@@ -176,7 +168,6 @@ if [ -z "${check}" ] ; then
       sudo mv $HOME/tmp/lclone $spath
       sudo chmod u+x $spath/lclone
   fi
-cecho b "lclone successfully installed / updated"
 else
   cecho b "lclone binary already exists in path // Skipping"
 fi
