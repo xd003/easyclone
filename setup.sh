@@ -50,7 +50,7 @@ conf="$HOME/easyclone/rc.conf"
 # Detecting the OS and installing required dependencies
 echo
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    cecho g "¶ Termux detected , Installing required packages" && \
+    cecho g "¶ Termux detected | Installing required packages" && \
     pkg install -y unzip git wget tsu python tmux &>/dev/null 
     if [ ! -d ~/storage ]; then
         cecho r "Setting up storage access for Termux"
@@ -58,13 +58,13 @@ if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
         sleep 2
     fi
 elif [ "$epac" == "/usr/bin/pacman" ]; then
-    cecho g "¶ Arch based OS detected, Installing required packages" && \
+    cecho g "¶ Arch based OS detected | Installing required packages" && \
     sudo pacman --noconfirm -S unzip git wget python tmux 
 elif [ "$eapt" == "/usr/bin/apt" ]; then 
-    cecho g "¶ Ubuntu based OS detected, Installing required packages" && \
+    cecho g "¶ Ubuntu based OS detected | Installing required packages" && \
     sudo apt install -y unzip git wget python3 tmux 
 elif [ "$ednf" == "/usr/bin/dnf" ]; then
-    cecho g "¶ Fedora based OS detected, Installing required packages"
+    cecho g "¶ Fedora based OS detected | Installing required packages"
     sudo dnf install -y unzip git wget python3 tmux 
 fi
 
