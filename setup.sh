@@ -111,9 +111,9 @@ cecho g "¶ Renaming the json files in numerical order"
 rm -rf $HOME/easyclone/accounts/.git
 if [ ! -f "$HOME/easyclone/accounts/5.json" ] ; then 
   (cd $HOME/easyclone/accounts; ls -v | cat -n | while read n f; do mv -n "$f" "$n.json"; done)
-elif [ -f "$HOME/easyclone/accounts/10.json" ] ; then
+elif [ ! -f "$HOME/easyclone/accounts/10.json" ] ; then
   (cd $HOME/easyclone/accounts; ls -v | cat -n | while read n f; do mv -n "$f" "$n.json"; done)
-elif [ -f "$HOME/easyclone/accounts/15.json" ] ; then
+elif [ ! -f "$HOME/easyclone/accounts/15.json" ] ; then
   (cd $HOME/easyclone/accounts; ls -v | cat -n | while read n f; do mv -n "$f" "$n.json"; done)
 fi
   
