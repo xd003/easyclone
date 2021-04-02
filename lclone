@@ -100,7 +100,7 @@ while true; do
 ┋    (Explore directory with text based UI)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋8) Upload | Download
-┋    (Move , Copy or Sync Local File/Folder to Drive OR Download files locally)
+┋    (Move , Copy or Sync Local Folder to Drive OR Download files locally)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋9) Empty Trash
 ┋    (You need to have Manager Permission in TD)
@@ -347,14 +347,14 @@ EOF
     echo
     read -e -p "Choose the appropriate option : " upl
     if [[ $upl -ne 4 ]] && [[ $upl -ne 5 ]] ; then
-      read -e -p "Enter the path of the file/folder which you want to upload : " src
+      read -e -p "Enter the path of the folder which you want to upload : " src
       src="$(eval echo "$src")"
       fdst
     fi
 
     if [ "$upl" == "4" ] ; then
       fsrc
-      read -e -p "Enter the local path where you want to download : " dst
+      read -e -p "Enter the path where you want to download files locally : " dst
       dst="$(eval echo "$dst")"
     fi
     case $upl in
