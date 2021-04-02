@@ -346,16 +346,16 @@ EOF
 EOF
     echo
     read -e -p "Choose the appropriate option : " upl
-    if [[ $upl -ne 4 ]] || [[ $upl -ne 5]] ; then
-    read -e -p "Enter the path of the file/folder which you want to upload : " src
-    src="$(eval echo "$src")"
-    fdst
+    if [[ $upl -ne 4 ]] || [[ $upl -ne 5 ]] ; then
+      read -e -p "Enter the path of the file/folder which you want to upload : " src
+      src="$(eval echo "$src")"
+      fdst
     fi
 
     if [ "$upl" == "4" ] ; then
-    fsrc
-    read -e -p "Enter the local path where you want to download : " dst
-    dst="$(eval echo "$dst")"
+      fsrc
+      read -e -p "Enter the local path where you want to download : " dst
+      dst="$(eval echo "$dst")"
     fi
     case $upl in
     1)
