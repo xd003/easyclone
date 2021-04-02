@@ -338,7 +338,7 @@ EOF
 ┋    (Make local and drive file/folder identical, modifying drive only)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋4) Download
-┋    (Make local and drive file/folder identical, modifying drive only)
+┋    (Download content locally from Google Drive)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋5) Return to Main Menu
 ┋    (Restart the script from Main Menu)
