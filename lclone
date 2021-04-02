@@ -99,7 +99,7 @@ while true; do
 ┋7) NCDU
 ┋    (Explore directory with text based UI)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
-┋8) Upload & Download
+┋8) Upload | Download
 ┋    (Move , Copy or Sync Local File/Folder to Drive & Download)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋9) Empty Trash
@@ -346,7 +346,7 @@ EOF
 EOF
     echo
     read -e -p "Choose the appropriate option : " upl
-    if [[ $upl -ne 4 ]] || [[ $upl -ne 5 ]] ; then
+    if [[ $upl -ne 4 ]] && [[ $upl -ne 5 ]] ; then
       read -e -p "Enter the path of the file/folder which you want to upload : " src
       src="$(eval echo "$src")"
       fdst
