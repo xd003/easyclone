@@ -100,7 +100,7 @@ while true; do
 ┋    (Explore directory with text based UI)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋8) Upload | Download
-┋    (Move , Copy or Sync Local File/Folder to Drive & Download)
+┋    (Move , Copy or Sync Local File/Folder to Drive OR Download files locally)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋9) Empty Trash
 ┋    (You need to have Manager Permission in TD)
