@@ -154,7 +154,7 @@ elif [ "$arch" == "*" ] ; then
 fi
 
 cecho g "¶ Downloading and adding lclone to path"
-elclone="$(lclone version)" &>/dev/null
+elclone="$(lclone version &>/dev/null)" 
 check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
 if [ -z "${check}" ] ; then
   lclone_version="v1.55.0-DEV"
