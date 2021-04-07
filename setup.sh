@@ -42,9 +42,9 @@ banner
 #Variables 
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
-epac="$(which pacman)" &>/dev/null 
-eapt="$(which apt)" &>/dev/null 
-ednf="$(which dnf)" &>/dev/null 
+epac="$(which pacman &>/dev/null)" 
+eapt="$(which apt &>/dev/null)"
+ednf="$(which dnf &>/dev/null)"
 conf="$HOME/easyclone/rc.conf"
 
 # Detecting the OS and installing required dependencies
