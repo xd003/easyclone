@@ -42,9 +42,9 @@ banner
 #Variables 
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
-epac="$(which pacman &>/dev/null)" 
-eapt="$(which apt &>/dev/null)"
-ednf="$(which dnf &>/dev/null)"
+epac="$(which pacman 2>/dev/null)" 
+eapt="$(which apt 2>/dev/null)"
+ednf="$(which dnf 2>/dev/null)"
 conf="$HOME/easyclone/rc.conf"
 
 # Detecting the OS and installing required dependencies
@@ -154,7 +154,7 @@ elif [ "$arch" == "*" ] ; then
 fi
 
 cecho g "¶ Downloading and adding lclone to path"
-elclone="$(lclone version &>/dev/null)" 
+elclone="$(lclone version 2>/dev/null)" 
 check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
 if [ -z "${check}" ] ; then
   lclone_version="v1.55.0-DEV"
