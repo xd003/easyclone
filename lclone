@@ -142,7 +142,7 @@ EOF
   echo
   case $opt in
   1)
-    cecho b "Copy option has been selected"
+    cecho y "Copy option has been selected"
     fsrc 
     fdst
     echo
@@ -159,7 +159,7 @@ EOF
     esac
     ;;
   2)
-    cecho b "Move option has been selected"
+    cecho y "Move option has been selected"
     fsrc
     fdst
     echo
@@ -176,7 +176,7 @@ EOF
     esac
     ;;
   3)
-    cecho b "Sync option has been selected"
+    cecho y "Sync option has been selected"
     fsrc
     fdst
     echo
@@ -193,7 +193,7 @@ EOF
     esac
     ;;
   4)
-    cecho b "Dedupe option has been selected"
+    cecho y "Dedupe option has been selected"
     cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋1) Interactive
@@ -269,12 +269,12 @@ EOF
 
     ;;
   5)
-    cecho b "Size option has been selected"
+    cecho y "Size option has been selected"
     fsrc
     lclone --config=$conf size src: --fast-list
     ;;
   6)
-    cecho b "Listing option has been selected"
+    cecho y "Listing option has been selected"
     cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋1) ls
@@ -335,12 +335,12 @@ EOF
     esac
     ;;
   7)
-    cecho b "NCDU option has been selected"
+    cecho y "NCDU option has been selected"
     fsrc
     lclone --config=$conf ncdu src: --fast-list
     ;;
   8)
-    cecho b "Upload option has been selected"
+    cecho y "Upload option has been selected"
     cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋1) Upload + Copy
@@ -391,17 +391,17 @@ EOF
     esac
   ;;
   9)
-    cecho b "Empty Trash option has been selected"
+    cecho y "Empty Trash option has been selected"
     fsrc
     lclone --config=$conf delete src: --drive-trashed-only=true --drive-use-trash=false --fast-list --verbose=2 --log-file $HOME/easyclone/log.txt
     ;;
   10)
-    cecho b "Delete Empty folders option has been selected"
+    cecho y "Delete Empty folders option has been selected"
     fsrc
     lclone --config=$conf rmdirs src: --leave-root --fast-list --log-file $HOME/easyclone/log.txt
     ;;
   11)
-    cecho b "Check option has been selected"
+    cecho y "Check option has been selected"
     cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋1) Compare only Size
@@ -442,7 +442,7 @@ EOF
     esac
     ;;
   12)
-    cecho b "Delete option has been selected"
+    cecho y "Delete option has been selected"
     cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋1) Delete
@@ -482,6 +482,7 @@ EOF
     esac
     ;;
   13)
+    cecho y "Switch Cloning Tool option has been selected"
     cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋1) Sasync + Rclone
