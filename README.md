@@ -6,6 +6,7 @@ The script uses sasync + rclone / lclone to bypass the 750GB daily limit by goog
 * Easy one command installation from scratch does everything
 * Linux along with termux supported
 * Dynamic generation of rclone config before each operation so no need to create any config manually
+* Ability to use bookmark for frequently used folder_ids for convenience
 * Easy one word execution to invoke script
 
 # How to install / update
