@@ -39,7 +39,15 @@ fsrc() {
   sed -i '/^team_drive/d' $conf
   sed -i '/^root_folder_id/d' $conf
   read -e -p "Enter the source folder id or url : " src
-  src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+  cecho b "[When you need to enter folder id/url , you can enter bm to choose a folder id from your bookmark.txt]"
+  if [ "$src" == "bm" ]; then
+    cat $HOME/easyclone/bookmark.txt | nl -w1 -s'• '
+    echo
+    read -e -p "Enter the number corresponding to the folder_id which you want to use : " NUM
+    src="$(cat $HOME/easyclone/bookmark.txt | awk 'NF>1{print $NF}' | sed "${NUM}q;d")"
+  else
+    src=$(echo $src | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+  fi
   case $src in
   0*)
     sed -i "4iteam_drive = $src" $conf
@@ -53,7 +61,14 @@ fsrc() {
 
 fdst() {
   read -e -p "Enter the destination folder id or url : " dst
-  dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+  if [ "$dst" == "bm" ]; then
+    cat $HOME/easyclone/bookmark.txt | nl -w1 -s'• '
+    echo
+    read -e -p "Enter the number corresponding to the folder_id which you want to use : " NUM
+    dst="$(cat $HOME/easyclone/bookmark.txt | awk 'NF>1{print $NF}' | sed "${NUM}q;d")"
+  else
+    dst=$(echo $dst | sed -E 's~.*[/=]([01A-Z][-_[:alnum:]]+)([?/].*|$)~\1~')
+  fi
   case $dst in
   0*)
     sed -i "11iteam_drive = $dst" $conf
