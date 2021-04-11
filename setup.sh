@@ -118,11 +118,15 @@ elif [ ! -f "$HOME/easyclone/accounts/15.json" ] ; then
 fi
   
 
-# Moving rclone Config file to easyclone folder
+# Moving rclone Config file & bookmark.txt to easyclone folder
 cecho g "¶ Moving the config file to easyclone folder"
 rm -rf $HOME/easyclone/rc.conf
 mv $HOME/tmp/rc.conf $HOME/easyclone
+if [ ! -f "$HOME/easyclone/bookmark.txt" ] ; then 
+  mv $HOME/tmp/bookmark.txt $HOME/easyclone
+fi
 sed -i "s|HOME|$ehome|g" $conf
+
 
 sasyncinstall() {
 cecho g "¶ Installing rclone"
