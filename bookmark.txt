@@ -1,5 +1,4 @@
-# Add your folderid here in below format , Assign each folderid any Name for easy identification
-Name Folder_id
-Name2 Folder_id2
-Name3 Folder_id3
+# Add all folderid here in below format , Assign each folderid any Name for easy identification
+Name FolderID1 // Movie 13DHPC08Fv9teB_e1ApW9Xf6ArFVBPQoR
+Name2 FolderID2 // Anime 13DHPC08Fv9teB_e1ApW9Xf6ArFVHJKIO
 # Delete all these lines, Add yours from Line 1
