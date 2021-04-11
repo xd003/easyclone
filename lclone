@@ -39,6 +39,7 @@ fsrc() {
   sed -i '/^team_drive/d' $conf
   sed -i '/^root_folder_id/d' $conf
   read -e -p "Enter the source folder id or url : " src
+  cecho b "[Whenever asked to enter folder id/url , you can enter bm to choose a folder id from your bookmark.txt]"
   if [ "$src" == "bm" ]; then
     cat $HOME/easyclone/bookmark.txt | nl -w1 -s'• '
     echo
