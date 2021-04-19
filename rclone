@@ -408,10 +408,10 @@ EOF
 ┋    (MD5/SHA1 is not considered here. Use this for a quick check)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋2) Compare Size + MD5 / SHA1 Hash
-┋    (Compares sizes and hashes and logs report of unmatched files .Very slow process)
+┋    (Compares sizes and hashes and logs report of unmatched files. Very slow process)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋3) Compare after Downloading data locally
-┋    (Download data from both the directories and Compare them on the fly .Use only if remote doesn't support hashes)
+┋    (Download data from both the directories and Compare them on the fly. Use only if remote doesn't support hashes)
 ┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋4) Return to Main Menu
 ┋    (Restart the script from Main Menu)
