@@ -38,9 +38,9 @@ fsrc() {
   : > $HOME/easyclone/log.txt
   sed -i '/^team_drive/d' $conf
   sed -i '/^root_folder_id/d' $conf
-  cecho b "[When you need to enter folder id/url , you can enter bm to choose a folder id from your bookmark.txt]"
+  cecho b "[When you need to enter folder id/url , you can enter b to choose a folder id from your bookmark.txt]"
   read -e -p "Enter the source folder id or url : " src
-  if [ "$src" == "bm" ]; then
+  if [ "$src" == "b" ]; then
     cat $HOME/easyclone/bookmark.txt | nl -w1 -s'• '
     echo
     read -e -p "Enter the number corresponding to the folder_id which you want to use : " NUM
@@ -61,7 +61,7 @@ fsrc() {
 
 fdst() {
   read -e -p "Enter the destination folder id or url : " dst
-  if [ "$dst" == "bm" ]; then
+  if [ "$dst" == "b" ]; then
     cat $HOME/easyclone/bookmark.txt | nl -w1 -s'• '
     echo
     read -e -p "Enter the number corresponding to the folder_id which you want to use : " NUM
