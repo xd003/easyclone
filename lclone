@@ -337,7 +337,8 @@ EOF
   7)
     cecho y "NCDU option has been selected"
     fsrc
-    lclone --config=$conf ncdu src: --fast-list 2>/dev/null
+    lclone --config=$conf ncdu src: --fast-list
+    trap "" INT
     ;;
   8)
     cecho y "Upload option has been selected"
