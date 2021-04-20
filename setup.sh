@@ -96,7 +96,7 @@ if [ ! -d "$HOME/easyclone/accounts" ]; then
       read -e -p "Input your github username : " username
       read -e -p "Input your github password : " password
     done
- elif [ ! -f "$HOME/easyclone/accounts/1.json" ]; then
+ elif [ ! -f "$HOME/easyclone/accounts/*.json" ]; then
      mkdir -p $HOME/easyclone/accounts
     read -e -p "Input your github username : " username
     read -e -p "Input your github password : " password
