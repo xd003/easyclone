@@ -96,15 +96,6 @@ if [ ! -d "$HOME/easyclone/accounts" ]; then
       read -e -p "Input your github username : " username
       read -e -p "Input your github password : " password
     done
- elif [ ! -f "$HOME/easyclone/accounts/*.json" ]; then
-     mkdir -p $HOME/easyclone/accounts
-    read -e -p "Input your github username : " username
-    read -e -p "Input your github password : " password
-    while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do 
-      cecho r 'Invalid username or password, please retry' >&2;
-      read -e -p "Input your github username : " username
-      read -e -p "Input your github password : " password
-    done
 fi
 
 cecho g "¶ Renaming the json files in numerical order"
