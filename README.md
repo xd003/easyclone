@@ -10,7 +10,9 @@ The script uses sasync + rclone / lclone to bypass the 750GB daily limit by goog
 * Easy one word execution to invoke script
 
 # How to install / update
-* ```bash <(curl -L http://tiny.cc/easyclone)```
+```bash
+<(curl -L http://tiny.cc/easyclone)
+```
 
 Installation is as easy as just running the above command . It will setup everything from scratch . Accordingly run it at a later stage to update script and binaries as and when needed.
 Proceeding installation, just enter ```clone``` whenever you need to execute the script henceforth 
