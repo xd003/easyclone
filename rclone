@@ -340,7 +340,7 @@ EOF
     rclone --config=$conf ncdu src: --fast-list 2>/dev/null
     ;;
   8)
-    cecho y "Upload option has been selected"
+    cecho y "Upload | Download option has been selected"
     cat << EOF
 ┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
 ┋1) Upload + Copy
