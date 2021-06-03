@@ -364,7 +364,7 @@ EOF
     if [[ $upl -ne 4 ]] && [[ $upl -ne 5 ]] ; then
       read -e -p "Enter the path of the folder which you want to upload : " src
       src="$(eval echo "$src")"
-      fdst
+      : > $HOME/easyclone/log.txt && sed -i '/^team_drive/d' $conf && sed -i '/^root_folder_id/d' $conf && fdst
     fi
 
     if [ "$upl" == "4" ] ; then
