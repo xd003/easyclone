@@ -51,7 +51,7 @@ conf="$HOME/easyclone/rc.conf"
 echo
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     cecho g "¶ Termux detected | Installing required packages" && \
-    pkg install -y unzip git wget tsu python tmux &>/dev/null 
+    pkg update && pkg install -y unzip git wget tsu python tmux &>/dev/null 
     if [ ! -d ~/storage ]; then
         cecho r "Setting up storage access for Termux"
         termux-setup-storage
