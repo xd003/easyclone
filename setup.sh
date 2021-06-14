@@ -59,13 +59,13 @@ if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
     fi
 elif [ "$epac" == "/usr/bin/pacman" ]; then
     cecho g "¶ Arch based OS detected | Installing required packages" && \
-    sudo pacman --noconfirm -S unzip git wget python tmux 
+    sudo pacman -Syy && sudo pacman --noconfirm -S unzip git wget python tmux 
 elif [ "$eapt" == "/usr/bin/apt" ]; then 
     cecho g "¶ Ubuntu based OS detected | Installing required packages" && \
-    sudo apt install -y unzip git wget python3 tmux 
+    sudo apt update && sudo apt install -y unzip git wget python3 tmux 
 elif [ "$ednf" == "/usr/bin/dnf" ]; then
     cecho g "¶ Fedora based OS detected | Installing required packages"
-    sudo dnf install -y unzip git wget python3 tmux 
+    sudo dnf check-update && sudo dnf install -y unzip git wget python3 tmux 
 fi
 
 # Detecting Source path for binaries and script to be added
