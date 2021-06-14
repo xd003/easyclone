@@ -86,6 +86,7 @@ mkdir -p $HOME/easyclone
 mv $HOME/tmp/rclone $HOME/easyclone
 mv $HOME/tmp/lclone $HOME/easyclone
 
+find $HOME/easyclone -type d -empty -delete
 cecho g "¶ Pulling the accounts folder containing service accounts from github" 
 if [ ! -d "$HOME/easyclone/accounts" ]; then
     mkdir -p $HOME/easyclone/accounts
