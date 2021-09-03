@@ -91,11 +91,12 @@ cecho g "¶ Pulling the accounts folder containing service accounts from github"
 if [ ! -d "$HOME/easyclone/accounts" ]; then
     mkdir -p $HOME/easyclone/accounts
     read -e -p "Input your github username : " username
-    read -e -p "Input your github password : " password
+    echo && echo "If you dont have a personal access token , you can generate one following this guide - https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token"
+    echo && read -e -p "Input your github's personal access token : " password
     while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do 
       cecho r 'Invalid username or password, please retry' >&2;
       read -e -p "Input your github username : " username
-      read -e -p "Input your github password : " password
+      read -e -p "Input your github's github personal access token : " password
     done
 fi
 
