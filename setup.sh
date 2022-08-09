@@ -140,10 +140,10 @@ if [ -z "${check}" ] ; then
   wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/gclone.zip &>/dev/null
   unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp &>/dev/null
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-      mv $HOME/tmp/gclone $spath
+      mv $HOME/tmp/gclone-$gclone_version-linux-$arch/gclone $spath
       chmod u+x $spath/gclone
   else     
-      sudo mv $HOME/tmp/gclone $spath
+      sudo mv $HOME/tmp/gclone-$gclone_version-linux-$arch/gclone $spath
       sudo chmod u+x $spath/gclone
   fi
 fi
