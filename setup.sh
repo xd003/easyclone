@@ -95,7 +95,7 @@ if [ ! -d "$HOME/easyclone/accounts" ]; then
     while ! git clone https://"$username":"$password"@github.com/"$username"/accounts $HOME/easyclone/accounts; do 
       cecho r 'Invalid username or password, please retry' >&2;
       read -e -p "Input your github username : " username
-      read -e -p "Input your github's github personal access token : " password
+      read -e -p "Input your github's personal access token : " password
     done
 fi
 
