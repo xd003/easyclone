@@ -120,9 +120,7 @@ fi
 sed -i "s|HOME|$ehome|g" $conf
 
 gcloneinstall() {
-if [ "$arch" == "aarch64" ] ; then
-  arch=aarch64 && URL=
-elif [ "$arch" == "x86_64" ] ; then
+if [ "$arch" == "x86_64" ] ; then
   arch=amd64
 elif [ "$arch" == "arm64" ] ; then
   arch=arm64
@@ -136,7 +134,11 @@ egclone="$(gclone version 2>/dev/null)"
 check="$(echo "$egclone" | grep 'v1\.59\.0')"
 if [ -z "${check}" ] ; then
   gclone_version="v1.59.0-abe"
-  URL=https://github.com/l3v11/gclone/releases/download/$gclone_version/gclone-$gclone_version-linux-$arch.zip
+  if [ "$arch" == "aarch64" ] ; then
+    URL=
+  else
+    URL=https://github.com/l3v11/gclone/releases/download/$gclone_version/gclone-$gclone_version-linux-$arch.zip
+  fi
   wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/gclone.zip &>/dev/null
   unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp &>/dev/null
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
