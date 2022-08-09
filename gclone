@@ -172,10 +172,10 @@ EOF
     read -e -p "Enter Your Input [y/n] : " ig
     case $ig in
     [Yy]*)
-      lclone --config=$conf sync src: dst: $uflags --ignore-existing
+      gclone --config=$conf sync src: dst: $uflags --ignore-existing
       ;;
     [Nn]*)
-      lclone --config=$conf sync src: dst: $uflags
+      gclone --config=$conf sync src: dst: $uflags
       ;;
     esac
     ;;
@@ -361,16 +361,16 @@ EOF
     fi
     case $upl in
     1)
-      lclone --config=$conf copy "$src" dst: $uflags
+      gclone --config=$conf copy "$src" dst: $uflags
     ;;
     2)
-      lclone --config=$conf move "$src" dst: $uflags --delete-empty-src-dirs
+      gclone --config=$conf move "$src" dst: $uflags --delete-empty-src-dirs
     ;;
     3)
-      lclone --config=$conf sync "$src" dst: $uflags
+      gclone --config=$conf sync "$src" dst: $uflags
     ;;
     4)
-      lclone --config=$conf copy src: "$dst" $uflags
+      gclone --config=$conf copy src: "$dst" $uflags
     ;;
     5)
       continue
