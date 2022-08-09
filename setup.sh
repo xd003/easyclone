@@ -83,8 +83,7 @@ rm -rf $HOME/tmp
 mkdir $HOME/tmp
 git clone https://github.com/xd003/easyclone $HOME/tmp  &>/dev/null
 mkdir -p $HOME/easyclone
-mv $HOME/tmp/rclone $HOME/easyclone
-mv $HOME/tmp/lclone $HOME/easyclone
+mv $HOME/tmp/gclone $HOME/easyclone
 
 find $HOME/easyclone -type d -empty -delete
 cecho g "¶ Pulling the accounts folder containing service accounts from github" 
@@ -111,7 +110,7 @@ elif [ ! -f "$HOME/easyclone/accounts/15.json" ] ; then
 fi
   
 
-# Moving rclone Config file & bookmark.txt to easyclone folder
+# Moving gclone Config file & bookmark.txt to easyclone folder
 cecho g "¶ Moving the config file to easyclone folder"
 rm -rf $HOME/easyclone/rc.conf
 mv $HOME/tmp/rc.conf $HOME/easyclone
@@ -136,7 +135,7 @@ cecho g "¶ Downloading and adding gclone to path"
 egclone="$(gclone version 2>/dev/null)"
 check="$(echo "$egclone" | grep 'v1\.59\.0')"
 if [ -z "${check}" ] ; then
-  gclone_version="v1.55.0-DEV"
+  gclone_version="v1.59.0-abe"
   URL=https://github.com/l3v11/gclone/releases/download/$gclone_version/gclone-$gclone_version-linux-$arch.zip
   wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/gclone.zip &>/dev/null
   unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp &>/dev/null
@@ -153,39 +152,16 @@ fi
 gcloneinstall
 
 ####################################################################
+
 echo
-cat << EOF 
-┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
-┋1) Sasync + Rclone
-┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
-┋2) Lclone
-┋┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉
-EOF
-echo
-read -e -p "What would you like to use by default [1/2] : " opt
-echo
-case $opt in
-1)
-   cecho g "¶ Creating Symlink for clone script in path"
-  if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-      ln -sf "$HOME/easyclone/rclone" "$spath/clone"
-      chmod u+x $spath/clone
-  else  
-      sudo ln -sf "$HOME/easyclone/rclone" "$spath/clone"
-      sudo chmod u+x $spath/clone
-  fi
-  ;;
-2)
-  cecho g "¶ Creating Symlink for clone script in path"
-  if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-      ln -sf "$HOME/easyclone/lclone" "$spath/clone"
-      chmod u+x $spath/clone
-  else  
-      sudo ln -sf "$HOME/easyclone/lclone" "$spath/clone"
-      sudo chmod u+x $spath/clone
-  fi
-  ;;
-esac
+cecho g "¶ Creating Symlink for clone script in path"
+if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+  ln -sf "$HOME/easyclone/gclone" "$spath/clone"
+  chmod u+x $spath/clone
+else
+  sudo ln -sf "$HOME/easyclone/gclone" "$spath/clone"
+  sudo chmod u+x $spath/clone
+fi
 
 # Shorten Expanded Variable
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
