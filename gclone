@@ -232,35 +232,35 @@ EOF
     case $dm in
     1)
       cecho b "Dedupe Interactive option has been selected"
-      rclone --config=$conf dedupe --dedupe-mode interactive src: --fast-list --verbose=2
+      gclone --config=$conf dedupe --dedupe-mode interactive src: --fast-list --verbose=2
       ;;
     2)
       cecho b "Dedupe Skip option has been selected"
-      rclone --config=$conf dedupe --dedupe-mode skip src: --fast-list --verbose=2
+      gclone --config=$conf dedupe --dedupe-mode skip src: --fast-list --verbose=2
       ;;
     3)
       cecho b "Dedupe First option has been selected"
-      rclone --config=$conf dedupe --dedupe-mode first src: --fast-list --verbose=2
+      gclone --config=$conf dedupe --dedupe-mode first src: --fast-list --verbose=2
       ;;
     4)
       cecho b "Dedupe Newest option has been selected"
-      rclone --config=$conf dedupe --dedupe-mode newest src: --fast-list --verbose=2
+      gclone --config=$conf dedupe --dedupe-mode newest src: --fast-list --verbose=2
       ;;
     5)
       cecho b "Dedupe Oldest option has been selected"
-      rclone --config=$conf dedupe --dedupe-mode oldest src: --fast-list --verbose=2
+      gclone --config=$conf dedupe --dedupe-mode oldest src: --fast-list --verbose=2
       ;;
     6)
       cecho b "Dedupe Largest option has been selected"
-      rclone --config=$conf dedupe --dedupe-mode largest src: --fast-list --verbose=2
+      gclone --config=$conf dedupe --dedupe-mode largest src: --fast-list --verbose=2
       ;;
     7)
       cecho b "Dedupe Smallest option has been selected"
-      rclone --config=$conf dedupe --dedupe-mode smallest src: --fast-list --verbose=2
+      gclone --config=$conf dedupe --dedupe-mode smallest src: --fast-list --verbose=2
       ;;
     8)
       cecho b "Dedupe Rename option has been selected"
-      rclone --config=$conf dedupe --dedupe-mode rename src: --fast-list --verbose=2
+      gclone --config=$conf dedupe --dedupe-mode rename src: --fast-list --verbose=2
       ;;
     9)
       continue
@@ -271,7 +271,7 @@ EOF
   5)
     cecho y "Size option has been selected"
     fsrc
-    rclone --config=$conf size src: --fast-list
+    gclone --config=$conf size src: --fast-list
     ;;
   6)
     cecho y "Listing option has been selected"
@@ -307,27 +307,27 @@ EOF
     case $lt in
     1)
       cecho b "Listing / ls option has been selected"
-      rclone --config=$conf ls src:
+      gclone --config=$conf ls src:
       ;;
     2)
       cecho b "Listing / lsd option has been selected"
-      rclone --config=$conf lsd src:
+      gclone --config=$conf lsd src:
       ;;
     3)
       cecho b "Listing / lsf option has been selected"
-      rclone --config=$conf lsf src:
+      gclone --config=$conf lsf src:
       ;;
     4)
       cecho b "Listing / lsjson option has been selected"
-      rclone --config=$conf lsjson src:
+      gclone --config=$conf lsjson src:
       ;;
     5)
       cecho b "Listing / lsl option has been selected"
-      rclone --config=$conf lsl src:
+      gclone --config=$conf lsl src:
       ;;
     6)
       cecho b "Listing / tree option has been selected"
-      rclone --config=$conf tree src:
+      gclone --config=$conf tree src:
       ;;
     7)
       continue
@@ -337,7 +337,7 @@ EOF
   7)
     cecho y "NCDU option has been selected"
     fsrc
-    rclone --config=$conf ncdu src: --fast-list 2>/dev/null
+    gclone --config=$conf ncdu src: --fast-list 2>/dev/null
     ;;
   8)
     cecho y "Upload | Download option has been selected"
@@ -393,12 +393,12 @@ EOF
   9)
     cecho y "Empty Trash option has been selected"
     fsrc
-    rclone --config=$conf delete src: --drive-trashed-only=true --drive-use-trash=false --fast-list --verbose=2 --log-file $HOME/easyclone/log.txt
+    gclone --config=$conf delete src: --drive-trashed-only=true --drive-use-trash=false --fast-list --verbose=2 --log-file $HOME/easyclone/log.txt
     ;;
   10)
     cecho y "Delete Empty folders option has been selected"
     fsrc
-    rclone --config=$conf rmdirs src: --leave-root --fast-list --log-file $HOME/easyclone/log.txt
+    gclone --config=$conf rmdirs src: --leave-root --fast-list --log-file $HOME/easyclone/log.txt
     ;;
   11)
     cecho y "Check option has been selected"
@@ -426,15 +426,15 @@ EOF
     case $opt in
     1)
       cecho b "Check / Compare only size option has been selected"
-      rclone --config=$conf check src: dst: -P --drive-server-side-across-configs --fast-list --size-only
+      gclone --config=$conf check src: dst: -P --drive-server-side-across-configs --fast-list --size-only
       ;;
     2)
       cecho b "Check / Compare size + MD5 option has been selected"
-      rclone --config=$conf check src: dst: -P --drive-server-side-across-configs --fast-list
+      gclone --config=$conf check src: dst: -P --drive-server-side-across-configs --fast-list
       ;;
     3)
       cecho b "Check / Compare locally downloaded date option has been selected"
-      rclone --config=$conf check src: dst: -P --drive-server-side-across-configs --fast-list --download
+      gclone --config=$conf check src: dst: -P --drive-server-side-across-configs --fast-list --download
       ;;
     4)
       continue
@@ -466,15 +466,15 @@ EOF
     case $opt in
     1)
       cecho b "Delete / Default option has been selected"
-      rclone --config=$conf delete src: -vP --stats-one-line --stats=15s --fast-list --log-file $HOME/easyclone/log.txt
+      gclone --config=$conf delete src: -vP --stats-one-line --stats=15s --fast-list --log-file $HOME/easyclone/log.txt
       ;;
     2)
       cecho b "Delete / Deletet option has been selected"
-      rclone --config=$conf deletefile src: -vP --stats-one-line --stats=15s --fast-list --log-file $HOME/easyclone/log.txt
+      gclone --config=$conf deletefile src: -vP --stats-one-line --stats=15s --fast-list --log-file $HOME/easyclone/log.txt
       ;;
     3)
       cecho b "Delete / Purge option has been selected"
-      rclone --config=$conf purge src: -vP --stats-one-line --stats=15s --fast-list --log-file $HOME/easyclone/log.txt
+      gclone --config=$conf purge src: -vP --stats-one-line --stats=15s --fast-list --log-file $HOME/easyclone/log.txt
       ;;
     4)
       continue
