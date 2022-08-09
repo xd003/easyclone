@@ -121,29 +121,31 @@ fi
 sed -i "s|HOME|$ehome|g" $conf
 
 gcloneinstall() {
-if [ "$arch" == "arm64" ] || [ "$ehome" == "/data/data/com.termux/files/home" ] ; then
-  arch=arm64
+if [ "$arch" == "aarch64" ] ; then
+  arch=aarch64 && URL=
 elif [ "$arch" == "x86_64" ] ; then
   arch=amd64
+elif [ "$arch" == "arm64" ] ; then
+  arch=arm64
 elif [ "$arch" == "*" ] ; then
-  cecho r "Unsupported Kernel architecture , Install again and select Sasync as default cloning tool" && \
+  cecho r "Unsupported Kernel architecture , try installing gclone manually" && \
   exit
 fi
 
-cecho g "¶ Downloading and adding lclone to path"
-elclone="$(lclone version 2>/dev/null)" 
-check="$(echo "$elclone" | grep 'v1\.55\.0-DEV')"
+cecho g "¶ Downloading and adding gclone to path"
+egclone="$(gclone version 2>/dev/null)"
+check="$(echo "$egclone" | grep 'v1\.59\.0')"
 if [ -z "${check}" ] ; then
-  lclone_version="v1.55.0-DEV"
-  URL=http://easyclone.xd003.workers.dev/0:/lclone/lclone-$lclone_version-linux-$arch.zip
-  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/lclone.zip &>/dev/null
-  unzip -q $HOME/tmp/lclone.zip -d $HOME/tmp &>/dev/null
+  gclone_version="v1.55.0-DEV"
+  URL=https://github.com/l3v11/gclone/releases/download/$gclone_version/gclone-$gclone_version-linux-$arch.zip
+  wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/gclone.zip &>/dev/null
+  unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp &>/dev/null
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-      mv $HOME/tmp/lclone $spath
-      chmod u+x $spath/lclone
+      mv $HOME/tmp/gclone $spath
+      chmod u+x $spath/gclone
   else     
-      sudo mv $HOME/tmp/lclone $spath
-      sudo chmod u+x $spath/lclone
+      sudo mv $HOME/tmp/gclone $spath
+      sudo chmod u+x $spath/gclone
   fi
 fi
 }
