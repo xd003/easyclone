@@ -122,13 +122,6 @@ sed -i "s|HOME|$ehome|g" $conf
 gcloneinstall() {
 if [ "$arch" == "x86_64" ] ; then
   arch=amd64
-elif [ "$arch" == "arm64" ] ; then
-  arch=arm64
-elif [ "$arch" == "aarch64" ] ; then
-  continue
-elif [ "$arch" == "*" ] ; then
-  cecho r "Unsupported Kernel architecture , try compiling gclone manually" && \
-  exit
 fi
 
 cecho g "¶ Downloading and adding gclone to path"
