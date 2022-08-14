@@ -134,6 +134,7 @@ egclone="$(gclone version 2>/dev/null)"
 check="$(echo "$egclone" | grep 'v1\.59\.1')"
 if [ -z "${check}" ] ; then
   gclone_version="v1.59.1-dream"
+  URL=https://github.com/l3v11/gclone/releases/download/$gclone_version/gclone-$gclone_version-linux-$arch.zip
   wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/gclone.zip &>/dev/null
   unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp &>/dev/null
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
