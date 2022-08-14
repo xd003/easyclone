@@ -124,7 +124,7 @@ if [ "$arch" == "x86_64" ] ; then
   arch=amd64
 elif [ "$arch" == "arm64" ] ; then
   arch=arm64
-elif [ "$arch" == "aarch64" ] : then
+elif [ "$arch" == "aarch64" ] ; then
   continue
 elif [ "$arch" == "*" ] ; then
   cecho r "Unsupported Kernel architecture , try compiling gclone manually" && \
