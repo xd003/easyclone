@@ -27,7 +27,7 @@ cecho() {
 # Variable
 conf="$HOME/easyclone/rc.conf"
 ehome="$(echo $HOME)"
-uflags="--fast-list --drive-server-side-across-configs --drive-acknowledge-abuse --drive-keep-revision-forever --stats=10s -vP --drive-use-trash=false --drive-stop-on-upload-limit --use-mmap --user-agent randomstringxyz --log-file $HOME/easyclone/log.txt"
+uflags="--fast-list --drive-server-side-across-configs --drive-acknowledge-abuse --drive-keep-revision-forever --stats=10s -vP --drive-use-trash=false --drive-stop-on-upload-limit --user-agent randomstringxyz --log-file $HOME/easyclone/log.txt"
 jc="$(ls -l $HOME/easyclone/accounts | egrep -c '^-')"
 rjc1="$(shuf -i 1-$jc -n 1)"
 rjc2="$(shuf -i 1-$jc -n 1)"
