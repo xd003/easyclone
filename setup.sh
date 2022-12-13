@@ -126,9 +126,9 @@ fi
 
 cecho g "¶ Downloading and adding gclone to path"
 egclone="$(gclone version 2>/dev/null)"
-check="$(echo "$egclone" | grep 'v1\.59\.1')"
+check="$(echo "$egclone" | grep 'v1\.60\.1')"
 if [ -z "${check}" ] ; then
-  gclone_version="v1.59.1-dream"
+  gclone_version="1.60.1-fog"
   if [ "$arch" == "aarch64" ] ; then
     URL=https://easyclone.xd003.workers.dev/0:/gclone/gclone-v1.59.1-dream-linux-aarch64.zip 
   else
