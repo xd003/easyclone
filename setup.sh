@@ -13,9 +13,9 @@ function cleanup {
   rm -rf $HOME/tmp
   rm -rf $HOME/easyclone
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    rm -rf $(which clone) &>/dev/null
+    rm -rf $(command -v clone) &>/dev/null
   else
-    sudo rm -rf $(which clone) &>/dev/null 
+    sudo rm -rf $(command -v clone) &>/dev/null 
   fi
   exit
 }
@@ -56,9 +56,9 @@ banner
 #Variables 
 arch="$(uname -m)"
 ehome="$(echo $HOME)"
-epac="$(which pacman 2>/dev/null)" 
-eapt="$(which apt 2>/dev/null)"
-ednf="$(which dnf 2>/dev/null)"
+epac="$(command -v pacman 2>/dev/null)" 
+eapt="$(command -v apt 2>/dev/null)"
+ednf="$(command -v dnf 2>/dev/null)"
 conf="$HOME/easyclone/rc.conf"
 
 # Detecting the OS and installing required dependencies
@@ -83,15 +83,15 @@ elif [ "$ednf" == "/usr/bin/dnf" ]; then
 fi
 
 # Detecting Source path for binaries and script to be added
-spath="$(which git)"
+spath="$(command -v git)"
 spath=$(echo $spath | sed 's/\/git$//')
 
 # Downloading latest easyclone script from github
 cecho g "¶ Downloading latest easyclone script from github"
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-    rm -rf $(which clone) &>/dev/null 
+    rm -rf $(command -v clone) &>/dev/null 
 else
-    sudo rm -rf $(which clone) &>/dev/null 
+    sudo rm -rf $(command -v clone) &>/dev/null 
 fi
 rm -rf $HOME/tmp
 mkdir $HOME/tmp
@@ -176,9 +176,9 @@ fi
 
 # Shorten Expanded Variable
 if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
-  sed -i "s|--config=$HOME/easyclone/rc.conf|--config=$conf|g" $(which clone)
+  sed -i "s|--config=$HOME/easyclone/rc.conf|--config=$conf|g" $(command -v clone)
 else
-  sudo sed -i "s|--config=$HOME/easyclone/rc.conf|--config=$conf|g" $(which clone)
+  sudo sed -i "s|--config=$HOME/easyclone/rc.conf|--config=$conf|g" $(command -v clone)
 fi
 
 rm -rf $HOME/tmp
