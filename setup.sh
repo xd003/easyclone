@@ -17,6 +17,7 @@ function cleanup {
   else
     sudo rm -rf $(which clone) &>/dev/null 
   fi
+  exit
 }
 trap cleanup INT
 
