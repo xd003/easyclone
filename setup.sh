@@ -149,7 +149,7 @@ if [ -z "${check}" ] ; then
     URL=https://github.com/l3v11/gclone/releases/download/$gclone_version/gclone-$gclone_version-linux-$arch.zip
   fi
   wget -c -t 0 --timeout=60 --waitretry=60 $URL -O $HOME/tmp/gclone.zip &>/dev/null &&
-  unzip -q $HOME/tmp/'gclone v1.62.2.zip' -d $HOME/tmp &>/dev/null &&
+  unzip -q $HOME/tmp/gclone.zip -d $HOME/tmp &>/dev/null &&
   if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
       mv $HOME/tmp/gclone $spath
       chmod u+x $spath/gclone
