@@ -171,3 +171,16 @@ rm -rf $HOME/tmp
 cecho g "¶ Installation 100% successful"
 echo
 cecho g "✓ Entering clone will always start the script henceforth"
+
+function cleanup {
+  echo "Deleting all directories and binaries" 
+  ehome="$(echo $HOME)"
+  rm -rf $HOME/tmp
+  rm -rf $HOME/easyclone
+  if [ "$ehome" == "/data/data/com.termux/files/home" ]; then
+    rm -rf $(which clone) &>/dev/null
+  else
+    sudo rm -rf $(which clone) &>/dev/null 
+  fi
+}
+trap cleanup INT
