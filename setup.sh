@@ -144,7 +144,7 @@ check="$(echo "$egclone" | grep 'v1\.62\.2')"
 if [ -z "${check}" ] ; then
   gclone_version="v1.62.2-purple"
   if [ "$arch" == "aarch64" ] ; then
-    URL=https://github.com/xd003/gclone_aarch64/raw/main/gclone%20v1.62.2.zip 
+    URL=https://github.com/xd003/files/raw/main/gclone%20v1.62.2.zip 
   else
     URL=https://github.com/l3v11/gclone/releases/download/$gclone_version/gclone-$gclone_version-linux-$arch.zip
   fi
